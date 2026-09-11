@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VoxSync - Real-time AI-powered voice translation for cross-language phone calls. Break language barriers with sub-400ms bidirectional translation.">
+    <meta name="keywords" content="real-time translation, voice translation, phone translation, AI translation, PSTN translation, multilingual communication">
+    <title>VoxSync - Real-Time Voice Translation | Luvent Technologies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0B0F17',
+                        slate: {
+                            850: '#0F172A',
+                            900: '#0A0E1A'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .flow-animation {
+            animation: flow 3s ease-in-out infinite;
+        }
+
+        @keyframes flow {
+            0%, 100% { opacity: 0.3; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(10px); }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terminal-screen {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(11, 15, 23, 0.95));
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center font-bold text-lg">
+                        V
+                    </div>
+                    <div>
+                        <div class="font-bold text-lg">VoxSync</div>
+                        <div class="text-[10px] text-gray-400 font-mono">by Luvent Technologies</div>
+                    </div>
+                    <span class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                        v1.0 Live Telephony Engine
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#problem" class="text-gray-300 hover:text-cyan-400 transition-colors">Problem</a>
+                    <a href="#architecture" class="text-gray-300 hover:text-cyan-400 transition-colors">Architecture</a>
+                    <a href="#benchmarks" class="text-gray-300 hover:text-cyan-400 transition-colors">Benchmarks</a>
+                    <a href="#builder" class="text-gray-300 hover:text-cyan-400 transition-colors">Solo Builder</a>
+                    <a href="#contact" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 rounded-lg transition-colors font-medium">
+                        Try Live Demo
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-850 border-t border-zinc-800">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#problem" class="block text-gray-300 hover:text-cyan-400 py-2">Problem</a>
+                <a href="#architecture" class="block text-gray-300 hover:text-cyan-400 py-2">Architecture</a>
+                <a href="#benchmarks" class="block text-gray-300 hover:text-cyan-400 py-2">Benchmarks</a>
+                <a href="#builder" class="block text-gray-300 hover:text-cyan-400 py-2">Solo Builder</a>
+                <a href="#contact" class="block px-4 py-2 bg-cyan-600 rounded-lg text-center">Try Live Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-600/5"></div>
+
+        <div class="max-w-7xl mx-auto relative">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-6">
+                    <svg class="w-4 h-4 text-cyan-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 9a1 1 0 012 0v4a1 1 0 11-2 0V9zm1-5a1 1 0 100 2 1 1 0 000-2z"/>
+                    </svg>
+                    <span class="text-sm font-mono text-cyan-400 font-semibold">ZERO-BARRIER GLOBAL CONVERSATIONS</span>
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                    Speak Your Language.<br/>
+                    <span class="text-gradient">They Hear Theirs.</span><br/>
+                    In Real-Time.
+                </h1>
+
+                <p class="text-xl sm:text-2xl text-gray-300 mb-4 max-w-4xl mx-auto leading-relaxed">
+                    Sub-400ms bidirectional speech-to-speech telephony translation bridging PSTN callers and mobile devices.
+                </p>
+
+                <p class="text-lg text-gray-400 mb-10 max-w-3xl mx-auto">
+                    Translates natural voice streams between Punjabi, English, German, and 30+ languages without speech collisions.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <a href="#architecture" class="px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg font-semibold text-lg transition-all hover-lift">
+                        Explore Telecom Architecture
+                    </a>
+                    <a href="#contact" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-zinc-700 rounded-lg font-semibold text-lg transition-all hover-lift">
+                        Request Early Access
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive Call Simulation -->
+            <div class="max-w-5xl mx-auto gradient-border rounded-2xl p-8 terminal-screen">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <span class="text-xs font-mono text-gray-400">live-translation-session.log</span>
+                </div>
+
+                <div class="space-y-6 font-mono text-sm">
+                    <!-- Caller A -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold">
+                                A
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-gray-400 text-xs">Caller A (PSTN)</span>
+                                <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">pa-IN</span>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-4 text-lg">
+                                "ਕੀ ਹਾਲ ਚਾਲ ਹੈ?"
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Processing Flow -->
+                    <div class="flex items-center space-x-3 pl-16 text-gray-500">
+                        <svg class="w-5 h-5 flow-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        <span class="text-xs">Deepgram STT (Linear16)</span>
+                        <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">~120ms</span>
+                    </div>
+
+                    <div class="flex items-center space-x-3 pl-16 text-gray-500">
+                        <svg class="w-5 h-5 flow-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        <span class="text-xs">Context Routing Engine (Immutable Session)</span>
+                        <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">~8ms</span>
+                    </div>
+
+                    <div class="flex items-center space-x-3 pl-16 text-gray-500">
+                        <svg class="w-5 h-5 flow-animation" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        <span class="text-xs">ElevenLabs TTS (Mulaw 8kHz WebSocket)</span>
+                        <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">~180ms</span>
+                    </div>
+
+                    <!-- Caller B -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center font-bold">
+                                B
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-gray-400 text-xs">Caller B (PSTN)</span>
+                                <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">en-US</span>
+                            </div>
+                            <div class="bg-slate-900 rounded-lg p-4 text-lg pulse-glow">
+                                "How are you doing?"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-zinc-700 pt-4 text-xs text-gray-500 flex items-center justify-between">
+                        <span>Total Latency (P50): <span class="text-cyan-400 font-semibold">~308ms</span></span>
+                        <span>Zero Self-Echo • Source ≠ Destination Validation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-World Use Cases -->
+    <section id="problem" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-850">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Breaking Real-World Language Barriers</h2>
+                <p class="text-xl text-gray-400">Three critical scenarios where instant voice translation changes everything</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Use Case 1 -->
+                <div class="gradient-border rounded-xl p-8 hover-lift">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Cross-Border Family Calls</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Speak in native Punjabi or your regional language to relatives abroad speaking English—without requiring them to download any app. Just dial and talk naturally.
+                    </p>
+                </div>
+
+                <!-- Use Case 2 -->
+                <div class="gradient-border rounded-xl p-8 hover-lift">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Global Business & Logistics</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Communicate with international clients and suppliers without hiring interpreters. Close deals, coordinate shipments, and build relationships across language barriers.
+                    </p>
+                </div>
+
+                <!-- Use Case 3 -->
+                <div class="gradient-border rounded-xl p-8 hover-lift">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Everyday Assistance & Travel</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Emergency services, healthcare consultations, and everyday situations where you don't know the local language. Get help when you need it most.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Deep Telephony & AI Pipeline Architecture</h2>
+                <p class="text-xl text-gray-400">Production-grade real-time voice processing built from first principles</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Telephony Layer -->
+                <div class="gradient-border rounded-xl p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold">Telephony Layer</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Twilio Media Streams</p>
+                                <p class="text-sm text-gray-400">Bidirectional WebSocket audio streams</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">G.711 μ-law Encoding</p>
+                                <p class="text-sm text-gray-400">8000 Hz native telephony-grade audio frames</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">PSTN Integration</p>
+                                <p class="text-sm text-gray-400">Direct landline/mobile connectivity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time STT -->
+                <div class="gradient-border rounded-xl p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold">Real-Time STT</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Deepgram Nova-2</p>
+                                <p class="text-sm text-gray-400">Streaming VAD with endpointing</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Punctuation Hooks</p>
+                                <p class="text-sm text-gray-400">Natural speech boundary detection</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Multi-Language Models</p>
+                                <p class="text-sm text-gray-400">30+ language simultaneous support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Immutable Routing -->
+                <div class="gradient-border rounded-xl p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold">Immutable Routing</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Context-ID Bounded Sessions</p>
+                                <p class="text-sm text-gray-400">Strict source ≠ destination validation</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Race Condition Elimination</p>
+                                <p class="text-sm text-gray-400">State machine guarantees ordering</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Zero Self-Echo</p>
+                                <p class="text-sm text-gray-400">Directional audio flow enforcement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zero-Echo TTS -->
+                <div class="gradient-border rounded-xl p-8">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold">Zero-Echo Low-Latency TTS</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">ElevenLabs Flash</p>
+                                <p class="text-sm text-gray-400">WebSocket streaming synthesis</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Native 8kHz Audio</p>
+                                <p class="text-sm text-gray-400">Direct carrier leg injection</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                            <div>
+                                <p class="font-semibold text-gray-200">Stream Buffering</p>
+                                <p class="text-sm text-gray-400">Adaptive chunk delivery</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Benchmarks -->
+    <section id="benchmarks" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-850">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">Performance Benchmarks</h2>
+                <p class="text-xl text-gray-400">Production metrics from real-world telephony deployments</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Latency Card -->
+                <div class="gradient-border rounded-xl p-8 text-center hover-lift">
+                    <div class="text-5xl font-bold text-gradient mb-4">< 400ms</div>
+                    <div class="text-sm text-gray-400 mb-2 font-mono">P50 Streaming Path</div>
+                    <div class="text-2xl font-bold text-gray-200">Latency</div>
+                    <p class="text-sm text-gray-500 mt-4">End-to-end voice-to-voice translation time</p>
+                </div>
+
+                <!-- Concurrency Safety Card -->
+                <div class="gradient-border rounded-xl p-8 text-center hover-lift">
+                    <div class="text-5xl font-bold text-gradient mb-4">100%</div>
+                    <div class="text-sm text-gray-400 mb-2 font-mono">Zero Self-Audio</div>
+                    <div class="text-2xl font-bold text-gray-200">Concurrency Safety</div>
+                    <p class="text-sm text-gray-500 mt-4">Strict source ≠ destination validation</p>
+                </div>
+
+                <!-- Language Coverage Card -->
+                <div class="gradient-border rounded-xl p-8 text-center hover-lift">
+                    <div class="text-5xl font-bold text-gradient mb-4">30+</div>
+                    <div class="text-sm text-gray-400 mb-2 font-mono">Direct & Pivot Routed</div>
+                    <div class="text-2xl font-bold text-gray-200">Language Coverage</div>
+                    <p class="text-sm text-gray-500 mt-4">Including regional dialects and variants</p>
+                </div>
+
+                <!-- Telecom Reach Card -->
+                <div class="gradient-border rounded-xl p-8 text-center hover-lift">
+                    <div class="text-5xl font-bold text-gradient mb-4">PSTN</div>
+                    <div class="text-sm text-gray-400 mb-2 font-mono">Landline + Mobile</div>
+                    <div class="text-2xl font-bold text-gray-200">Telecom Reach</div>
+                    <p class="text-sm text-gray-500 mt-4">No app required for callee</p>
+                </div>
+            </div>
+
+            <!-- Technical Specs -->
+            <div class="mt-12 gradient-border rounded-xl p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center">Technical Stack</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-sm font-mono">
+                    <div>
+                        <div class="text-cyan-400 font-semibold mb-2">Telephony</div>
+                        <div class="text-gray-400 space-y-1">
+                            <div>• Twilio Media Streams</div>
+                            <div>• WebSocket Bidirectional</div>
+                            <div>• G.711 μ-law @ 8kHz</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-cyan-400 font-semibold mb-2">AI Pipeline</div>
+                        <div class="text-gray-400 space-y-1">
+                            <div>• Deepgram Nova-2 STT</div>
+                            <div>• Groq Translation</div>
+                            <div>• ElevenLabs Flash TTS</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-cyan-400 font-semibold mb-2">Infrastructure</div>
+                        <div class="text-gray-400 space-y-1">
+                            <div>• Node.js Runtime</div>
+                            <div>• AWS EC2 Deployment</div>
+                            <div>• PM2 Process Management</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solo Builder Section -->
+    <section id="builder" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <div class="gradient-border rounded-2xl p-12 text-center">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 mb-8">
+                    <svg class="w-5 h-5 text-purple-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm font-mono text-purple-400 font-semibold">THE SOLO BUILDER</span>
+                </div>
+
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">Engineered from Scratch by a Solo Systems & Telephony Builder</h2>
+
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    VoxSync was conceived, architected, and fully implemented by a high-agency solo engineer—from raw WebSockets and RTP/PCM handling to state bridges and edge deployments.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 text-left mb-10">
+                    <div class="bg-slate-900/50 rounded-lg p-6 border border-zinc-800">
+                        <div class="text-cyan-400 font-semibold mb-2">System Design</div>
+                        <p class="text-sm text-gray-400">Complete telephony architecture from first principles</p>
+                    </div>
+                    <div class="bg-slate-900/50 rounded-lg p-6 border border-zinc-800">
+                        <div class="text-cyan-400 font-semibold mb-2">Implementation</div>
+                        <p class="text-sm text-gray-400">Full-stack development across telecom and AI layers</p>
+                    </div>
+                    <div class="bg-slate-900/50 rounded-lg p-6 border border-zinc-800">
+                        <div class="text-cyan-400 font-semibold mb-2">Deployment</div>
+                        <p class="text-sm text-gray-400">Production infrastructure and reliability engineering</p>
+                    </div>
+                </div>
+
+                <div class="text-gray-400 text-sm">
+                    Built with the conviction that language should never be a barrier to human connection.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/CTA Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-850">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-6">Ready to Break Language Barriers?</h2>
+            <p class="text-xl text-gray-300 mb-10">
+                Join the early access program and be among the first to experience real-time voice translation.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <a href="mailto:contact@theluvent.com" class="px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg font-semibold text-lg transition-all hover-lift">
+                    Request Early Access
+                </a>
+                <a href="mailto:founder@theluvent.com" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-zinc-700 rounded-lg font-semibold text-lg transition-all hover-lift">
+                    Contact Founder
+                </a>
+            </div>
+
+            <div class="text-sm text-gray-500 space-y-2">
+                <p>Official Contact: <a href="mailto:contact@theluvent.com" class="text-cyan-400 hover:text-cyan-300">contact@theluvent.com</a></p>
+                <p>Founder: <a href="mailto:founder@theluvent.com" class="text-cyan-400 hover:text-cyan-300">founder@theluvent.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center font-bold">
+                            V
+                        </div>
+                        <span class="font-bold text-lg">VoxSync</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Breaking language barriers through real-time AI voice translation.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#problem" class="hover:text-cyan-400 transition-colors">Use Cases</a></li>
+                        <li><a href="#architecture" class="hover:text-cyan-400 transition-colors">Architecture</a></li>
+                        <li><a href="#benchmarks" class="hover:text-cyan-400 transition-colors">Benchmarks</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#builder" class="hover:text-cyan-400 transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a></li>
+                        <li><a href="mailto:founder@theluvent.com" class="hover:text-cyan-400 transition-colors">Founder</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Legal & Compliance</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Telecom Compliance</a></li>
+                        <li class="text-xs text-gray-500 pt-2">STIR/SHAKEN Ready<br/>Zero-Retention Voice Policy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <p>© 2026 Luvent Technologies. All rights reserved.</p>
+                <p class="mt-4 md:mt-0">Domain: <span class="text-cyan-400">voxsync.theluvent.com</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Add scroll-based header styling
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
