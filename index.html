@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +9,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'media',
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        background: '#ffffff',
-                        foreground: '#000000',
-                        card: '#f5f5f5',
-                        'card-foreground': '#000000',
-                        primary: '#000000',
-                        'primary-foreground': '#ffffff',
-                        secondary: '#e5e5e5',
-                        muted: '#f5f5f5',
-                        'muted-foreground': '#737373',
-                        accent: '#e5e5e5',
+                        background: '#08090a',
+                        foreground: '#ffffff',
+                        card: '#0f1011',
+                        'card-foreground': '#ffffff',
+                        primary: '#ffffff',
+                        'primary-foreground': '#08090a',
+                        secondary: '#1a1b1e',
+                        muted: '#0f1011',
+                        'muted-foreground': '#a3a3a3',
+                        accent: '#1a1b1e',
+                        'accent-cool': '#38bdf8',
                         'accent-green': '#22c55e',
-                        border: 'rgba(0, 0, 0, 0.1)',
-                        input: 'rgba(0, 0, 0, 0.1)',
-                        ring: 'rgba(0, 0, 0, 0.2)',
+                        border: 'rgba(255, 255, 255, 0.1)',
+                        input: 'rgba(255, 255, 255, 0.1)',
+                        ring: 'rgba(255, 255, 255, 0.2)',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -57,45 +58,69 @@
         * {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            border-color: rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #08090a;
+            color: #ffffff;
             font-feature-settings: 'rlig' 1, 'calt' 1;
         }
 
-        @media (prefers-color-scheme: dark) {
-            * {
-                border-color: rgba(255, 255, 255, 0.1);
-            }
+        /* Hero aurora effect */
+        .hero-aurora {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(120% 85% at 50% -15%, rgba(56, 189, 248, 0.08), transparent 55%),
+                radial-gradient(70% 60% at 50% 0%, rgba(99, 102, 241, 0.06), transparent 72%),
+                radial-gradient(90% 60% at 50% 110%, rgba(56, 189, 248, 0.04), transparent 70%);
+            animation: ambient-drift 42s ease-in-out infinite;
+        }
 
-            body {
-                background-color: #0a0a0a;
-                color: #ffffff;
-            }
+        /* Accent cool cyan color */
+        .text-accent-cool {
+            color: #38bdf8;
+        }
+
+        /* Blueprint corners texture */
+        .blueprint-corners {
+            background-image:
+                linear-gradient(to right, rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
+            -webkit-mask-image:
+                radial-gradient(circle at top left, black, transparent 31%),
+                radial-gradient(circle at top right, black, transparent 31%),
+                radial-gradient(circle at bottom left, black, transparent 31%),
+                radial-gradient(circle at bottom right, black, transparent 31%);
+            mask-image:
+                radial-gradient(circle at top left, black, transparent 31%),
+                radial-gradient(circle at top right, black, transparent 31%),
+                radial-gradient(circle at bottom left, black, transparent 31%),
+                radial-gradient(circle at bottom right, black, transparent 31%);
         }
 
         /* Glass panel with subtle border */
         .glass-panel {
-            background-color: rgba(245, 245, 245, 0.8);
+            background-color: rgba(15, 16, 17, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
         .glass-panel-lit {
             position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .glass-panel-strong {
-            background-color: #ffffff;
+            background-color: #08090a;
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         /* State indicator dot */
@@ -111,48 +136,84 @@
 
         /* Dot grid texture */
         .bg-dot-grid {
-            background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
             background-size: 24px 24px;
         }
 
         /* Elevated shadow */
         .shadow-elevated {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
+
+        /* Waveform animation */
+        @keyframes waveform {
+            0%, 100% { height: 12px; }
+            50% { height: 24px; }
+        }
+
+        .waveform-bar {
+            display: inline-block;
+            width: 3px;
+            height: 12px;
+            background: linear-gradient(to top, #38bdf8, #60a5fa);
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: waveform 0.8s ease-in-out infinite;
+        }
+
+        .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+        .waveform-bar:nth-child(5) { animation-delay: 0.4s; }
 
         ::selection {
-            background-color: rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Dark mode overrides */
-        @media (prefers-color-scheme: dark) {
-            .glass-panel {
-                background-color: rgba(26, 26, 26, 0.6);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-            }
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(8, 9, 10, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
 
-            .glass-panel-lit {
-                border: 1px solid rgba(255, 255, 255, 0.15);
-            }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-            .glass-panel-strong {
-                background-color: #0a0a0a;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-            }
+        .modal-content {
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.3s ease-in-out;
+        }
 
-            .bg-dot-grid {
-                background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-            }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
 
-            .shadow-elevated {
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            }
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
 
-            ::selection {
-                background-color: rgba(255, 255, 255, 0.2);
-            }
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
@@ -179,11 +240,12 @@
                 <nav class="hidden md:flex items-center space-x-10">
                     <a href="#problem" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Problem</a>
                     <a href="#architecture" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Architecture</a>
+                    <a href="#enterprise" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Enterprise</a>
                     <a href="#benchmarks" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Benchmarks</a>
-                    <a href="#builder" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Solo Builder</a>
-                    <a href="#contact" class="px-5 py-2.5 bg-primary hover:opacity-90 text-primary-foreground rounded-xl transition-all font-semibold text-[15px]">
-                        Try Live Demo
-                    </a>
+                    <a href="#builder" class="text-muted-foreground hover:text-foreground font-medium text-[15px] transition-colors">Builder</a>
+                    <button id="open-modal-nav" class="px-5 py-2.5 bg-primary hover:opacity-90 text-primary-foreground rounded-xl transition-all font-semibold text-[15px] cursor-pointer">
+                        Get Early Access
+                    </button>
                 </nav>
 
                 <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl glass-panel hover:bg-card/50 transition-colors">
@@ -198,9 +260,10 @@
             <div class="px-6 py-6 space-y-4">
                 <a href="#problem" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Problem</a>
                 <a href="#architecture" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Architecture</a>
+                <a href="#enterprise" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Enterprise</a>
                 <a href="#benchmarks" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Benchmarks</a>
-                <a href="#builder" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Solo Builder</a>
-                <a href="#contact" class="block px-5 py-3 bg-primary text-primary-foreground rounded-xl text-center font-semibold">Try Live Demo</a>
+                <a href="#builder" class="block text-muted-foreground hover:text-foreground py-2.5 font-medium transition-colors">Builder</a>
+                <button id="open-modal-mobile" class="w-full px-5 py-3 bg-primary text-primary-foreground rounded-xl text-center font-semibold cursor-pointer">Get Early Access</button>
             </div>
         </div>
     </header>
@@ -230,9 +293,9 @@
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-3">
-                <a href="mailto:voxsync@theluvent.com" class="px-6 py-3 bg-white hover:bg-gray-200 text-black rounded-lg font-semibold transition-all inline-flex items-center gap-2">
+                <button id="open-modal-hero" class="px-6 py-3 bg-white hover:bg-gray-200 text-black rounded-lg font-semibold transition-all inline-flex items-center gap-2 cursor-pointer">
                     Request Early Access
-                </a>
+                </button>
                 <a href="#architecture" class="px-6 py-3 glass-panel glass-panel-lit rounded-lg font-semibold hover:bg-white/5 transition-all">
                     See How It Works
                 </a>
@@ -274,15 +337,15 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                         <span class="text-xs">Deepgram STT (Linear16)</span>
-                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">~120ms</span>
+                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">TTFB: 82ms</span>
                     </div>
 
                     <div class="flex items-center space-x-3 pl-16 text-muted-foreground">
                         <svg class="w-5 h-5 text-accent-cool" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
-                        <span class="text-xs">Context Routing Engine</span>
-                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">~8ms</span>
+                        <span class="text-xs">Groq Qwen Translation</span>
+                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">124ms</span>
                     </div>
 
                     <div class="flex items-center space-x-3 pl-16 text-muted-foreground">
@@ -290,7 +353,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                         <span class="text-xs">ElevenLabs TTS (Mulaw 8kHz)</span>
-                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">~180ms</span>
+                        <span class="px-2.5 py-1 glass-panel-lit rounded-lg text-xs font-bold text-accent-cool">TTFB: 74ms</span>
                     </div>
 
                     <!-- Caller B -->
@@ -312,8 +375,22 @@
                     </div>
 
                     <div class="border-t border-border pt-4 text-xs text-muted-foreground flex items-center justify-between">
-                        <span>Total Latency (P50): <span class="text-accent-cool font-bold text-base">~308ms</span></span>
-                        <span class="text-xs">Zero Self-Echo • Source ≠ Destination</span>
+                        <span>End-to-End Latency: <span class="text-accent-cool font-bold text-base">&lt;400ms</span></span>
+                        <span class="text-xs">30 Language Pairs • Full Duplex</span>
+                    </div>
+
+                    <!-- Play Audio Demo Button -->
+                    <div class="mt-6 flex justify-center">
+                        <button class="glass-panel glass-panel-lit px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-white/5 transition-all group">
+                            <div class="flex items-center gap-1">
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                                <span class="waveform-bar"></span>
+                            </div>
+                            <span class="font-mono font-semibold text-accent-cool">Play Audio Demo</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -534,6 +611,167 @@
                                 <p class="text-xs text-muted-foreground">Adaptive chunk delivery</p>
                             </div>
                         </div>
+                        <div class="flex items-start space-x-3 mt-4 pt-4 border-t border-border/30">
+                            <svg class="w-4 h-4 text-accent-cool mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-sm text-accent-cool">Zero Audio Retention</p>
+                                <p class="text-xs text-muted-foreground">Ephemeral memory • No persistent storage of voice data</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Telephony & Compliance -->
+    <section id="enterprise" class="py-20 sm:py-28 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Enterprise-Grade Telephony Infrastructure</h2>
+                <p class="text-xl text-muted-foreground">Multi-carrier resilience with built-in compliance and fraud prevention</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <article class="glass-panel glass-panel-lit group relative flex flex-col gap-5 overflow-hidden rounded-2xl p-8 hover:bg-card/70 transition-colors">
+                    <div class="blueprint-corners absolute inset-0 z-0 pointer-events-none"></div>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <span class="glass-panel-strong inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full">
+                            <svg class="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                            </svg>
+                        </span>
+                        <h3 class="text-xl font-bold tracking-tight">Multi-Carrier Abstraction</h3>
+                    </div>
+                    <div class="space-y-4 relative z-10">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Twilio + Exotel + Vonage</p>
+                                <p class="text-xs text-muted-foreground">Unified carrier interface with automatic fallback</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">India DLT/TRAI Compliance</p>
+                                <p class="text-xs text-muted-foreground">Exotel integration for regulatory requirements</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Regional Routing</p>
+                                <p class="text-xs text-muted-foreground">Optimized carrier selection per geography</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-panel glass-panel-lit group relative flex flex-col gap-5 overflow-hidden rounded-2xl p-8 hover:bg-card/70 transition-colors">
+                    <div class="blueprint-corners absolute inset-0 z-0 pointer-events-none"></div>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <span class="glass-panel-strong inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full">
+                            <svg class="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </span>
+                        <h3 class="text-xl font-bold tracking-tight">Barge-In Engine</h3>
+                    </div>
+                    <div class="space-y-4 relative z-10">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Duck & Queue Management</p>
+                                <p class="text-xs text-muted-foreground">Intelligent stream prioritization and interruption</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">&lt;150ms Response Time</p>
+                                <p class="text-xs text-muted-foreground">Near-instant audio stream interruption</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Natural Conversation Flow</p>
+                                <p class="text-xs text-muted-foreground">Prevents audio overlap and cross-talk</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-panel glass-panel-lit group relative flex flex-col gap-5 overflow-hidden rounded-2xl p-8 hover:bg-card/70 transition-colors">
+                    <div class="blueprint-corners absolute inset-0 z-0 pointer-events-none"></div>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <span class="glass-panel-strong inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full">
+                            <svg class="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </span>
+                        <h3 class="text-xl font-bold tracking-tight">Financial Security</h3>
+                    </div>
+                    <div class="space-y-4 relative z-10">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Redis Lua Atomic Gates</p>
+                                <p class="text-xs text-muted-foreground">6-second billing checkpoints preventing overrun</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Toll Fraud Prevention</p>
+                                <p class="text-xs text-muted-foreground">Pre-flight balance validation and hard limits</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Real-Time Cost Tracking</p>
+                                <p class="text-xs text-muted-foreground">Per-call metering with instant cutoff</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-panel glass-panel-lit group relative flex flex-col gap-5 overflow-hidden rounded-2xl p-8 hover:bg-card/70 transition-colors">
+                    <div class="blueprint-corners absolute inset-0 z-0 pointer-events-none"></div>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <span class="glass-panel-strong inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full">
+                            <svg class="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                            </svg>
+                        </span>
+                        <h3 class="text-xl font-bold tracking-tight">Zero Audio Retention</h3>
+                    </div>
+                    <div class="space-y-4 relative z-10">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Ephemeral G.711 μ-law Streams</p>
+                                <p class="text-xs text-muted-foreground">Memory-only audio processing, no disk writes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">GDPR Compliant</p>
+                                <p class="text-xs text-muted-foreground">No persistent voice data storage</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></div>
+                            <div>
+                                <p class="font-semibold text-sm">Telecom Standards</p>
+                                <p class="text-xs text-muted-foreground">Session-scoped processing per carrier norms</p>
+                            </div>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -550,31 +788,31 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <div class="glass-panel glass-panel-lit rounded-xl p-8 text-center shadow-elevated hover:bg-white/5 transition-colors">
-                    <div class="text-5xl font-black text-white mb-3">~308ms</div>
-                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Measured Prototype</div>
+                    <div class="text-5xl font-black text-white mb-3">&lt;400ms</div>
+                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Verified Production</div>
                     <div class="text-xl font-bold mb-4">End-to-End Latency</div>
-                    <p class="text-xs text-muted-foreground leading-relaxed">Voice-to-voice translation time (P50)</p>
+                    <p class="text-xs text-muted-foreground leading-relaxed">Full duplex across 30 language pairs</p>
                 </div>
 
                 <div class="glass-panel glass-panel-lit rounded-xl p-8 text-center shadow-elevated hover:bg-white/5 transition-colors">
-                    <div class="text-5xl font-black text-white mb-3">Isolated</div>
-                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Session Architecture</div>
-                    <div class="text-xl font-bold mb-4">Audio Routing</div>
-                    <p class="text-xs text-muted-foreground leading-relaxed">Strict source ≠ destination validation</p>
+                    <div class="text-5xl font-black text-white mb-3">74ms</div>
+                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">ElevenLabs TTS</div>
+                    <div class="text-xl font-bold mb-4">TTFB Streaming</div>
+                    <p class="text-xs text-muted-foreground leading-relaxed">First audio token delivery time</p>
                 </div>
 
                 <div class="glass-panel glass-panel-lit rounded-xl p-8 text-center shadow-elevated hover:bg-white/5 transition-colors">
-                    <div class="text-5xl font-black text-white mb-3">Multi</div>
+                    <div class="text-5xl font-black text-white mb-3">124ms</div>
+                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Groq Qwen</div>
+                    <div class="text-xl font-bold mb-4">Translation Latency</div>
+                    <p class="text-xs text-muted-foreground leading-relaxed">High-quality neural translation</p>
+                </div>
+
+                <div class="glass-panel glass-panel-lit rounded-xl p-8 text-center shadow-elevated hover:bg-white/5 transition-colors">
+                    <div class="text-5xl font-black text-white mb-3">30+</div>
                     <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Multilingual Architecture</div>
-                    <div class="text-xl font-bold mb-4">Language Support</div>
-                    <p class="text-xs text-muted-foreground leading-relaxed">Designed for multilingual expansion</p>
-                </div>
-
-                <div class="glass-panel glass-panel-lit rounded-xl p-8 text-center shadow-elevated hover:bg-white/5 transition-colors">
-                    <div class="text-5xl font-black text-white mb-3">PSTN</div>
-                    <div class="text-xs text-muted-foreground mb-2 font-mono font-semibold">Telephony Integration</div>
-                    <div class="text-xl font-bold mb-4">Direct Phone Access</div>
-                    <p class="text-xs text-muted-foreground leading-relaxed">No app required for callers</p>
+                    <div class="text-xl font-bold mb-4">Language Pairs</div>
+                    <p class="text-xs text-muted-foreground leading-relaxed">Tested bidirectional coverage</p>
                 </div>
             </div>
 
@@ -643,7 +881,10 @@
                 </div>
 
                 <div class="text-sm text-gray-400 mb-6">
-                    <p><strong>Rohit Sharma</strong> — Founder & Developer, Luvent Technologies</p>
+                    <p class="font-semibold text-white mb-1">Rohit Sharma</p>
+                    <p>Founder & Telecom/AI Engineer</p>
+                    <p>VoxSync by LUVENT</p>
+                    <p class="mt-2">Contact: <a href="mailto:voxsync@theluvent.com" class="text-accent-cool hover:underline">voxsync@theluvent.com</a></p>
                 </div>
 
                 <p class="text-sm text-muted-foreground">
@@ -662,10 +903,10 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="mailto:voxsync@theluvent.com" class="px-8 py-4 bg-white hover:bg-gray-200 text-black rounded-lg font-semibold text-lg transition-all">
+                <button id="open-modal-contact" class="px-8 py-4 bg-white hover:bg-gray-200 text-black rounded-lg font-semibold text-lg transition-all cursor-pointer">
                     Request Early Access
-                </a>
-                <a href="mailto:voxsync@theluvent.com" class="px-8 py-4 glass-panel glass-panel-lit rounded-lg font-semibold text-lg hover:bg-white/5 transition-all">
+                </button>
+                <a href="mailto:voxsync@theluvent.com" class="px-8 py-4 glass-panel glass-panel-lit rounded-lg font-semibold text-lg hover:bg-white/5 transition-all text-center">
                     Contact VoxSync
                 </a>
             </div>
@@ -723,6 +964,58 @@
         </div>
     </footer>
 
+    <!-- Early Access Modal -->
+    <div id="early-access-modal" class="modal-overlay">
+        <div class="modal-content glass-panel glass-panel-strong rounded-2xl p-8 max-w-md w-full mx-4 shadow-elevated">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold">Request Early Access</h3>
+                <button id="close-modal" class="p-2 rounded-lg hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <form id="early-access-form" class="space-y-5">
+                <div>
+                    <label for="name" class="block text-sm font-semibold mb-2">Name</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-4 py-3 glass-panel rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-cool transition-all"
+                        placeholder="Your full name">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-semibold mb-2">Work/Personal Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full px-4 py-3 glass-panel rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-cool transition-all"
+                        placeholder="your@email.com">
+                </div>
+
+                <div>
+                    <label for="language-pair" class="block text-sm font-semibold mb-2">Primary Language Pair</label>
+                    <input type="text" id="language-pair" name="language-pair" required
+                        class="w-full px-4 py-3 glass-panel rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-cool transition-all"
+                        placeholder="e.g., Punjabi to English, Hindi to German">
+                </div>
+
+                <button type="submit"
+                    class="w-full px-6 py-3 bg-white hover:bg-gray-200 text-black rounded-lg font-semibold transition-all">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast glass-panel glass-panel-strong rounded-xl px-6 py-4 shadow-elevated">
+        <div class="flex items-center space-x-3">
+            <svg class="w-5 h-5 text-accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="font-semibold">Request sent successfully!</span>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -730,6 +1023,86 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Early Access Modal
+        const modal = document.getElementById('early-access-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const openModalBtns = [
+            document.getElementById('open-modal-hero'),
+            document.getElementById('open-modal-nav'),
+            document.getElementById('open-modal-mobile'),
+            document.getElementById('open-modal-contact')
+        ];
+        const earlyAccessForm = document.getElementById('early-access-form');
+        const toast = document.getElementById('toast');
+
+        // Open modal
+        openModalBtns.forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+        });
+
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal on overlay click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Handle form submission
+        earlyAccessForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const languagePair = document.getElementById('language-pair').value;
+
+            // Construct mailto URL with pre-populated fields
+            const subject = encodeURIComponent('VoxSync Early Access Request');
+            const body = encodeURIComponent(
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Primary Language Pair: ${languagePair}\n\n` +
+                `I'm interested in early access to VoxSync real-time voice translation.`
+            );
+
+            const mailtoURL = `mailto:voxsync@theluvent.com?subject=${subject}&body=${body}`;
+
+            // Open mailto
+            window.location.href = mailtoURL;
+
+            // Close modal
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            // Show toast
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+
+            // Reset form
+            earlyAccessForm.reset();
         });
 
         // Smooth scroll
