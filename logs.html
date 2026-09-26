@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>VoxSync - Developer Logs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#08090a',
+                        foreground: '#ffffff',
+                        card: '#0f1011',
+                        'card-foreground': '#ffffff',
+                        primary: '#ffffff',
+                        'primary-foreground': '#08090a',
+                        secondary: '#1a1b1e',
+                        muted: '#0f1011',
+                        'muted-foreground': '#a3a3a3',
+                        accent: '#1a1b1e',
+                        'accent-cool': '#38bdf8',
+                        'accent-green': '#22c55e',
+                        border: 'rgba(255, 255, 255, 0.1)',
+                        input: 'rgba(255, 255, 255, 0.1)',
+                        ring: 'rgba(255, 255, 255, 0.2)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'Courier New', 'monospace'],
+                    },
+                    animation: {
+                        'state-pulse': 'state-pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'state-pulse': {
+                            '0%, 100%': { opacity: '0.85', boxShadow: '0 0 10px 1px oklch(0.62 0.19 260 / 30%)' },
+                            '50%': { opacity: '1', boxShadow: '0 0 18px 3px oklch(0.62 0.19 260 / 30%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: #08090a;
+            color: #ffffff;
+            font-feature-settings: 'rlig' 1, 'calt' 1;
+        }
+
+        .glass-panel {
+            background-color: rgba(15, 16, 17, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .state-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background-color: #22c55e;
+            box-shadow: 0 0 10px 1px rgba(34, 197, 94, 0.3);
+            animation: state-pulse 3s ease-in-out infinite;
+        }
+
+        .state-dot.offline {
+            background-color: #ef4444;
+            box-shadow: 0 0 10px 1px rgba(239, 68, 68, 0.3);
+            animation: none;
+        }
+
+        .state-dot.checking {
+            background-color: #f59e0b;
+            box-shadow: 0 0 10px 1px rgba(245, 158, 11, 0.3);
+        }
+
+        ::selection {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mono-badge {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .collapse-content.open {
+            max-height: 800px;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold mb-2">
+                <span class="text-accent-cool">VoxSync</span> Developer Console
+            </h1>
+            <p class="text-muted-foreground font-mono text-sm">Internal monitoring & diagnostics • Build <span id="build-time"></span></p>
+        </div>
+
+        <!-- Server Health Monitor -->
+        <div class="glass-panel rounded-lg p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="state-dot checking" id="health-dot"></div>
+                    <h2 class="text-xl font-semibold">Backend Server Health</h2>
+                </div>
+                <button onclick="checkHealth()" class="px-4 py-2 bg-accent-cool/10 hover:bg-accent-cool/20 border border-accent-cool/30 rounded-lg text-accent-cool text-sm font-medium transition-colors">
+                    Refresh
+                </button>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-center gap-4">
+                    <span class="text-muted-foreground font-mono text-sm w-24">Status:</span>
+                    <span id="health-status" class="mono-badge">Checking...</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-muted-foreground font-mono text-sm w-24">Endpoint:</span>
+                    <code class="text-sm text-accent-cool">https://voicsync.duckdns.org/health</code>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-muted-foreground font-mono text-sm w-24">Latency:</span>
+                    <span id="health-latency" class="text-sm">—</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-muted-foreground font-mono text-sm w-24">Last Check:</span>
+                    <span id="health-timestamp" class="text-sm text-muted-foreground">—</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Terminal Log Viewer -->
+        <div class="glass-panel rounded-lg p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="state-dot" id="terminal-status-dot"></div>
+                    <h2 class="text-xl font-semibold">Live VoiceBridge Logs</h2>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="togglePause()" id="pause-btn" class="px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-400 text-sm font-medium transition-colors">
+                        <span id="pause-text">Pause</span>
+                    </button>
+                    <button onclick="clearTerminal()" class="px-4 py-2 bg-accent-cool/10 hover:bg-accent-cool/20 border border-accent-cool/30 rounded-lg text-accent-cool text-sm font-medium transition-colors">
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+            <!-- Terminal Container -->
+            <div id="terminal-container" class="font-mono text-xs bg-black/80 rounded-lg p-4 h-96 overflow-y-auto border border-border">
+                <div id="terminal-content"></div>
+            </div>
+
+            <div class="mt-3 flex items-center justify-between text-xs text-muted-foreground">
+                <span id="terminal-line-count">0 lines</span>
+                <span id="terminal-connection-status">Connecting...</span>
+            </div>
+        </div>
+
+            <!-- Secret Key Management -->
+            <div class="glass-panel rounded-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-accent-cool" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                    </svg>
+                    Access Control
+                </h2>
+                <p class="text-sm text-muted-foreground mb-4">Test gate lock by clearing the stored secret key</p>
+                <button onclick="clearSecretKey()" class="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-sm font-medium transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Clear Secret Key
+                </button>
+            </div>
+        </div>
+
+        <!-- Architecture Reference (Collapsible) -->
+        <div class="glass-panel rounded-lg p-6 mb-6">
+            <button onclick="toggleArchitecture()" class="w-full flex items-center justify-between mb-4 cursor-pointer group">
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                    <svg class="w-5 h-5 text-accent-cool" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    Architecture Reference
+                </h2>
+                <svg id="chevron-icon" class="w-5 h-5 text-muted-foreground transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+
+            <div id="architecture-content" class="collapse-content">
+                <div class="space-y-4 pt-4 border-t border-border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h3 class="text-sm font-semibold text-accent-cool mb-2">Core Constants</h3>
+                            <div class="space-y-2 font-mono text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">ECHO_SUPPRESSION_WINDOW_MS</span>
+                                    <span class="text-accent-green">1200</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">SAMPLE_RATE</span>
+                                    <span class="text-accent-green">8000 Hz</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">ENCODING</span>
+                                    <span class="text-accent-green">G.711 μ-law</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-semibold text-accent-cool mb-2">TTS Provider</h3>
+                            <div class="space-y-2 font-mono text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">MODEL</span>
+                                    <span class="text-accent-green">Cartesia Sonic-3.5</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">OUTPUT_FORMAT</span>
+                                    <span class="text-accent-green">pcm_mulaw 8kHz</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">CONTEXT_REUSE</span>
+                                    <span class="text-accent-green">Per-direction</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-semibold text-accent-cool mb-2">STT Provider</h3>
+                            <div class="space-y-2 font-mono text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">MODEL</span>
+                                    <span class="text-accent-green">Deepgram Nova-2</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">ENDPOINTING</span>
+                                    <span class="text-accent-green">150-300ms</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">VAD_EVENTS</span>
+                                    <span class="text-accent-green">Enabled</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-semibold text-accent-cool mb-2">Translation Engine</h3>
+                            <div class="space-y-2 font-mono text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">PRIMARY</span>
+                                    <span class="text-accent-green">Groq (Qwen 2.5)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">TEMPERATURE</span>
+                                    <span class="text-accent-green">0.3</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">TTFB_TARGET</span>
+                                    <span class="text-accent-green">&lt;80ms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-border">
+                        <h3 class="text-sm font-semibold text-accent-cool mb-2">Pipeline Latency Targets</h3>
+                        <div class="space-y-2 font-mono text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Deepgram TTFB</span>
+                                <span class="text-accent-green">150-300ms</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">LLM First Token</span>
+                                <span class="text-accent-green">&lt;100ms</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">TTS First Audio</span>
+                                <span class="text-accent-green">&lt;100ms</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">End-to-End Target</span>
+                                <span class="text-accent-green font-bold">&lt;400ms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="text-center text-muted-foreground text-xs font-mono">
+            <p>VoxSync Internal Developer Console • <a href="/" class="text-accent-cool hover:underline">Return to Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Secret key gate check
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const keyParam = urlParams.get('key');
+            const storedKey = localStorage.getItem('admin_secret');
+
+            // Check if valid key in URL or localStorage
+            if (keyParam === 'rohit99') {
+                // Valid key in URL - save to localStorage
+                localStorage.setItem('admin_secret', 'rohit99');
+            } else if (storedKey !== 'rohit99') {
+                // No valid key - redirect to home
+                window.location.href = '/';
+                return;
+            }
+
+            // Valid access - display build time
+            document.getElementById('build-time').textContent = new Date().toISOString();
+        })();
+
+        // Terminal state
+        let eventSource = null;
+        let isPaused = false;
+        let lineCount = 0;
+        const MAX_LINES = 1000; // Prevent memory overflow
+
+        // Connect to SSE log stream
+        function connectLogStream() {
+            const secretKey = localStorage.getItem('admin_secret');
+            const terminalContent = document.getElementById('terminal-content');
+            const terminalContainer = document.getElementById('terminal-container');
+            const statusDot = document.getElementById('terminal-status-dot');
+            const connectionStatus = document.getElementById('terminal-connection-status');
+
+            // Set connecting state
+            statusDot.className = 'state-dot checking';
+            connectionStatus.textContent = 'Connecting...';
+
+            try {
+                eventSource = new EventSource(`https://voicsync.duckdns.org/api/logs/stream?key=${secretKey}`);
+
+                eventSource.onopen = function() {
+                    statusDot.className = 'state-dot';
+                    connectionStatus.textContent = 'Connected';
+                    console.log('[LOG_STREAM_CONNECTED]', new Date().toISOString());
+                };
+
+                eventSource.onmessage = function(event) {
+                    if (isPaused) return;
+
+                    try {
+                        const data = JSON.parse(event.data);
+
+                        if (data.type === 'connected') {
+                            appendLog('[SYSTEM]', 'Connected to VoiceBridge log stream', 'text-accent-green');
+                            return;
+                        }
+
+                        if (data.type === 'log') {
+                            const colorClass = data.prefix === '[ERR]' ? 'text-red-400' : 'text-green-400';
+                            appendLog(data.prefix, data.line, colorClass);
+                        }
+                    } catch (err) {
+                        console.error('[LOG_PARSE_ERROR]', err);
+                    }
+                };
+
+                eventSource.onerror = function(err) {
+                    console.error('[LOG_STREAM_ERROR]', err);
+                    statusDot.className = 'state-dot offline';
+                    connectionStatus.textContent = 'Disconnected - Retrying...';
+
+                    // EventSource auto-reconnects, but we'll update status
+                    setTimeout(() => {
+                        if (eventSource && eventSource.readyState === EventSource.CONNECTING) {
+                            connectionStatus.textContent = 'Reconnecting...';
+                        }
+                    }, 1000);
+                };
+
+            } catch (err) {
+                console.error('[LOG_STREAM_INIT_ERROR]', err);
+                statusDot.className = 'state-dot offline';
+                connectionStatus.textContent = 'Connection Failed';
+            }
+        }
+
+        // Append log line to terminal
+        function appendLog(prefix, line, colorClass = 'text-gray-300') {
+            const terminalContent = document.getElementById('terminal-content');
+            const terminalContainer = document.getElementById('terminal-container');
+            const lineCountEl = document.getElementById('terminal-line-count');
+
+            // Create log line element
+            const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false });
+            const logLine = document.createElement('div');
+            logLine.className = 'mb-1';
+            logLine.innerHTML = `<span class="text-muted-foreground">[${timestamp}]</span> <span class="${colorClass} font-semibold">${prefix}</span> <span class="text-gray-300">${escapeHtml(line)}</span>`;
+
+            terminalContent.appendChild(logLine);
+            lineCount++;
+
+            // Trim old lines to prevent memory overflow
+            if (lineCount > MAX_LINES) {
+                const firstChild = terminalContent.firstChild;
+                if (firstChild) {
+                    terminalContent.removeChild(firstChild);
+                    lineCount--;
+                }
+            }
+
+            // Update line count
+            lineCountEl.textContent = `${lineCount} lines`;
+
+            // Auto-scroll to bottom if not paused
+            if (!isPaused) {
+                terminalContainer.scrollTop = terminalContainer.scrollHeight;
+            }
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Toggle pause/resume
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseBtn = document.getElementById('pause-btn');
+            const pauseText = document.getElementById('pause-text');
+
+            if (isPaused) {
+                pauseBtn.classList.remove('bg-amber-500/10', 'hover:bg-amber-500/20', 'border-amber-500/30', 'text-amber-400');
+                pauseBtn.classList.add('bg-accent-green/10', 'hover:bg-accent-green/20', 'border-accent-green/30', 'text-accent-green');
+                pauseText.textContent = 'Resume';
+            } else {
+                pauseBtn.classList.remove('bg-accent-green/10', 'hover:bg-accent-green/20', 'border-accent-green/30', 'text-accent-green');
+                pauseBtn.classList.add('bg-amber-500/10', 'hover:bg-amber-500/20', 'border-amber-500/30', 'text-amber-400');
+                pauseText.textContent = 'Pause';
+
+                // Auto-scroll to bottom when resuming
+                const terminalContainer = document.getElementById('terminal-container');
+                terminalContainer.scrollTop = terminalContainer.scrollHeight;
+            }
+        }
+
+        // Clear terminal
+        function clearTerminal() {
+            const terminalContent = document.getElementById('terminal-content');
+            const lineCountEl = document.getElementById('terminal-line-count');
+
+            terminalContent.innerHTML = '';
+            lineCount = 0;
+            lineCountEl.textContent = '0 lines';
+
+            appendLog('[SYSTEM]', 'Terminal cleared', 'text-accent-cool');
+        }
+
+        // Server health check
+        async function checkHealth() {
+            const healthDot = document.getElementById('health-dot');
+            const healthStatus = document.getElementById('health-status');
+            const healthLatency = document.getElementById('health-latency');
+            const healthTimestamp = document.getElementById('health-timestamp');
+
+            // Set checking state
+            healthDot.className = 'state-dot checking';
+            healthStatus.textContent = 'Checking...';
+            healthStatus.className = 'mono-badge';
+            healthLatency.textContent = '—';
+
+            const startTime = performance.now();
+
+            try {
+                const response = await fetch('https://voicsync.duckdns.org/health', {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    signal: AbortSignal.timeout(5000)
+                });
+
+                const endTime = performance.now();
+                const latency = Math.round(endTime - startTime);
+
+                if (response.ok) {
+                    healthDot.className = 'state-dot';
+                    healthStatus.textContent = 'ONLINE';
+                    healthStatus.className = 'mono-badge';
+                    healthStatus.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+                    healthStatus.style.color = '#22c55e';
+                    healthStatus.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+                    healthLatency.innerHTML = `<span class="text-accent-green font-semibold">${latency}ms</span>`;
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                healthDot.className = 'state-dot offline';
+                healthStatus.textContent = 'OFFLINE';
+                healthStatus.className = 'mono-badge';
+                healthStatus.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                healthStatus.style.color = '#ef4444';
+                healthStatus.style.borderColor = 'rgba(239, 68, 68, 0.2)';
+                healthLatency.innerHTML = `<span class="text-red-400">${error.message}</span>`;
+            }
+
+            healthTimestamp.textContent = new Date().toLocaleTimeString();
+        }
+
+        // Clear secret key and redirect
+        function clearSecretKey() {
+            if (confirm('Clear admin secret key? You will be redirected to the home page.')) {
+                // Disconnect log stream before leaving
+                if (eventSource) {
+                    eventSource.close();
+                }
+                localStorage.removeItem('admin_secret');
+                window.location.href = '/';
+            }
+        }
+
+        // Toggle architecture section
+        function toggleArchitecture() {
+            const content = document.getElementById('architecture-content');
+            const chevron = document.getElementById('chevron-icon');
+
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (eventSource) {
+                eventSource.close();
+            }
+        });
+
+        // Initial setup
+        connectLogStream();
+        checkHealth();
+
+        // Auto-refresh health every 30 seconds
+        setInterval(checkHealth, 30000);
+    </script>
+</body>
+</html>
