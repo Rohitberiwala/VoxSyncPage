@@ -111,16 +111,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        background: '#09090b',
-                        foreground: '#fafafa',
-                        card: '#18181b',
-                        border: '#27272a',
+                        background: '#ffffff',
+                        foreground: '#09090b',
+                        card: '#ffffff',
+                        border: '#e4e4e7',
                         muted: '#71717a',
-                        accent: '#38bdf8',
+                        accent: '#000000',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -139,16 +138,16 @@
         }
 
         body {
-            background-color: #09090b;
-            color: #fafafa;
+            background-color: #ffffff;
+            color: #09090b;
         }
 
-        .border-subtle { border-color: #27272a; }
-        .bg-card { background-color: #18181b; }
+        .border-subtle { border-color: #e4e4e7; }
+        .bg-card { background-color: #ffffff; }
         .text-muted { color: #71717a; }
 
         ::selection {
-            background-color: rgba(56, 189, 248, 0.2);
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .status-dot {
@@ -168,7 +167,23 @@
             animation: status-pulse 2s ease-in-out infinite;
         }
 
-        /* Live Call Simulator */
+        :focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
         @keyframes waveform-pulse {
             0%, 100% { transform: scaleY(0.3); }
             50% { transform: scaleY(1); }
@@ -220,89 +235,90 @@
 <body class="font-sans antialiased">
 
     <!-- Navigation -->
-    <header class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-subtle">
+    <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 border border-zinc-800 rounded-md flex items-center justify-center font-bold text-lg">
+                        <div class="w-9 h-9 border border-zinc-200 rounded-md flex items-center justify-center font-bold text-lg text-black">
                             V
                         </div>
                         <div>
-                            <div class="font-semibold text-base tracking-tight">VoxSync</div>
-                            <div class="text-[10px] text-muted font-mono tracking-wider">LUVENT TECHNOLOGIES</div>
+                            <div class="font-semibold text-base tracking-tight text-black">VoxSync</div>
+                            <div class="text-[10px] text-zinc-500 font-mono tracking-wider">LUVENT TECHNOLOGIES</div>
                         </div>
                     </div>
-                    <span class="hidden sm:inline-flex items-center px-2.5 py-1 bg-card border border-subtle rounded-md text-[11px] font-mono text-muted">
+                    <span class="hidden sm:inline-flex items-center px-2.5 py-1 bg-zinc-50 border border-zinc-200 rounded-md text-[11px] font-mono text-zinc-600">
                         <span class="status-dot mr-1.5"></span>
                         LIVE
                     </span>
                 </div>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="#architecture" class="text-muted hover:text-foreground text-sm font-medium transition-colors">Architecture</a>
-                    <a href="#infrastructure" class="text-muted hover:text-foreground text-sm font-medium transition-colors">Infrastructure</a>
-                    <a href="#benchmarks" class="text-muted hover:text-foreground text-sm font-medium transition-colors">Benchmarks</a>
-                    <a href="#contact" class="px-4 py-2 bg-white hover:bg-gray-100 text-black rounded-md transition-all font-medium text-sm">
+                    <a href="#architecture" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Architecture</a>
+                    <a href="#infrastructure" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Infrastructure</a>
+                    <a href="#benchmarks" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Benchmarks</a>
+                    <a href="#contact" class="px-4 py-2 bg-black hover:bg-zinc-800 text-white rounded-md transition-colors font-medium text-sm">
                         Get Access
                     </a>
                 </nav>
 
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-card transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-zinc-50 transition-colors focus-visible:ring-2 focus-visible:ring-black" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
+                    <span class="sr-only">Menu</span>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-background border-t border-subtle">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
             <div class="px-6 py-4 space-y-3">
-                <a href="#architecture" class="block text-muted hover:text-foreground py-2 font-medium text-sm transition-colors">Architecture</a>
-                <a href="#infrastructure" class="block text-muted hover:text-foreground py-2 font-medium text-sm transition-colors">Infrastructure</a>
-                <a href="#benchmarks" class="block text-muted hover:text-foreground py-2 font-medium text-sm transition-colors">Benchmarks</a>
-                <a href="#contact" class="block w-full px-4 py-2.5 bg-white text-black rounded-md text-center font-medium text-sm">Get Access</a>
+                <a href="#architecture" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Architecture</a>
+                <a href="#infrastructure" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Infrastructure</a>
+                <a href="#benchmarks" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Benchmarks</a>
+                <a href="#contact" class="block w-full px-4 py-2.5 bg-black hover:bg-zinc-800 text-white rounded-md text-center font-medium text-sm transition-colors">Get Access</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
+    <section class="pt-32 pb-20 px-6 bg-white" aria-labelledby="hero-heading">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-card border border-subtle rounded-md text-xs font-mono text-muted">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-50 border border-zinc-200 rounded-md text-xs font-mono text-zinc-600">
                     <span class="status-dot"></span>
                     PRODUCTION INFRASTRUCTURE
                 </div>
 
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+                <h1 id="hero-heading" class="text-5xl md:text-6xl font-bold tracking-tight leading-tight text-black">
                     Real-Time Voice Translation<br/>
                     for Telephony Networks
                 </h1>
 
-                <p class="max-w-2xl mx-auto text-lg text-muted leading-relaxed">
+                <p class="max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
                     Enterprise-grade voice translation infrastructure built on Twilio Media Streams, Deepgram Nova-2, and production AI pipelines. Bidirectional translation over PSTN with sub-400ms latency.
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-3 pt-4">
-                    <a href="#contact" class="px-6 py-3 bg-white hover:bg-gray-100 text-black rounded-md font-medium transition-all">
+                    <a href="#contact" class="px-6 py-3 bg-black hover:bg-zinc-800 text-white rounded-md font-medium transition-colors">
                         Request Access
                     </a>
-                    <a href="#architecture" class="px-6 py-3 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium transition-all">
+                    <a href="#architecture" class="px-6 py-3 bg-white border border-zinc-300 hover:bg-zinc-100 text-black rounded-md font-medium transition-colors">
                         Technical Overview
                     </a>
                 </div>
 
                 <!-- Platform Badges -->
-                <div class="flex flex-wrap justify-center items-center gap-4 pt-8">
-                    <a href="#contact" class="hover:opacity-80 transition-opacity">
-                        <img src="assets/app-store-badge.svg" alt="Download on the App Store" class="h-10">
+                <div class="flex flex-wrap justify-center items-center gap-4 pt-8" role="group" aria-label="Platform download options">
+                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-black rounded">
+                        <img src="assets/app-store-badge.svg" alt="Download on the App Store" class="h-10" width="120" height="40">
                     </a>
-                    <a href="#contact" class="hover:opacity-80 transition-opacity">
-                        <img src="assets/google-play-badge.svg" alt="Get it on Google Play" class="h-10">
+                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-black rounded">
+                        <img src="assets/google-play-badge.svg" alt="Get it on Google Play" class="h-10" width="135" height="40">
                     </a>
-                    <a href="#contact" class="px-4 py-2.5 bg-card border border-subtle hover:bg-zinc-800 rounded-lg font-medium transition-all flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <a href="#contact" class="px-4 py-2.5 bg-white border border-zinc-300 hover:bg-zinc-100 text-black rounded-lg font-medium transition-colors flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-black">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                         <span class="text-sm">Launch Web Portal</span>
@@ -312,168 +328,141 @@
 
             <!-- SECTION 1: Live Telephony Call Simulator -->
             <div class="mt-16 max-w-[375px] mx-auto">
-                <!-- iPhone 16 Pro Frame -->
-                <div class="relative bg-zinc-950 border border-zinc-700/60 rounded-[48px] p-3 shadow-2xl">
+                <!-- iPhone Frame -->
+                <div class="relative bg-white rounded-[48px] p-4 shadow-2xl">
                     <!-- Inner Screen Container -->
-                    <div class="bg-[#000] rounded-[38px] overflow-hidden relative">
-                        <!-- Dynamic Island -->
+                    <div class="bg-white rounded-[38px] overflow-hidden relative">
+                        <!-- Top Center Latency Pill -->
                         <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20">
-                            <div class="dynamic-island">
-                                <div class="dynamic-island-glow"></div>
-                            </div>
-                        </div>
-
-                        <!-- Status Bar -->
-                        <div class="relative pt-16 pb-2 px-6 flex items-center justify-between text-white text-xs">
-                            <div class="flex items-center gap-1.5">
-                                <span class="font-semibold">9:41</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <!-- 5G Icon -->
-                                <svg class="w-5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <text x="0" y="14" font-family="system-ui" font-size="14" font-weight="600">5G</text>
+                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 border border-zinc-200 rounded-full shadow-sm">
+                                <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <circle cx="10" cy="10" r="8"/>
                                 </svg>
-                                <!-- WiFi Icon -->
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+                                <span class="text-xs font-medium text-zinc-600">-- ms</span>
+                            </div>
+                        </div>
+
+                        <!-- Header Section -->
+                        <div class="relative pt-16 pb-6 px-6">
+                            <div class="flex items-start justify-between">
+                                <!-- Top Left: Phone Number + Status -->
+                                <div class="flex items-start gap-2">
+                                    <div class="w-2 h-2 bg-zinc-400 rounded-full mt-1.5"></div>
+                                    <div>
+                                        <div class="text-zinc-900 text-base font-semibold mb-0.5">+91 977•• •••37</div>
+                                        <div class="text-zinc-500 text-xs">Connecting...</div>
+                                    </div>
+                                </div>
+
+                                <!-- Top Right: Timer -->
+                                <div class="text-[#00a3a6] text-base font-mono font-semibold">00:05</div>
+                            </div>
+                        </div>
+
+                        <!-- Center Ripple & Audio Waveform -->
+                        <div class="bg-white px-6 py-16 flex items-center justify-center">
+                            <div class="relative">
+                                <!-- Concentric Ripple Rings -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-64 h-64 border border-[#00e5ff]/10 rounded-full animate-ping" style="animation-duration: 3s;"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-48 h-48 border border-[#00e5ff]/20 rounded-full animate-ping" style="animation-duration: 2.5s;"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-32 h-32 border-2 border-[#00e5ff]/30 rounded-full"></div>
+                                </div>
+
+                                <!-- Center Circle with Waveform -->
+                                <div class="relative w-24 h-24 border-2 border-[#00e5ff] rounded-full flex items-center justify-center gap-0.5 bg-white">
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 12px; background: #00e5ff;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 20px; background: #8b5cf6;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 16px; background: #00e5ff;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 24px; background: #8b5cf6;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 14px; background: #00e5ff;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Translated Speech Floating Card -->
+                        <div class="px-6 pb-6">
+                            <div class="bg-white border border-zinc-100 shadow-sm rounded-3xl p-5">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-[11px] font-medium text-zinc-400 tracking-wider">TRANSLATED SPEECH</span>
+                                    <span class="px-2.5 py-1 bg-zinc-100 border border-zinc-200 text-zinc-600 rounded-md text-[10px] font-semibold">EN</span>
+                                </div>
+                                <div class="text-zinc-900 text-sm leading-relaxed">
+                                    "..."
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4-Button Utility Control Row -->
+                        <div class="px-6 pb-6 flex items-center justify-center gap-3">
+                            <!-- Microphone -->
+                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
+                                <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                                 </svg>
-                                <!-- Battery Icon -->
-                                <svg class="w-6 h-3" fill="none" viewBox="0 0 24 12">
-                                    <rect x="0" y="1" width="20" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                    <rect x="2" y="3" width="16" height="6" rx="1" fill="currentColor"/>
-                                    <rect x="21" y="4" width="2" height="4" rx="0.5" fill="currentColor"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <!-- Caller Info Banner -->
-                        <div class="bg-zinc-900/50 backdrop-blur-md border-y border-zinc-800 px-6 py-3">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="text-white text-sm font-semibold">Twilio PSTN Direct</div>
-                                    <div class="text-zinc-400 text-xs font-mono">Active Bridge</div>
-                                </div>
-                                <span class="px-2.5 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 text-[10px] font-mono">LIVE</span>
-                            </div>
-                        </div>
-
-                        <!-- Audio Waveform Visualizer -->
-                        <div class="bg-[#000] px-6 py-8 flex items-center justify-center gap-1.5">
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 16px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 32px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 24px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 40px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 20px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 28px;"></div>
-                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 36px;"></div>
-                        </div>
-
-                        <!-- Call Timer -->
-                        <div class="text-center pb-4">
-                            <div class="text-zinc-400 text-xs font-mono mb-1">Call Duration</div>
-                            <div class="text-white text-2xl font-mono call-timer">02:14</div>
-                        </div>
-
-                        <!-- Dialogue Stream -->
-                        <div class="px-6 pb-6 space-y-4">
-                            <!-- Inbound Punjabi -->
-                            <div class="flex justify-start">
-                                <div class="bg-zinc-800 border border-zinc-700 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-                                    <div class="text-[9px] font-mono text-zinc-500 mb-1">INBOUND • pa-IN</div>
-                                    <div class="text-white text-sm leading-relaxed">ਬਾਈ ਜੀ, ਹੋਟਲ ਦੀ ਚਾਬੀ ਕਿੱਥੋਂ ਮਿਲਣੀ ਆ?</div>
-                                </div>
-                            </div>
-
-                            <!-- Synthesized English -->
-                            <div class="flex justify-end">
-                                <div class="bg-accent/10 border border-accent/30 rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
-                                    <div class="text-[9px] font-mono text-accent mb-1">SYNTHESIZED • en-US</div>
-                                    <div class="text-white text-sm leading-relaxed">Brother, where do I collect the hotel keys from?</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Latency Badge -->
-                        <div class="bg-zinc-900/50 backdrop-blur-md border-t border-zinc-800 px-6 py-3">
-                            <div class="flex items-center justify-between text-[10px] font-mono">
-                                <span class="text-zinc-400">Pipeline Latency</span>
-                                <span class="text-accent font-bold">382ms</span>
-                            </div>
-                            <div class="mt-2 flex gap-2 text-[9px] text-zinc-500">
-                                <span>Deepgram 150ms</span>
-                                <span>•</span>
-                                <span>Groq 110ms</span>
-                                <span>•</span>
-                                <span>Cartesia 122ms</span>
-                            </div>
-                        </div>
-
-                        <!-- In-Call Action Bar -->
-                        <div class="bg-[#000] px-6 py-8 flex items-center justify-center gap-8">
-                            <!-- Mute -->
-                            <button class="flex flex-col items-center gap-2 group">
-                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-white text-xs">mute</span>
-                            </button>
-
-                            <!-- Keypad -->
-                            <button class="flex flex-col items-center gap-2 group">
-                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
-                                        <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
-                                        <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
-                                        <circle cx="6" cy="12" r="1.5" fill="currentColor"/>
-                                        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-                                        <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
-                                        <circle cx="6" cy="18" r="1.5" fill="currentColor"/>
-                                        <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
-                                        <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                                <span class="text-white text-xs">keypad</span>
                             </button>
 
                             <!-- Speaker -->
-                            <button class="flex flex-col items-center gap-2 group">
-                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-white text-xs">speaker</span>
+                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
+                                <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                                </svg>
+                            </button>
+
+                            <!-- Caption Toggle (Aa) -->
+                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
+                                <span class="text-lg font-semibold" style="color: #00a3a6;">Aa</span>
+                            </button>
+
+                            <!-- Speed Indicator -->
+                            <div class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center">
+                                <span class="text-xs font-semibold text-zinc-700">1.25x</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Response Chip Cards -->
+                        <div class="px-6 pb-6 grid grid-cols-3 gap-2">
+                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
+                                Hold on
+                            </button>
+                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
+                                Can you hear me?
+                            </button>
+                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
+                                One moment please
                             </button>
                         </div>
 
-                        <!-- End Call Button -->
-                        <div class="px-6 pb-8 flex justify-center">
-                            <button class="w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors shadow-lg shadow-red-500/20">
-                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <!-- Bottom Action Bar -->
+                        <div class="px-6 pb-6">
+                            <!-- End Call Button -->
+                            <button class="w-14 h-14 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center shadow-md shadow-red-200 mx-auto transition-colors">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" transform="rotate(135 12 12)"/>
                                 </svg>
                             </button>
-                        </div>
 
-                        <!-- iPhone Home Indicator -->
-                        <div class="pb-2 flex justify-center">
-                            <div class="w-32 h-1 bg-white/30 rounded-full"></div>
+                            <!-- Bottom Home Indicator -->
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-32 h-1 bg-zinc-300 rounded-full"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Pipeline Visualization -->
-            <div class="mt-8 bg-card border border-subtle rounded-lg p-8">
+            <div class="mt-8 bg-zinc-50 border border-zinc-200 rounded-lg p-8 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
-                    <span class="text-xs font-mono text-muted tracking-wide">live-translation-session.log</span>
+                    <span class="text-xs font-mono text-zinc-500 tracking-wide">live-translation-session.log</span>
                     <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
                 </div>
 
@@ -481,66 +470,66 @@
                     <!-- Caller A -->
                     <div class="flex items-start gap-4">
                         <div class="flex-shrink-0">
-                            <div class="w-10 h-10 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center font-bold text-sm">
+                            <div class="w-10 h-10 rounded-md bg-white border border-zinc-200 flex items-center justify-center font-bold text-sm text-black">
                                 A
                             </div>
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xs text-muted font-semibold">CALLER A (PSTN)</span>
-                                <span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 rounded text-[10px] font-semibold text-accent">pa-IN</span>
+                                <span class="text-xs text-zinc-600 font-semibold">CALLER A (PSTN)</span>
+                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">pa-IN</span>
                             </div>
-                            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-4 text-sm">
+                            <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
                                 "ਕੀ ਹਾਲ ਚਾਲ ਹੈ?"
                             </div>
                         </div>
                     </div>
 
                     <!-- Pipeline Steps -->
-                    <div class="space-y-3 pl-14 text-xs text-muted">
+                    <div class="space-y-3 pl-14 text-xs text-zinc-600">
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
                             <span>Deepgram STT (Linear16)</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-bold text-accent">82ms</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">82ms</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
                             <span>Groq Qwen Translation</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-bold text-accent">124ms</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">124ms</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
-                            <span>ElevenLabs TTS (μ-law 8kHz)</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-bold text-accent">74ms</span>
+                            <span>Cartesia Sonic-3.5 TTS (μ-law 8kHz)</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">74ms</span>
                         </div>
                     </div>
 
                     <!-- Caller B -->
                     <div class="flex items-start gap-4">
                         <div class="flex-shrink-0">
-                            <div class="w-10 h-10 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center font-bold text-sm">
+                            <div class="w-10 h-10 rounded-md bg-white border border-zinc-200 flex items-center justify-center font-bold text-sm text-black">
                                 B
                             </div>
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xs text-muted font-semibold">CALLER B (PSTN)</span>
-                                <span class="px-2 py-0.5 bg-zinc-800 border border-zinc-700 rounded text-[10px] font-semibold text-accent">en-US</span>
+                                <span class="text-xs text-zinc-600 font-semibold">CALLER B (PSTN)</span>
+                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">en-US</span>
                             </div>
-                            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-4 text-sm">
+                            <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
                                 "How are you doing?"
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-zinc-800 pt-4 text-xs text-muted flex items-center justify-between">
-                        <span>End-to-End: <span class="text-accent font-bold">&lt;400ms</span></span>
+                    <div class="border-t border-zinc-300 pt-4 text-xs text-zinc-600 flex items-center justify-between">
+                        <span>End-to-End: <span class="text-black font-bold">&lt;400ms</span></span>
                         <span>30 Language Pairs • Full Duplex</span>
                     </div>
                 </div>
@@ -549,49 +538,49 @@
     </section>
 
     <!-- SECTION 2: Persona Use-Cases -->
-    <section class="py-20 px-6">
+    <section class="py-20 px-6 bg-white">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight">Engineered for Real-World Scenarios</h2>
-                <p class="text-muted">Production telephony infrastructure for critical communications</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Engineered for Real-World Scenarios</h2>
+                <p class="text-zinc-600">Production telephony infrastructure for critical communications</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Card 1: Cross-Border Business -->
-                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
-                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">Cross-Border Business & Trade</h3>
-                    <p class="text-sm text-muted leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3 text-black">Cross-Border Business & Trade</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">
                         Close international deals and coordinate with overseas suppliers directly over regular phone lines. No translators needed.
                     </p>
                 </div>
 
                 <!-- Card 2: Families & Elderly -->
-                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
-                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">Families & Elderly Relatives</h3>
-                    <p class="text-sm text-muted leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3 text-black">Families & Elderly Relatives</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">
                         Zero-app required for the receiver. Call elderly parents or relatives abroad on their standard cellular numbers without teaching them any app.
                     </p>
                 </div>
 
                 <!-- Card 3: Travel & Immigration -->
-                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
-                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3">Travel, Immigration & Logistics</h3>
-                    <p class="text-sm text-muted leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3 text-black">Travel, Immigration & Logistics</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">
                         Dial local government offices, airlines, dispatchers, or roadside services worldwide with zero language barriers.
                     </p>
                 </div>
@@ -600,85 +589,86 @@
     </section>
 
     <!-- SECTION 3: Interactive Audio Demo Widget -->
-    <section class="py-20 px-6 bg-zinc-950/50">
+    <section class="py-20 px-6 bg-zinc-50">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight">Experience Real-Time Translation</h2>
-                <p class="text-muted">Hear the voice translation engine in action with live audio playback</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Experience Real-Time Translation</h2>
+                <p class="text-zinc-600">Hear the voice translation engine in action with live audio playback</p>
             </div>
 
-            <div class="bg-card border border-subtle rounded-lg p-8">
+            <div class="bg-white border border-zinc-200 rounded-2xl p-8 shadow-sm">
                 <!-- Language Selector Tabs -->
-                <div class="flex flex-wrap gap-2 mb-6 justify-center">
-                    <button class="lang-tab px-4 py-2 bg-accent text-white rounded-md font-medium text-sm transition-all" data-lang="hindi">
+                <div class="flex flex-wrap gap-2 mb-6 justify-center" role="tablist" aria-label="Language translation pairs">
+                    <button class="lang-tab px-4 py-2 bg-black text-white rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="hindi" role="tab" aria-selected="true" aria-controls="translation-panel">
                         🇮🇳 Hindi ⇄ English
                     </button>
-                    <button class="lang-tab px-4 py-2 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium text-sm transition-all" data-lang="punjabi">
+                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="punjabi" role="tab" aria-selected="false" aria-controls="translation-panel">
                         🇮🇳 Punjabi ⇄ English
                     </button>
-                    <button class="lang-tab px-4 py-2 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium text-sm transition-all" data-lang="spanish">
+                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="spanish" role="tab" aria-selected="false" aria-controls="translation-panel">
                         🇪🇸 Spanish ⇄ English
                     </button>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div id="translation-panel" class="grid md:grid-cols-2 gap-6 mb-6" role="tabpanel" aria-live="polite">
                     <!-- Source Language Display -->
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+                    <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6" role="region" aria-labelledby="source-label">
                         <div class="flex items-center gap-2 mb-3">
-                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
-                            <span class="text-xs font-mono text-muted">SOURCE LANGUAGE</span>
+                            <div class="w-2 h-2 bg-zinc-400 rounded-full" aria-hidden="true"></div>
+                            <span id="source-label" class="text-xs font-mono text-zinc-500">SOURCE LANGUAGE</span>
                         </div>
-                        <p id="source-text" class="text-lg leading-relaxed">नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?</p>
+                        <p id="source-text" class="text-lg leading-relaxed text-black">नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?</p>
                     </div>
 
                     <!-- Target Language Display -->
-                    <div class="bg-accent/5 border border-accent/30 rounded-lg p-6">
+                    <div class="bg-black border border-black rounded-lg p-6" role="region" aria-labelledby="target-label">
                         <div class="flex items-center gap-2 mb-3">
-                            <div class="w-2 h-2 bg-accent rounded-full"></div>
-                            <span class="text-xs font-mono text-accent">TRANSLATED OUTPUT</span>
+                            <div class="w-2 h-2 bg-white rounded-full" aria-hidden="true"></div>
+                            <span id="target-label" class="text-xs font-mono text-zinc-400">TRANSLATED OUTPUT</span>
                         </div>
-                        <p id="target-text" class="text-lg leading-relaxed">Hello, could you please confirm my hotel booking?</p>
+                        <p id="target-text" class="text-lg leading-relaxed text-white">Hello, could you please confirm my hotel booking?</p>
                     </div>
                 </div>
 
                 <!-- Audio Player Controls -->
                 <div class="flex flex-col items-center gap-6">
                     <!-- Play Button -->
-                    <button id="play-btn" class="w-24 h-24 bg-accent/10 hover:bg-accent/20 border-2 border-accent rounded-full flex items-center justify-center transition-all group relative">
-                        <svg id="play-icon" class="w-12 h-12 text-accent group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                    <button id="play-btn" class="w-24 h-24 bg-black hover:scale-105 border-2 border-black rounded-full flex items-center justify-center transition-transform group relative focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" aria-label="Play translation demo" aria-pressed="false">
+                        <svg id="play-icon" class="w-12 h-12 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
-                        <svg id="pause-icon" class="hidden w-12 h-12 text-accent group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                        <svg id="pause-icon" class="hidden w-12 h-12 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
                         </svg>
                     </button>
 
                     <!-- Waveform Animation -->
-                    <div id="waveform" class="hidden flex items-center justify-center gap-1.5 h-16">
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 12px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 24px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 18px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 32px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 16px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 22px;"></div>
-                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 28px;"></div>
+                    <div id="waveform" class="hidden flex items-center justify-center gap-1.5 h-16" role="status" aria-live="polite" aria-label="Audio playing">
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 12px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 24px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 18px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 32px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 16px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 22px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 28px;" aria-hidden="true"></div>
+                        <span class="sr-only">Translation audio is playing</span>
                     </div>
 
                     <!-- Pipeline Latency Counter -->
-                    <div class="w-full bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+                    <div class="w-full bg-zinc-50 border border-zinc-200 rounded-lg p-6">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-sm font-mono text-muted">Pipeline Latency</span>
-                            <span id="total-latency" class="text-2xl font-bold text-accent font-mono">382ms</span>
+                            <span class="text-sm font-mono text-zinc-600">Pipeline Latency</span>
+                            <span id="total-latency" class="text-2xl font-bold text-black font-mono">382ms</span>
                         </div>
                         <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
-                                STT: <span class="text-accent font-bold">150ms</span>
+                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
+                                STT: <span class="text-black font-bold">150ms</span>
                             </span>
-                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
-                                LLM: <span class="text-accent font-bold">110ms</span>
+                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
+                                LLM: <span class="text-black font-bold">110ms</span>
                             </span>
-                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
-                                TTS: <span class="text-accent font-bold">122ms</span>
+                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
+                                TTS: <span class="text-black font-bold">122ms</span>
                             </span>
                         </div>
                     </div>
@@ -688,14 +678,14 @@
     </section>
 
     <!-- SECTION 4: Telephony Carrier Pipeline Visual -->
-    <section class="py-20 px-6">
+    <section class="py-20 px-6 bg-white">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight">Telephony Architecture Pipeline</h2>
-                <p class="text-muted">Real-time bidirectional audio processing flow</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Telephony Architecture Pipeline</h2>
+                <p class="text-zinc-600">Real-time bidirectional audio processing flow</p>
             </div>
 
-            <div class="bg-card border border-subtle rounded-lg p-8 overflow-x-auto">
+            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-8 overflow-x-auto shadow-sm">
                 <svg viewBox="0 0 1200 400" class="w-full min-w-[800px]" xmlns="http://www.w3.org/2000/svg">
                     <!-- Dashed animated connection lines -->
                     <defs>
@@ -704,112 +694,112 @@
                                 to { stroke-dashoffset: -20; }
                             }
                             .signal-line {
-                                stroke: #38bdf8;
+                                stroke: #27272a;
                                 stroke-width: 2;
                                 stroke-dasharray: 10 5;
                                 animation: dash 1s linear infinite;
                             }
                             .glow-filter {
-                                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+                                filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
                             }
                         </style>
                     </defs>
 
                     <!-- Node 1: PSTN Phone -->
                     <g transform="translate(50, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">📱</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">PSTN Phone</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">📱</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">PSTN Phone</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">G.711 μ-law 8kHz</text>
                     </g>
 
                     <!-- Connection 1-2 -->
                     <line x1="190" y1="220" x2="250" y2="220" class="signal-line"/>
-                    <polygon points="250,220 242,216 242,224" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="250,220 242,216 242,224" fill="#27272a" class="glow-filter"/>
 
                     <!-- Node 2: Twilio RTP -->
                     <g transform="translate(250, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">⚡</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Twilio RTP</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">⚡</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Twilio RTP</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">20ms frames</text>
                     </g>
 
                     <!-- Connection 2-3 -->
                     <line x1="390" y1="220" x2="450" y2="220" class="signal-line"/>
-                    <polygon points="450,220 442,216 442,224" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="450,220 442,216 442,224" fill="#27272a" class="glow-filter"/>
 
                     <!-- Node 3: Deepgram STT -->
                     <g transform="translate(450, 60)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🎙️</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Deepgram</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🎙️</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Deepgram</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">150ms endpointing</text>
                     </g>
 
                     <!-- Connection 3-4 (vertical then horizontal) -->
                     <line x1="520" y1="140" x2="520" y2="220" class="signal-line"/>
                     <line x1="520" y1="220" x2="650" y2="220" class="signal-line"/>
-                    <polygon points="650,220 642,216 642,224" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="650,220 642,216 642,224" fill="#27272a" class="glow-filter"/>
 
                     <!-- Node 4: Groq LLM -->
                     <g transform="translate(650, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🧠</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Groq LLM</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🧠</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Groq LLM</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Instant streaming</text>
                     </g>
 
                     <!-- Connection 4-5 (down to TTS) -->
                     <line x1="720" y1="260" x2="720" y2="300" class="signal-line"/>
                     <line x1="720" y1="300" x2="520" y2="300" class="signal-line"/>
-                    <polygon points="520,300 528,296 528,304" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="520,300 528,296 528,304" fill="#27272a" class="glow-filter"/>
 
                     <!-- Node 5: Cartesia TTS -->
                     <g transform="translate(450, 280)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🔊</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Cartesia</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🔊</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Cartesia</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">1.15x synthesis</text>
                     </g>
 
                     <!-- Connection 5-6 (back to phone) -->
                     <line x1="450" y1="320" x2="320" y2="320" class="signal-line"/>
                     <line x1="320" y1="320" x2="320" y2="260" class="signal-line"/>
-                    <polygon points="320,260 316,268 324,268" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="320,260 316,268 324,268" fill="#27272a" class="glow-filter"/>
 
                     <!-- Node 6: Callee Phone -->
                     <g transform="translate(850, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">📞</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Callee Phone</text>
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">📞</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Callee Phone</text>
                         <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Standard Carrier</text>
                     </g>
 
                     <!-- Bidirectional arrow from Twilio to Callee -->
                     <line x1="390" y1="210" x2="850" y2="210" class="signal-line"/>
-                    <polygon points="850,210 842,206 842,214" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="850,210 842,206 842,214" fill="#27272a" class="glow-filter"/>
                     <line x1="390" y1="230" x2="850" y2="230" class="signal-line"/>
-                    <polygon points="390,230 398,226 398,234" fill="#38bdf8" class="glow-filter"/>
+                    <polygon points="390,230 398,226 398,234" fill="#27272a" class="glow-filter"/>
                 </svg>
             </div>
         </div>
     </section>
 
     <!-- SECTION 5: Global Language Matrix -->
-    <section class="py-20 px-6 bg-zinc-950/50">
+    <section class="py-20 px-6 bg-zinc-50">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight">50+ Language Corridors</h2>
-                <p class="text-muted">Direct neural translation and high-speed English-pivot streaming</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">50+ Language Corridors</h2>
+                <p class="text-zinc-600">Direct neural translation and high-speed English-pivot streaming</p>
             </div>
 
             <!-- Filter Badges -->
             <div class="flex flex-wrap gap-3 justify-center mb-8">
-                <span class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-full text-sm font-medium text-accent">
+                <span class="px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
                     Direct Neural Corridors
                 </span>
-                <span class="px-4 py-2 bg-card border border-subtle rounded-full text-sm font-medium text-muted">
+                <span class="px-4 py-2 bg-white border border-zinc-200 rounded-full text-sm font-medium text-zinc-600">
                     High-Speed English-Pivot
                 </span>
             </div>
@@ -817,7 +807,7 @@
             <!-- Language Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Indian Languages -->
-                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                <div class="bg-white border border-zinc-200 rounded-lg p-4 hover:shadow-md transition-shadow">
                     <div class="text-2xl mb-2">🇮🇳</div>
                     <div class="text-sm font-semibold mb-1">ਪੰਜਾਬੀ</div>
                     <div class="text-xs text-muted">Punjabi</div>
@@ -894,49 +884,49 @@
             </div>
 
             <div class="text-center mt-8">
-                <p class="text-sm text-muted">+ 40 more languages supported via English-pivot streaming</p>
+                <p class="text-sm text-zinc-600">+ 40 more languages supported via English-pivot streaming</p>
             </div>
         </div>
     </section>
 
     <!-- Architecture Section -->
-    <section id="architecture" class="py-20 px-6 border-t border-subtle">
+    <section id="architecture" class="py-20 px-6 border-t border-zinc-200 bg-white">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 tracking-tight">Technical Architecture</h2>
-                <p class="text-lg text-muted">Production-grade telephony translation pipeline</p>
+                <h2 class="text-4xl font-bold mb-4 tracking-tight text-black">Technical Architecture</h2>
+                <p class="text-lg text-zinc-600">Production-grade telephony translation pipeline</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-card border border-subtle rounded-lg p-8">
+                <div class="bg-white border border-zinc-200 rounded-lg p-8 shadow-sm">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold">Telephony Layer</h3>
+                        <h3 class="text-lg font-bold text-black">Telephony Layer</h3>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-accent rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
                             <div>
-                                <p class="font-semibold">Twilio Media Streams</p>
-                                <p class="text-muted text-xs">Bidirectional WebSocket audio streams</p>
+                                <p class="font-semibold text-black">Twilio Media Streams</p>
+                                <p class="text-zinc-600 text-xs">Bidirectional WebSocket audio streams</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-accent rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
                             <div>
-                                <p class="font-semibold">G.711 μ-law (PCMU)</p>
-                                <p class="text-muted text-xs">8000 Hz mono audio over 20ms RTP packets</p>
+                                <p class="font-semibold text-black">G.711 μ-law (PCMU)</p>
+                                <p class="text-zinc-600 text-xs">8000 Hz mono audio over 20ms RTP packets</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-accent rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
                             <div>
-                                <p class="font-semibold">PSTN Bridge</p>
-                                <p class="text-muted text-xs">Phone A ⇄ Server ⇄ Phone B isolation</p>
+                                <p class="font-semibold text-black">PSTN Bridge</p>
+                                <p class="text-zinc-600 text-xs">Phone A ⇄ Server ⇄ Phone B isolation</p>
                             </div>
                         </div>
                     </div>
@@ -1023,8 +1013,8 @@
                         <div class="flex gap-3">
                             <div class="w-1 h-1 bg-accent rounded-full mt-2 shrink-0"></div>
                             <div>
-                                <p class="font-semibold">ElevenLabs Flash</p>
-                                <p class="text-muted text-xs">WebSocket streaming synthesis</p>
+                                <p class="font-semibold">Cartesia Sonic-3.5</p>
+                                <p class="text-muted text-xs">WebSocket streaming synthesis at 1.15x pacing</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
@@ -1068,7 +1058,7 @@
                             <span class="text-accent font-bold">124ms</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-muted">TTS (ElevenLabs)</span>
+                            <span class="text-muted">TTS (Cartesia Sonic-3.5)</span>
                             <span class="text-accent font-bold">74ms</span>
                         </div>
                         <div class="flex justify-between">
@@ -1163,7 +1153,7 @@
                         </div>
                         <div>
                             <p class="text-muted text-xs mb-2">TTS</p>
-                            <p>ElevenLabs Flash</p>
+                            <p>Cartesia Sonic-3.5</p>
                         </div>
                         <div>
                             <p class="text-muted text-xs mb-2">RUNTIME</p>
@@ -1194,7 +1184,7 @@
                 <div class="bg-card border border-subtle rounded-lg p-8 text-center">
                     <div class="text-4xl font-bold text-accent mb-2">74ms</div>
                     <div class="text-xs text-muted mb-3 font-mono">TTS TTFB</div>
-                    <div class="text-base font-bold mb-3">ElevenLabs</div>
+                    <div class="text-base font-bold mb-3">Cartesia Sonic-3.5</div>
                     <p class="text-xs text-muted">First audio token</p>
                 </div>
 
@@ -1291,173 +1281,198 @@
     </footer>
 
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        (function() {
+            'use strict';
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+            const VoxSync = {
+                state: {
+                    currentLang: 'hindi',
+                    isPlaying: false,
+                    currentUtterance: null,
+                    speechAvailable: !!window.speechSynthesis
+                },
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
+                data: {
+                    hindi: {
+                        source: 'नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?',
+                        target: 'Hello, could you please confirm my hotel booking?',
+                        sourceLang: 'hi-IN',
+                        targetLang: 'en-US'
+                    },
+                    punjabi: {
+                        source: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਮੇਰੀ ਫਲਾਈਟ ਲੇਟ ਹੋ ਗਈ ਹੈ।',
+                        target: 'Hello, my flight has been delayed.',
+                        sourceLang: 'pa-IN',
+                        targetLang: 'en-US'
+                    },
+                    spanish: {
+                        source: 'Hola, necesito asistencia con mi vuelo internacional.',
+                        target: 'Hello, I need assistance with my international flight.',
+                        sourceLang: 'es-ES',
+                        targetLang: 'en-US'
+                    }
+                },
 
-        // Interactive Voice Translation Player
-        const languageData = {
-            hindi: {
-                source: 'नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?',
-                target: 'Hello, could you please confirm my hotel booking?',
-                sourceLang: 'hi-IN',
-                targetLang: 'en-US'
-            },
-            punjabi: {
-                source: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਮੇਰੀ ਫਲਾਈਟ ਲੇਟ ਹੋ ਗਈ ਹੈ।',
-                target: 'Hello, my flight has been delayed.',
-                sourceLang: 'pa-IN',
-                targetLang: 'en-US'
-            },
-            spanish: {
-                source: 'Hola, necesito asistencia con mi vuelo internacional.',
-                target: 'Hello, I need assistance with my international flight.',
-                sourceLang: 'es-ES',
-                targetLang: 'en-US'
-            }
-        };
+                init() {
+                    this.setupMenu();
+                    this.setupLanguageTabs();
+                    this.setupPlayer();
+                    this.setupCleanup();
+                },
 
-        let currentLang = 'hindi';
-        let isPlaying = false;
-        let currentUtterance = null;
+                setupMenu() {
+                    const btn = document.getElementById('mobile-menu-btn');
+                    const menu = document.getElementById('mobile-menu');
+                    if (!btn || !menu) return;
 
-        // Language tab switching
-        document.querySelectorAll('.lang-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                if (isPlaying) return; // Prevent switching during playback
+                    btn.addEventListener('click', () => {
+                        const isOpen = !menu.classList.contains('hidden');
+                        menu.classList.toggle('hidden');
+                        btn.setAttribute('aria-expanded', (!isOpen).toString());
+                    });
 
-                // Update active tab styling
-                document.querySelectorAll('.lang-tab').forEach(t => {
-                    t.classList.remove('bg-accent', 'text-white');
-                    t.classList.add('bg-card', 'border', 'border-subtle', 'hover:bg-zinc-800');
-                });
-                this.classList.remove('bg-card', 'border', 'border-subtle', 'hover:bg-zinc-800');
-                this.classList.add('bg-accent', 'text-white');
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = document.querySelector(anchor.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                menu.classList.add('hidden');
+                                btn.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                    });
+                },
 
-                // Update current language
-                currentLang = this.getAttribute('data-lang');
-                const data = languageData[currentLang];
+                setupLanguageTabs() {
+                    document.querySelectorAll('.lang-tab').forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            if (this.state.isPlaying) return;
 
-                // Update text displays
-                document.getElementById('source-text').textContent = data.source;
-                document.getElementById('target-text').textContent = data.target;
-            });
-        });
+                            document.querySelectorAll('.lang-tab').forEach(t => {
+                                t.classList.remove('bg-black', 'text-white');
+                                t.classList.add('bg-white', 'text-zinc-600', 'border', 'border-zinc-200', 'hover:bg-zinc-100');
+                                t.setAttribute('aria-selected', 'false');
+                            });
 
-        // Play/Pause button
-        const playBtn = document.getElementById('play-btn');
-        const playIcon = document.getElementById('play-icon');
-        const pauseIcon = document.getElementById('pause-icon');
-        const waveform = document.getElementById('waveform');
+                            tab.classList.remove('bg-white', 'text-zinc-600', 'border', 'border-zinc-200', 'hover:bg-zinc-100');
+                            tab.classList.add('bg-black', 'text-white');
+                            tab.setAttribute('aria-selected', 'true');
 
-        playBtn.addEventListener('click', function() {
-            if (!isPlaying) {
-                playTranslation();
-            } else {
-                stopTranslation();
-            }
-        });
+                            this.state.currentLang = tab.getAttribute('data-lang');
+                            const data = this.data[this.state.currentLang];
 
-        function playTranslation() {
-            const data = languageData[currentLang];
+                            const sourceEl = document.getElementById('source-text');
+                            const targetEl = document.getElementById('target-text');
+                            if (sourceEl) sourceEl.textContent = data.source;
+                            if (targetEl) targetEl.textContent = data.target;
+                        });
+                    });
+                },
 
-            // Check for browser support
-            if (!window.speechSynthesis) {
-                alert('Speech synthesis not supported in this browser. Please try Chrome, Safari, or Edge.');
-                return;
-            }
+                setupPlayer() {
+                    const btn = document.getElementById('play-btn');
+                    if (!btn) return;
 
-            isPlaying = true;
+                    if (!this.state.speechAvailable) {
+                        btn.setAttribute('aria-disabled', 'true');
+                        btn.setAttribute('title', 'Speech synthesis not supported');
+                        return;
+                    }
 
-            // Toggle icons
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
+                    btn.addEventListener('click', () => {
+                        this.state.isPlaying ? this.stop() : this.play();
+                    });
+                },
 
-            // Show waveform
-            waveform.classList.remove('hidden');
+                play() {
+                    if (!this.state.speechAvailable) return;
 
-            // Simulate pipeline delay (380ms)
-            setTimeout(() => {
-                // Speak source language (for demo, we'll use English for all since browser TTS has limited language support)
-                const sourceUtterance = new SpeechSynthesisUtterance(data.source);
-                sourceUtterance.lang = data.sourceLang;
-                sourceUtterance.rate = 1.0;
-                sourceUtterance.pitch = 1.0;
+                    window.speechSynthesis.cancel();
+                    this.state.isPlaying = true;
 
-                sourceUtterance.onend = () => {
-                    // Small delay before translation
+                    const playIcon = document.getElementById('play-icon');
+                    const pauseIcon = document.getElementById('pause-icon');
+                    const waveform = document.getElementById('waveform');
+                    const btn = document.getElementById('play-btn');
+
+                    if (playIcon) playIcon.classList.add('hidden');
+                    if (pauseIcon) pauseIcon.classList.remove('hidden');
+                    if (waveform) waveform.classList.remove('hidden');
+                    if (btn) {
+                        btn.setAttribute('aria-label', 'Pause translation');
+                        btn.setAttribute('aria-pressed', 'true');
+                    }
+
+                    const data = this.data[this.state.currentLang];
+
                     setTimeout(() => {
-                        // Speak translated text
-                        currentUtterance = new SpeechSynthesisUtterance(data.target);
-                        currentUtterance.lang = data.targetLang;
-                        currentUtterance.rate = 1.15; // 1.15x speed as specified
-                        currentUtterance.pitch = 1.0;
+                        const src = new SpeechSynthesisUtterance(data.source);
+                        src.lang = data.sourceLang;
+                        src.rate = 1.0;
+                        src.pitch = 1.0;
 
-                        currentUtterance.onend = () => {
-                            stopTranslation();
+                        src.onend = () => {
+                            setTimeout(() => {
+                                this.state.currentUtterance = new SpeechSynthesisUtterance(data.target);
+                                this.state.currentUtterance.lang = data.targetLang;
+                                this.state.currentUtterance.rate = 1.15;
+                                this.state.currentUtterance.pitch = 1.0;
+                                this.state.currentUtterance.onend = () => this.stop();
+                                this.state.currentUtterance.onerror = () => this.stop();
+                                window.speechSynthesis.speak(this.state.currentUtterance);
+                            }, 200);
                         };
 
-                        currentUtterance.onerror = (event) => {
-                            console.error('Speech synthesis error:', event);
-                            stopTranslation();
+                        src.onerror = () => {
+                            this.state.currentUtterance = new SpeechSynthesisUtterance(data.target);
+                            this.state.currentUtterance.lang = data.targetLang;
+                            this.state.currentUtterance.rate = 1.15;
+                            this.state.currentUtterance.onend = () => this.stop();
+                            window.speechSynthesis.speak(this.state.currentUtterance);
                         };
 
-                        window.speechSynthesis.speak(currentUtterance);
-                    }, 200);
-                };
+                        window.speechSynthesis.speak(src);
+                    }, 380);
+                },
 
-                sourceUtterance.onerror = (event) => {
-                    console.error('Speech synthesis error:', event);
-                    // Fallback: just play target language
-                    currentUtterance = new SpeechSynthesisUtterance(data.target);
-                    currentUtterance.lang = data.targetLang;
-                    currentUtterance.rate = 1.15;
-                    currentUtterance.onend = () => stopTranslation();
-                    window.speechSynthesis.speak(currentUtterance);
-                };
+                stop() {
+                    this.state.isPlaying = false;
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
 
-                window.speechSynthesis.speak(sourceUtterance);
-            }, 380);
-        }
+                    const playIcon = document.getElementById('play-icon');
+                    const pauseIcon = document.getElementById('pause-icon');
+                    const waveform = document.getElementById('waveform');
+                    const btn = document.getElementById('play-btn');
 
-        function stopTranslation() {
-            isPlaying = false;
+                    if (playIcon) playIcon.classList.remove('hidden');
+                    if (pauseIcon) pauseIcon.classList.add('hidden');
+                    if (waveform) waveform.classList.add('hidden');
+                    if (btn) {
+                        btn.setAttribute('aria-label', 'Play translation demo');
+                        btn.setAttribute('aria-pressed', 'false');
+                    }
 
-            // Cancel any ongoing speech
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
+                    this.state.currentUtterance = null;
+                },
+
+                setupCleanup() {
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.hidden && this.state.isPlaying) this.stop();
+                    });
+
+                    window.addEventListener('beforeunload', () => {
+                        this.stop();
+                    });
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => VoxSync.init());
+            } else {
+                VoxSync.init();
             }
-
-            // Toggle icons back
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-
-            // Hide waveform
-            waveform.classList.add('hidden');
-
-            currentUtterance = null;
-        }
-
-        // Handle page visibility change (stop audio if user switches tabs)
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && isPlaying) {
-                stopTranslation();
-            }
-        });
+        })();
     </script>
 </body>
 </html>
