@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - VoxSync | Luvent Technologies</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2309090b'/%3E%3Cpath d='M8 12h6v8H8zm10-4h6v16h-6z' fill='%2338bdf8'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090b',
+                        foreground: '#fafafa',
+                        card: '#18181b',
+                        border: '#27272a',
+                        muted: '#71717a',
+                        accent: '#38bdf8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { background-color: #09090b; color: #fafafa; }
+        .border-subtle { border-color: #27272a; }
+        .bg-card { background-color: #18181b; }
+        .text-muted { color: #71717a; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <header class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-subtle">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-9 h-9 border border-zinc-800 rounded-md flex items-center justify-center font-bold text-lg">V</div>
+                    <div>
+                        <div class="font-semibold text-base tracking-tight">VoxSync</div>
+                        <div class="text-[10px] text-muted font-mono tracking-wider">LUVENT TECHNOLOGIES</div>
+                    </div>
+                </a>
+                <a href="index.html" class="text-muted hover:text-foreground text-sm font-medium transition-colors">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="mb-12">
+                <h1 class="text-4xl font-bold mb-4">Privacy Policy</h1>
+                <p class="text-sm text-muted">Last updated: September 27, 2026</p>
+            </div>
+
+            <div class="space-y-8 text-sm leading-relaxed">
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">1. Overview</h2>
+                    <p class="mb-4">Luvent Technologies ("we", "us", "our") operates VoxSync, a real-time voice translation service. This Privacy Policy explains how we handle your data when you use our Service.</p>
+                    <p class="text-muted">We are committed to protecting your privacy and processing voice data with zero retention by design.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">2. Zero-Retention Voice Processing</h2>
+                    <h3 class="text-lg font-semibold mb-3">2.1 Real-Time Ephemeral Processing</h3>
+                    <p class="mb-4">VoxSync operates on a zero-retention architecture for voice data:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li><strong>No audio storage:</strong> Voice data is processed in real-time memory buffers only and is never written to disk or persistent storage</li>
+                        <li><strong>Immediate deletion:</strong> Audio chunks are discarded immediately after translation and transmission</li>
+                        <li><strong>No call recording:</strong> We do not record, archive, or retain any audio content from your calls</li>
+                        <li><strong>Ephemeral transcripts:</strong> Text transcripts generated during translation exist only in volatile memory and are discarded when the call ends</li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold mb-3">2.2 Third-Party Processing Partners</h3>
+                    <p class="mb-4">VoxSync uses the following AI providers for real-time voice processing, all of which operate on ephemeral, zero-retention models:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li><strong>Deepgram (Speech-to-Text):</strong> Processes audio in real-time with no persistent storage. Audio data is not retained after transcription.</li>
+                        <li><strong>Cartesia (Text-to-Speech):</strong> Generates synthetic speech in real-time without storing input text or output audio beyond request duration.</li>
+                        <li><strong>Groq (Translation):</strong> Processes translation requests ephemerally without retaining input or output text.</li>
+                    </ul>
+                    <p class="text-muted">These providers process data solely to deliver the real-time translation service and do not use your data for training or other purposes.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">3. Data We Collect</h2>
+                    <h3 class="text-lg font-semibold mb-3">3.1 Technical Metadata (Non-Voice)</h3>
+                    <p class="mb-4">We collect minimal session metadata for billing, debugging, and service operation:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li>Call duration and timestamps</li>
+                        <li>Source and destination language pairs</li>
+                        <li>Geographic region (country-level only)</li>
+                        <li>Technical performance metrics (latency, packet loss)</li>
+                        <li>Error logs and diagnostic data (no voice content)</li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold mb-3">3.2 Caller Information</h3>
+                    <p class="mb-4 text-muted">If you initiate a call using the Service, we may collect your phone number for call routing and billing purposes. This information is stored securely and is not shared with third parties except as required for service delivery.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">4. GDPR Compliance</h2>
+                    <h3 class="text-lg font-semibold mb-3">4.1 Legal Basis for Processing</h3>
+                    <p class="mb-4">Under GDPR, we process your data based on:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li><strong>Contractual necessity:</strong> Processing is necessary to provide the translation service you requested</li>
+                        <li><strong>Legitimate interests:</strong> Minimal metadata collection for billing, security, and service improvement</li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold mb-3">4.2 Your Rights Under GDPR</h3>
+                    <p class="mb-4">If you are in the European Economic Area (EEA), you have the following rights:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li><strong>Right to access:</strong> Request a copy of the metadata we hold about you</li>
+                        <li><strong>Right to rectification:</strong> Request correction of inaccurate data</li>
+                        <li><strong>Right to erasure:</strong> Request deletion of your data (except where retention is legally required)</li>
+                        <li><strong>Right to restrict processing:</strong> Request limitation of data processing</li>
+                        <li><strong>Right to data portability:</strong> Request a machine-readable copy of your data</li>
+                        <li><strong>Right to object:</strong> Object to processing based on legitimate interests</li>
+                    </ul>
+                    <p class="text-muted">To exercise these rights, contact us at privacy@theluvent.com</p>
+
+                    <h3 class="text-lg font-semibold mb-3">4.3 Data Retention</h3>
+                    <p class="mb-4 text-muted">Session metadata is retained for 90 days for billing and operational purposes, after which it is automatically deleted. Voice data and transcripts are never retained.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">5. International Data Transfers</h2>
+                    <p class="mb-4">VoxSync processes data in real-time across global infrastructure to minimize latency. Voice data is processed ephemerally in the nearest available region and is never stored internationally.</p>
+                    <p class="text-muted">Session metadata may be transferred to and processed in the United States, where our primary infrastructure is located. We ensure appropriate safeguards are in place for international transfers in compliance with GDPR.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">6. Security Measures</h2>
+                    <p class="mb-4">We implement industry-standard security measures to protect your data:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
+                        <li>End-to-end encryption for all voice streams (TLS/SRTP)</li>
+                        <li>Secure WebSocket connections for real-time data transmission</li>
+                        <li>Access controls and authentication for service infrastructure</li>
+                        <li>Regular security audits and vulnerability assessments</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">7. Consent and Call Recording Laws</h2>
+                    <p class="mb-4 text-muted">While VoxSync does not record calls, you are responsible for complying with local call recording and consent laws in your jurisdiction. Some regions require all parties to consent before using translation or call processing services.</p>
+                    <p class="text-muted">It is your responsibility to obtain necessary consents before using the Service.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">8. Children's Privacy</h2>
+                    <p class="mb-4 text-muted">VoxSync is not intended for use by individuals under the age of 13 (or 16 in the EEA). We do not knowingly collect data from children.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">9. Changes to This Policy</h2>
+                    <p class="mb-4 text-muted">We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Continued use of the Service after changes constitutes acceptance of the updated policy.</p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4">10. Contact Us</h2>
+                    <p class="mb-4">If you have questions about this Privacy Policy or our data practices, contact us at:</p>
+                    <div class="bg-card border border-subtle rounded-lg p-6 text-muted">
+                        <p class="mb-2"><strong class="text-foreground">Luvent Technologies</strong></p>
+                        <p class="mb-2">Email: <a href="mailto:privacy@theluvent.com" class="text-accent hover:underline">privacy@theluvent.com</a></p>
+                        <p class="mb-2">Website: <a href="https://voxsync.theluvent.com" class="text-accent hover:underline">voxsync.theluvent.com</a></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-subtle py-8 px-6 mt-16">
+        <div class="container mx-auto max-w-4xl text-center text-sm text-muted">
+            <p>&copy; 2026 Luvent Technologies. All rights reserved.</p>
+            <div class="mt-4 flex justify-center gap-6">
+                <a href="index.html" class="hover:text-foreground transition-colors">Home</a>
+                <a href="terms.html" class="hover:text-foreground transition-colors">Terms</a>
+                <a href="privacy.html" class="hover:text-foreground transition-colors">Privacy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
