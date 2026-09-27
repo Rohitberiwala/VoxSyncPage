@@ -167,6 +167,54 @@
         .status-dot {
             animation: status-pulse 2s ease-in-out infinite;
         }
+
+        /* Live Call Simulator */
+        @keyframes waveform-pulse {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+
+        .waveform-bar {
+            animation: waveform-pulse 1.2s ease-in-out infinite;
+        }
+
+        .waveform-bar:nth-child(1) { animation-delay: 0s; }
+        .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+        .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(4) { animation-delay: 0.15s; }
+        .waveform-bar:nth-child(5) { animation-delay: 0.05s; }
+
+        @keyframes count-up {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .call-timer {
+            animation: count-up 2s ease-in-out infinite;
+        }
+
+        /* iPhone Dynamic Island */
+        .dynamic-island {
+            width: 126px;
+            height: 37px;
+            background: #000;
+            border-radius: 19px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .dynamic-island-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -244,10 +292,182 @@
                         Technical Overview
                     </a>
                 </div>
+
+                <!-- Platform Badges -->
+                <div class="flex flex-wrap justify-center items-center gap-4 pt-8">
+                    <a href="#contact" class="hover:opacity-80 transition-opacity">
+                        <img src="assets/app-store-badge.svg" alt="Download on the App Store" class="h-10">
+                    </a>
+                    <a href="#contact" class="hover:opacity-80 transition-opacity">
+                        <img src="assets/google-play-badge.svg" alt="Get it on Google Play" class="h-10">
+                    </a>
+                    <a href="#contact" class="px-4 py-2.5 bg-card border border-subtle hover:bg-zinc-800 rounded-lg font-medium transition-all flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                        <span class="text-sm">Launch Web Portal</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SECTION 1: Live Telephony Call Simulator -->
+            <div class="mt-16 max-w-[375px] mx-auto">
+                <!-- iPhone 16 Pro Frame -->
+                <div class="relative bg-zinc-950 border border-zinc-700/60 rounded-[48px] p-3 shadow-2xl">
+                    <!-- Inner Screen Container -->
+                    <div class="bg-[#000] rounded-[38px] overflow-hidden relative">
+                        <!-- Dynamic Island -->
+                        <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+                            <div class="dynamic-island">
+                                <div class="dynamic-island-glow"></div>
+                            </div>
+                        </div>
+
+                        <!-- Status Bar -->
+                        <div class="relative pt-16 pb-2 px-6 flex items-center justify-between text-white text-xs">
+                            <div class="flex items-center gap-1.5">
+                                <span class="font-semibold">9:41</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <!-- 5G Icon -->
+                                <svg class="w-5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <text x="0" y="14" font-family="system-ui" font-size="14" font-weight="600">5G</text>
+                                </svg>
+                                <!-- WiFi Icon -->
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+                                </svg>
+                                <!-- Battery Icon -->
+                                <svg class="w-6 h-3" fill="none" viewBox="0 0 24 12">
+                                    <rect x="0" y="1" width="20" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <rect x="2" y="3" width="16" height="6" rx="1" fill="currentColor"/>
+                                    <rect x="21" y="4" width="2" height="4" rx="0.5" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Caller Info Banner -->
+                        <div class="bg-zinc-900/50 backdrop-blur-md border-y border-zinc-800 px-6 py-3">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-white text-sm font-semibold">Twilio PSTN Direct</div>
+                                    <div class="text-zinc-400 text-xs font-mono">Active Bridge</div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 text-[10px] font-mono">LIVE</span>
+                            </div>
+                        </div>
+
+                        <!-- Audio Waveform Visualizer -->
+                        <div class="bg-[#000] px-6 py-8 flex items-center justify-center gap-1.5">
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 16px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 32px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 24px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 40px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 20px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 28px;"></div>
+                            <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 36px;"></div>
+                        </div>
+
+                        <!-- Call Timer -->
+                        <div class="text-center pb-4">
+                            <div class="text-zinc-400 text-xs font-mono mb-1">Call Duration</div>
+                            <div class="text-white text-2xl font-mono call-timer">02:14</div>
+                        </div>
+
+                        <!-- Dialogue Stream -->
+                        <div class="px-6 pb-6 space-y-4">
+                            <!-- Inbound Punjabi -->
+                            <div class="flex justify-start">
+                                <div class="bg-zinc-800 border border-zinc-700 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
+                                    <div class="text-[9px] font-mono text-zinc-500 mb-1">INBOUND • pa-IN</div>
+                                    <div class="text-white text-sm leading-relaxed">ਬਾਈ ਜੀ, ਹੋਟਲ ਦੀ ਚਾਬੀ ਕਿੱਥੋਂ ਮਿਲਣੀ ਆ?</div>
+                                </div>
+                            </div>
+
+                            <!-- Synthesized English -->
+                            <div class="flex justify-end">
+                                <div class="bg-accent/10 border border-accent/30 rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
+                                    <div class="text-[9px] font-mono text-accent mb-1">SYNTHESIZED • en-US</div>
+                                    <div class="text-white text-sm leading-relaxed">Brother, where do I collect the hotel keys from?</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Latency Badge -->
+                        <div class="bg-zinc-900/50 backdrop-blur-md border-t border-zinc-800 px-6 py-3">
+                            <div class="flex items-center justify-between text-[10px] font-mono">
+                                <span class="text-zinc-400">Pipeline Latency</span>
+                                <span class="text-accent font-bold">382ms</span>
+                            </div>
+                            <div class="mt-2 flex gap-2 text-[9px] text-zinc-500">
+                                <span>Deepgram 150ms</span>
+                                <span>•</span>
+                                <span>Groq 110ms</span>
+                                <span>•</span>
+                                <span>Cartesia 122ms</span>
+                            </div>
+                        </div>
+
+                        <!-- In-Call Action Bar -->
+                        <div class="bg-[#000] px-6 py-8 flex items-center justify-center gap-8">
+                            <!-- Mute -->
+                            <button class="flex flex-col items-center gap-2 group">
+                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-white text-xs">mute</span>
+                            </button>
+
+                            <!-- Keypad -->
+                            <button class="flex flex-col items-center gap-2 group">
+                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <circle cx="6" cy="6" r="1.5" fill="currentColor"/>
+                                        <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+                                        <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+                                        <circle cx="6" cy="12" r="1.5" fill="currentColor"/>
+                                        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                                        <circle cx="18" cy="12" r="1.5" fill="currentColor"/>
+                                        <circle cx="6" cy="18" r="1.5" fill="currentColor"/>
+                                        <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                                        <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <span class="text-white text-xs">keypad</span>
+                            </button>
+
+                            <!-- Speaker -->
+                            <button class="flex flex-col items-center gap-2 group">
+                                <div class="w-14 h-14 bg-zinc-900 hover:bg-zinc-800 rounded-full flex items-center justify-center transition-colors">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-white text-xs">speaker</span>
+                            </button>
+                        </div>
+
+                        <!-- End Call Button -->
+                        <div class="px-6 pb-8 flex justify-center">
+                            <button class="w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors shadow-lg shadow-red-500/20">
+                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" transform="rotate(135 12 12)"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- iPhone Home Indicator -->
+                        <div class="pb-2 flex justify-center">
+                            <div class="w-32 h-1 bg-white/30 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Pipeline Visualization -->
-            <div class="mt-16 bg-card border border-subtle rounded-lg p-8">
+            <div class="mt-8 bg-card border border-subtle rounded-lg p-8">
                 <div class="flex items-center justify-between mb-6">
                     <span class="text-xs font-mono text-muted tracking-wide">live-translation-session.log</span>
                     <div class="flex gap-2">
@@ -324,6 +544,357 @@
                         <span>30 Language Pairs • Full Duplex</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Persona Use-Cases -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3 tracking-tight">Engineered for Real-World Scenarios</h2>
+                <p class="text-muted">Production telephony infrastructure for critical communications</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Card 1: Cross-Border Business -->
+                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">Cross-Border Business & Trade</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Close international deals and coordinate with overseas suppliers directly over regular phone lines. No translators needed.
+                    </p>
+                </div>
+
+                <!-- Card 2: Families & Elderly -->
+                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">Families & Elderly Relatives</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Zero-app required for the receiver. Call elderly parents or relatives abroad on their standard cellular numbers without teaching them any app.
+                    </p>
+                </div>
+
+                <!-- Card 3: Travel & Immigration -->
+                <div class="bg-card border border-subtle rounded-lg p-8 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-md flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">Travel, Immigration & Logistics</h3>
+                    <p class="text-sm text-muted leading-relaxed">
+                        Dial local government offices, airlines, dispatchers, or roadside services worldwide with zero language barriers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Interactive Audio Demo Widget -->
+    <section class="py-20 px-6 bg-zinc-950/50">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3 tracking-tight">Experience Real-Time Translation</h2>
+                <p class="text-muted">Hear the voice translation engine in action with live audio playback</p>
+            </div>
+
+            <div class="bg-card border border-subtle rounded-lg p-8">
+                <!-- Language Selector Tabs -->
+                <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                    <button class="lang-tab px-4 py-2 bg-accent text-white rounded-md font-medium text-sm transition-all" data-lang="hindi">
+                        🇮🇳 Hindi ⇄ English
+                    </button>
+                    <button class="lang-tab px-4 py-2 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium text-sm transition-all" data-lang="punjabi">
+                        🇮🇳 Punjabi ⇄ English
+                    </button>
+                    <button class="lang-tab px-4 py-2 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium text-sm transition-all" data-lang="spanish">
+                        🇪🇸 Spanish ⇄ English
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Source Language Display -->
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span class="text-xs font-mono text-muted">SOURCE LANGUAGE</span>
+                        </div>
+                        <p id="source-text" class="text-lg leading-relaxed">नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?</p>
+                    </div>
+
+                    <!-- Target Language Display -->
+                    <div class="bg-accent/5 border border-accent/30 rounded-lg p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-2 h-2 bg-accent rounded-full"></div>
+                            <span class="text-xs font-mono text-accent">TRANSLATED OUTPUT</span>
+                        </div>
+                        <p id="target-text" class="text-lg leading-relaxed">Hello, could you please confirm my hotel booking?</p>
+                    </div>
+                </div>
+
+                <!-- Audio Player Controls -->
+                <div class="flex flex-col items-center gap-6">
+                    <!-- Play Button -->
+                    <button id="play-btn" class="w-24 h-24 bg-accent/10 hover:bg-accent/20 border-2 border-accent rounded-full flex items-center justify-center transition-all group relative">
+                        <svg id="play-icon" class="w-12 h-12 text-accent group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pause-icon" class="hidden w-12 h-12 text-accent group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Waveform Animation -->
+                    <div id="waveform" class="hidden flex items-center justify-center gap-1.5 h-16">
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 12px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 24px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 18px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 32px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 16px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 22px;"></div>
+                        <div class="waveform-bar w-2 bg-accent rounded-full" style="height: 28px;"></div>
+                    </div>
+
+                    <!-- Pipeline Latency Counter -->
+                    <div class="w-full bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm font-mono text-muted">Pipeline Latency</span>
+                            <span id="total-latency" class="text-2xl font-bold text-accent font-mono">382ms</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
+                                STT: <span class="text-accent font-bold">150ms</span>
+                            </span>
+                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
+                                LLM: <span class="text-accent font-bold">110ms</span>
+                            </span>
+                            <span class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono">
+                                TTS: <span class="text-accent font-bold">122ms</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Telephony Carrier Pipeline Visual -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3 tracking-tight">Telephony Architecture Pipeline</h2>
+                <p class="text-muted">Real-time bidirectional audio processing flow</p>
+            </div>
+
+            <div class="bg-card border border-subtle rounded-lg p-8 overflow-x-auto">
+                <svg viewBox="0 0 1200 400" class="w-full min-w-[800px]" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Dashed animated connection lines -->
+                    <defs>
+                        <style>
+                            @keyframes dash {
+                                to { stroke-dashoffset: -20; }
+                            }
+                            .signal-line {
+                                stroke: #38bdf8;
+                                stroke-width: 2;
+                                stroke-dasharray: 10 5;
+                                animation: dash 1s linear infinite;
+                            }
+                            .glow-filter {
+                                filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+                            }
+                        </style>
+                    </defs>
+
+                    <!-- Node 1: PSTN Phone -->
+                    <g transform="translate(50, 180)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">📱</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">PSTN Phone</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">G.711 μ-law 8kHz</text>
+                    </g>
+
+                    <!-- Connection 1-2 -->
+                    <line x1="190" y1="220" x2="250" y2="220" class="signal-line"/>
+                    <polygon points="250,220 242,216 242,224" fill="#38bdf8" class="glow-filter"/>
+
+                    <!-- Node 2: Twilio RTP -->
+                    <g transform="translate(250, 180)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">⚡</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Twilio RTP</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">20ms frames</text>
+                    </g>
+
+                    <!-- Connection 2-3 -->
+                    <line x1="390" y1="220" x2="450" y2="220" class="signal-line"/>
+                    <polygon points="450,220 442,216 442,224" fill="#38bdf8" class="glow-filter"/>
+
+                    <!-- Node 3: Deepgram STT -->
+                    <g transform="translate(450, 60)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🎙️</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Deepgram</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">150ms endpointing</text>
+                    </g>
+
+                    <!-- Connection 3-4 (vertical then horizontal) -->
+                    <line x1="520" y1="140" x2="520" y2="220" class="signal-line"/>
+                    <line x1="520" y1="220" x2="650" y2="220" class="signal-line"/>
+                    <polygon points="650,220 642,216 642,224" fill="#38bdf8" class="glow-filter"/>
+
+                    <!-- Node 4: Groq LLM -->
+                    <g transform="translate(650, 180)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🧠</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Groq LLM</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Instant streaming</text>
+                    </g>
+
+                    <!-- Connection 4-5 (down to TTS) -->
+                    <line x1="720" y1="260" x2="720" y2="300" class="signal-line"/>
+                    <line x1="720" y1="300" x2="520" y2="300" class="signal-line"/>
+                    <polygon points="520,300 528,296 528,304" fill="#38bdf8" class="glow-filter"/>
+
+                    <!-- Node 5: Cartesia TTS -->
+                    <g transform="translate(450, 280)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">🔊</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Cartesia</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">1.15x synthesis</text>
+                    </g>
+
+                    <!-- Connection 5-6 (back to phone) -->
+                    <line x1="450" y1="320" x2="320" y2="320" class="signal-line"/>
+                    <line x1="320" y1="320" x2="320" y2="260" class="signal-line"/>
+                    <polygon points="320,260 316,268 324,268" fill="#38bdf8" class="glow-filter"/>
+
+                    <!-- Node 6: Callee Phone -->
+                    <g transform="translate(850, 180)">
+                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="70" y="30" text-anchor="middle" fill="#fafafa" font-size="28">📞</text>
+                        <text x="70" y="55" text-anchor="middle" fill="#fafafa" font-size="12" font-weight="600">Callee Phone</text>
+                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Standard Carrier</text>
+                    </g>
+
+                    <!-- Bidirectional arrow from Twilio to Callee -->
+                    <line x1="390" y1="210" x2="850" y2="210" class="signal-line"/>
+                    <polygon points="850,210 842,206 842,214" fill="#38bdf8" class="glow-filter"/>
+                    <line x1="390" y1="230" x2="850" y2="230" class="signal-line"/>
+                    <polygon points="390,230 398,226 398,234" fill="#38bdf8" class="glow-filter"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Global Language Matrix -->
+    <section class="py-20 px-6 bg-zinc-950/50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3 tracking-tight">50+ Language Corridors</h2>
+                <p class="text-muted">Direct neural translation and high-speed English-pivot streaming</p>
+            </div>
+
+            <!-- Filter Badges -->
+            <div class="flex flex-wrap gap-3 justify-center mb-8">
+                <span class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-full text-sm font-medium text-accent">
+                    Direct Neural Corridors
+                </span>
+                <span class="px-4 py-2 bg-card border border-subtle rounded-full text-sm font-medium text-muted">
+                    High-Speed English-Pivot
+                </span>
+            </div>
+
+            <!-- Language Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Indian Languages -->
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇮🇳</div>
+                    <div class="text-sm font-semibold mb-1">ਪੰਜਾਬੀ</div>
+                    <div class="text-xs text-muted">Punjabi</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇮🇳</div>
+                    <div class="text-sm font-semibold mb-1">हिन्दी</div>
+                    <div class="text-xs text-muted">Hindi</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇮🇳</div>
+                    <div class="text-sm font-semibold mb-1">বাংলা</div>
+                    <div class="text-xs text-muted">Bengali</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇮🇳</div>
+                    <div class="text-sm font-semibold mb-1">தமிழ்</div>
+                    <div class="text-xs text-muted">Tamil</div>
+                </div>
+
+                <!-- English -->
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇬🇧</div>
+                    <div class="text-sm font-semibold mb-1">English</div>
+                    <div class="text-xs text-muted">US/UK</div>
+                </div>
+
+                <!-- European Languages -->
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇪🇸</div>
+                    <div class="text-sm font-semibold mb-1">Español</div>
+                    <div class="text-xs text-muted">Spanish</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇩🇪</div>
+                    <div class="text-sm font-semibold mb-1">Deutsch</div>
+                    <div class="text-xs text-muted">German</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇫🇷</div>
+                    <div class="text-sm font-semibold mb-1">Français</div>
+                    <div class="text-xs text-muted">French</div>
+                </div>
+
+                <!-- Middle East & Asia -->
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇦🇪</div>
+                    <div class="text-sm font-semibold mb-1">العربية</div>
+                    <div class="text-xs text-muted">Arabic</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇨🇳</div>
+                    <div class="text-sm font-semibold mb-1">中文</div>
+                    <div class="text-xs text-muted">Mandarin</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇯🇵</div>
+                    <div class="text-sm font-semibold mb-1">日本語</div>
+                    <div class="text-xs text-muted">Japanese</div>
+                </div>
+
+                <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
+                    <div class="text-2xl mb-2">🇰🇷</div>
+                    <div class="text-sm font-semibold mb-1">한국어</div>
+                    <div class="text-xs text-muted">Korean</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <p class="text-sm text-muted">+ 40 more languages supported via English-pivot streaming</p>
             </div>
         </div>
     </section>
@@ -736,6 +1307,156 @@
                     mobileMenu.classList.add('hidden');
                 }
             });
+        });
+
+        // Interactive Voice Translation Player
+        const languageData = {
+            hindi: {
+                source: 'नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?',
+                target: 'Hello, could you please confirm my hotel booking?',
+                sourceLang: 'hi-IN',
+                targetLang: 'en-US'
+            },
+            punjabi: {
+                source: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਮੇਰੀ ਫਲਾਈਟ ਲੇਟ ਹੋ ਗਈ ਹੈ।',
+                target: 'Hello, my flight has been delayed.',
+                sourceLang: 'pa-IN',
+                targetLang: 'en-US'
+            },
+            spanish: {
+                source: 'Hola, necesito asistencia con mi vuelo internacional.',
+                target: 'Hello, I need assistance with my international flight.',
+                sourceLang: 'es-ES',
+                targetLang: 'en-US'
+            }
+        };
+
+        let currentLang = 'hindi';
+        let isPlaying = false;
+        let currentUtterance = null;
+
+        // Language tab switching
+        document.querySelectorAll('.lang-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                if (isPlaying) return; // Prevent switching during playback
+
+                // Update active tab styling
+                document.querySelectorAll('.lang-tab').forEach(t => {
+                    t.classList.remove('bg-accent', 'text-white');
+                    t.classList.add('bg-card', 'border', 'border-subtle', 'hover:bg-zinc-800');
+                });
+                this.classList.remove('bg-card', 'border', 'border-subtle', 'hover:bg-zinc-800');
+                this.classList.add('bg-accent', 'text-white');
+
+                // Update current language
+                currentLang = this.getAttribute('data-lang');
+                const data = languageData[currentLang];
+
+                // Update text displays
+                document.getElementById('source-text').textContent = data.source;
+                document.getElementById('target-text').textContent = data.target;
+            });
+        });
+
+        // Play/Pause button
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const waveform = document.getElementById('waveform');
+
+        playBtn.addEventListener('click', function() {
+            if (!isPlaying) {
+                playTranslation();
+            } else {
+                stopTranslation();
+            }
+        });
+
+        function playTranslation() {
+            const data = languageData[currentLang];
+
+            // Check for browser support
+            if (!window.speechSynthesis) {
+                alert('Speech synthesis not supported in this browser. Please try Chrome, Safari, or Edge.');
+                return;
+            }
+
+            isPlaying = true;
+
+            // Toggle icons
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+
+            // Show waveform
+            waveform.classList.remove('hidden');
+
+            // Simulate pipeline delay (380ms)
+            setTimeout(() => {
+                // Speak source language (for demo, we'll use English for all since browser TTS has limited language support)
+                const sourceUtterance = new SpeechSynthesisUtterance(data.source);
+                sourceUtterance.lang = data.sourceLang;
+                sourceUtterance.rate = 1.0;
+                sourceUtterance.pitch = 1.0;
+
+                sourceUtterance.onend = () => {
+                    // Small delay before translation
+                    setTimeout(() => {
+                        // Speak translated text
+                        currentUtterance = new SpeechSynthesisUtterance(data.target);
+                        currentUtterance.lang = data.targetLang;
+                        currentUtterance.rate = 1.15; // 1.15x speed as specified
+                        currentUtterance.pitch = 1.0;
+
+                        currentUtterance.onend = () => {
+                            stopTranslation();
+                        };
+
+                        currentUtterance.onerror = (event) => {
+                            console.error('Speech synthesis error:', event);
+                            stopTranslation();
+                        };
+
+                        window.speechSynthesis.speak(currentUtterance);
+                    }, 200);
+                };
+
+                sourceUtterance.onerror = (event) => {
+                    console.error('Speech synthesis error:', event);
+                    // Fallback: just play target language
+                    currentUtterance = new SpeechSynthesisUtterance(data.target);
+                    currentUtterance.lang = data.targetLang;
+                    currentUtterance.rate = 1.15;
+                    currentUtterance.onend = () => stopTranslation();
+                    window.speechSynthesis.speak(currentUtterance);
+                };
+
+                window.speechSynthesis.speak(sourceUtterance);
+            }, 380);
+        }
+
+        function stopTranslation() {
+            isPlaying = false;
+
+            // Cancel any ongoing speech
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+
+            // Toggle icons back
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+
+            // Hide waveform
+            waveform.classList.add('hidden');
+
+            currentUtterance = null;
+        }
+
+        // Handle page visibility change (stop audio if user switches tabs)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isPlaying) {
+                stopTranslation();
+            }
         });
     </script>
 </body>
