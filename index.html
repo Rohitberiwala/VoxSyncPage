@@ -335,10 +335,10 @@
                         <!-- Top Center Latency Pill -->
                         <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20">
                             <div class="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 border border-zinc-200 rounded-full shadow-sm">
-                                <svg class="w-3.5 h-3.5 text-zinc-400" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <circle cx="10" cy="10" r="8"/>
                                 </svg>
-                                <span class="text-xs font-medium text-zinc-600">-- ms</span>
+                                <span class="text-xs font-medium text-zinc-600">⚡ 382 ms</span>
                             </div>
                         </div>
 
@@ -347,10 +347,10 @@
                             <div class="flex items-start justify-between">
                                 <!-- Top Left: Phone Number + Status -->
                                 <div class="flex items-start gap-2">
-                                    <div class="w-2 h-2 bg-zinc-400 rounded-full mt-1.5"></div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
                                     <div>
-                                        <div class="text-zinc-900 text-base font-semibold mb-0.5">+91 977•• •••37</div>
-                                        <div class="text-zinc-500 text-xs">Connecting...</div>
+                                        <div class="text-zinc-900 text-base font-semibold mb-0.5">+49 30 ••• •••89</div>
+                                        <div class="text-zinc-500 text-xs">Live Carrier Bridge</div>
                                     </div>
                                 </div>
 
@@ -389,10 +389,13 @@
                             <div class="bg-white border border-zinc-100 shadow-sm rounded-3xl p-5">
                                 <div class="flex items-center justify-between mb-3">
                                     <span class="text-[11px] font-medium text-zinc-400 tracking-wider">TRANSLATED SPEECH</span>
-                                    <span class="px-2.5 py-1 bg-zinc-100 border border-zinc-200 text-zinc-600 rounded-md text-[10px] font-semibold">EN</span>
+                                    <span class="px-2.5 py-1 bg-zinc-100 border border-zinc-200 text-zinc-600 rounded-md text-[10px] font-semibold">DE ⇄ EN</span>
                                 </div>
-                                <div class="text-zinc-900 text-sm leading-relaxed">
-                                    "..."
+                                <div class="text-zinc-900 text-sm leading-relaxed mb-3">
+                                    "Good day, I'm calling to confirm the delivery date for our order."
+                                </div>
+                                <div class="text-zinc-500 text-xs leading-relaxed">
+                                    Original: "Guten Tag, ich rufe an, um den Liefertermin für unsere Bestellung zu bestätigen."
                                 </div>
                             </div>
                         </div>
@@ -477,10 +480,10 @@
                         <div class="flex-1">
                             <div class="flex items-center gap-2 mb-2">
                                 <span class="text-xs text-zinc-600 font-semibold">CALLER A (PSTN)</span>
-                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">pa-IN</span>
+                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">de-DE</span>
                             </div>
                             <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
-                                "ਕੀ ਹਾਲ ਚਾਲ ਹੈ?"
+                                "Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?"
                             </div>
                         </div>
                     </div>
@@ -491,22 +494,22 @@
                             <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
-                            <span>Deepgram STT (Linear16)</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">82ms</span>
+                            <span>Deepgram Nova-2 (German Acoustic)</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">150ms</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
-                            <span>Groq Qwen Translation</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">124ms</span>
+                            <span>Groq LLaMA-3.3 70B DE→EN</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">110ms</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
-                            <span>Cartesia Sonic-3.5 TTS (μ-law 8kHz)</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">74ms</span>
+                            <span>Cartesia Sonic-3.5 (1.15x Euro Voice)</span>
+                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">122ms</span>
                         </div>
                     </div>
 
@@ -523,7 +526,7 @@
                                 <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">en-US</span>
                             </div>
                             <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
-                                "How are you doing?"
+                                "Good day, could you please confirm my booking details for the meeting?"
                             </div>
                         </div>
                     </div>
@@ -599,14 +602,14 @@
             <div class="bg-white border border-zinc-200 rounded-2xl p-8 shadow-sm">
                 <!-- Language Selector Tabs -->
                 <div class="flex flex-wrap gap-2 mb-6 justify-center" role="tablist" aria-label="Language translation pairs">
-                    <button class="lang-tab px-4 py-2 bg-black text-white rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="hindi" role="tab" aria-selected="true" aria-controls="translation-panel">
-                        🇮🇳 Hindi ⇄ English
-                    </button>
-                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="punjabi" role="tab" aria-selected="false" aria-controls="translation-panel">
-                        🇮🇳 Punjabi ⇄ English
+                    <button class="lang-tab px-4 py-2 bg-black text-white rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="german" role="tab" aria-selected="true" aria-controls="translation-panel">
+                        🇩🇪 Deutsch ⇄ 🇬🇧 English
                     </button>
                     <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="spanish" role="tab" aria-selected="false" aria-controls="translation-panel">
-                        🇪🇸 Spanish ⇄ English
+                        🇪🇸 Español ⇄ 🇬🇧 English
+                    </button>
+                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="french" role="tab" aria-selected="false" aria-controls="translation-panel">
+                        🇫🇷 Français ⇄ 🇬🇧 English
                     </button>
                 </div>
 
@@ -617,7 +620,7 @@
                             <div class="w-2 h-2 bg-zinc-400 rounded-full" aria-hidden="true"></div>
                             <span id="source-label" class="text-xs font-mono text-zinc-500">SOURCE LANGUAGE</span>
                         </div>
-                        <p id="source-text" class="text-lg leading-relaxed text-black">नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?</p>
+                        <p id="source-text" class="text-lg leading-relaxed text-black">Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?</p>
                     </div>
 
                     <!-- Target Language Display -->
@@ -626,7 +629,7 @@
                             <div class="w-2 h-2 bg-white rounded-full" aria-hidden="true"></div>
                             <span id="target-label" class="text-xs font-mono text-zinc-400">TRANSLATED OUTPUT</span>
                         </div>
-                        <p id="target-text" class="text-lg leading-relaxed text-white">Hello, could you please confirm my hotel booking?</p>
+                        <p id="target-text" class="text-lg leading-relaxed text-white">Good day, could you please confirm my booking details for the meeting?</p>
                     </div>
                 </div>
 
@@ -1286,29 +1289,29 @@
 
             const VoxSync = {
                 state: {
-                    currentLang: 'hindi',
+                    currentLang: 'german',
                     isPlaying: false,
                     currentUtterance: null,
                     speechAvailable: !!window.speechSynthesis
                 },
 
                 data: {
-                    hindi: {
-                        source: 'नमस्ते, क्या आप मेरी होटल बुकिंग कन्फर्म कर सकते हैं?',
-                        target: 'Hello, could you please confirm my hotel booking?',
-                        sourceLang: 'hi-IN',
-                        targetLang: 'en-US'
-                    },
-                    punjabi: {
-                        source: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਮੇਰੀ ਫਲਾਈਟ ਲੇਟ ਹੋ ਗਈ ਹੈ।',
-                        target: 'Hello, my flight has been delayed.',
-                        sourceLang: 'pa-IN',
+                    german: {
+                        source: 'Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?',
+                        target: 'Good day, could you please confirm my booking details for the meeting?',
+                        sourceLang: 'de-DE',
                         targetLang: 'en-US'
                     },
                     spanish: {
-                        source: 'Hola, necesito asistencia con mi vuelo internacional.',
-                        target: 'Hello, I need assistance with my international flight.',
+                        source: 'Hola, necesitamos coordinar la entrega de los servidores hoy mismo.',
+                        target: 'Hello, we need to coordinate the delivery of the servers today.',
                         sourceLang: 'es-ES',
+                        targetLang: 'en-US'
+                    },
+                    french: {
+                        source: 'Bonjour, je souhaite vérifier le statut de notre contrat international.',
+                        target: 'Hello, I would like to verify the status of our international contract.',
+                        sourceLang: 'fr-FR',
                         targetLang: 'en-US'
                     }
                 },
