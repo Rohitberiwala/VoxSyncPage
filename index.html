@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
 
     <!-- Primary Meta Tags -->
     <title>VoxSync | Universal Real-Time AI Voice Translation for Phone Calls</title>
     <meta name="title" content="VoxSync | Universal Real-Time AI Voice Translation for Phone Calls">
     <meta name="description" content="Translate live two-way phone calls in real time across 50+ languages—including Punjabi, Hindi, English, Spanish, German, French, Arabic, and Mandarin—with sub-second latency. No app required for the receiver.">
-    <meta name="keywords" content="AI voice translation, live phone call translation, real-time call interpreter, Punjabi English translation call, Hindi to English call translator, PSTN voice translator, zero latency phone translation, Deepgram Twilio Cartesia voice bridge, VoxSync, The Luvent">
     <link rel="canonical" href="https://voxsync.theluvent.com/">
 
     <!-- Open Graph / Facebook -->
@@ -115,11 +115,11 @@
                 extend: {
                     colors: {
                         background: '#ffffff',
-                        foreground: '#09090b',
+                        foreground: '#092634',
                         card: '#ffffff',
-                        border: '#e4e4e7',
-                        muted: '#71717a',
-                        accent: '#000000',
+                        border: '#EFE9D7',
+                        muted: '#0D4C3C',
+                        accent: '#D78B30',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
@@ -139,15 +139,15 @@
 
         body {
             background-color: #ffffff;
-            color: #09090b;
+            color: #092634;
         }
 
-        .border-subtle { border-color: #e4e4e7; }
+        .border-subtle { border-color: #EFE9D7; }
         .bg-card { background-color: #ffffff; }
-        .text-muted { color: #71717a; }
+        .text-muted { color: #0D4C3C; }
 
         ::selection {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(9, 38, 52, 0.1);
         }
 
         .status-dot {
@@ -168,7 +168,7 @@
         }
 
         :focus-visible {
-            outline: 2px solid #000;
+            outline: 2px solid #092634;
             outline-offset: 2px;
         }
 
@@ -235,36 +235,36 @@
 <body class="font-sans antialiased">
 
     <!-- Navigation -->
-    <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-zinc-200">
+    <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b" style="border-color: #EFE9D7;">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 border border-zinc-200 rounded-md flex items-center justify-center font-bold text-lg text-black">
+                        <div class="w-9 h-9 border rounded-md flex items-center justify-center font-bold text-lg" style="border-color: #EFE9D7; color: #092634;">
                             V
                         </div>
                         <div>
-                            <div class="font-semibold text-base tracking-tight text-black">VoxSync</div>
-                            <div class="text-[10px] text-zinc-500 font-mono tracking-wider">LUVENT TECHNOLOGIES</div>
+                            <div class="font-semibold text-base tracking-tight" style="color: #092634;">VoxSync</div>
+                            <div class="text-[10px] font-mono tracking-wider" style="color: #0D4C3C;">LUVENT TECHNOLOGIES</div>
                         </div>
                     </div>
-                    <span class="hidden sm:inline-flex items-center px-2.5 py-1 bg-zinc-50 border border-zinc-200 rounded-md text-[11px] font-mono text-zinc-600">
+                    <span class="hidden sm:inline-flex items-center px-2.5 py-1 border rounded-md text-[11px] font-mono" style="background-color: #F4F1EB; border-color: #EFE9D7; color: #0D4C3C;">
                         <span class="status-dot mr-1.5"></span>
                         LIVE
                     </span>
                 </div>
 
                 <nav class="hidden md:flex items-center gap-8">
-                    <a href="#architecture" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Architecture</a>
-                    <a href="#infrastructure" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Infrastructure</a>
-                    <a href="#benchmarks" class="text-zinc-600 hover:text-black text-sm font-medium transition-colors">Benchmarks</a>
-                    <a href="#contact" class="px-4 py-2 bg-black hover:bg-zinc-800 text-white rounded-md transition-colors font-medium text-sm">
+                    <a href="#architecture" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Architecture</a>
+                    <a href="#infrastructure" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Infrastructure</a>
+                    <a href="#benchmarks" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Benchmarks</a>
+                    <a href="#contact" class="px-4 py-2 text-white bg-[#092634] hover:bg-[#0D4C3C] focus-visible:bg-[#0D4C3C] rounded-md transition-colors font-medium text-sm">
                         Get Access
                     </a>
                 </nav>
 
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-zinc-50 transition-colors focus-visible:ring-2 focus-visible:ring-black" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
-                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-[#092634] bg-transparent hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] transition-colors focus-visible:ring-2" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                     <span class="sr-only">Menu</span>
@@ -272,52 +272,52 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t" style="border-color: #EFE9D7;">
             <div class="px-6 py-4 space-y-3">
-                <a href="#architecture" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Architecture</a>
-                <a href="#infrastructure" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Infrastructure</a>
-                <a href="#benchmarks" class="block text-zinc-600 hover:text-black py-2 font-medium text-sm transition-colors">Benchmarks</a>
-                <a href="#contact" class="block w-full px-4 py-2.5 bg-black hover:bg-zinc-800 text-white rounded-md text-center font-medium text-sm transition-colors">Get Access</a>
+                <a href="#architecture" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Architecture</a>
+                <a href="#infrastructure" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Infrastructure</a>
+                <a href="#benchmarks" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Benchmarks</a>
+                <a href="#contact" class="block w-full px-4 py-2.5 text-white bg-[#092634] hover:bg-[#0D4C3C] focus-visible:bg-[#0D4C3C] rounded-md text-center font-medium text-sm transition-colors">Get Access</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6 bg-white" aria-labelledby="hero-heading">
+    <section class="pt-32 pb-20 px-6" style="background-color: #F4F1EB;" aria-labelledby="hero-heading">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-50 border border-zinc-200 rounded-md text-xs font-mono text-zinc-600">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md text-xs font-mono" style="background-color: #EFE9D7; border-color: #EFE9D7; color: #0D4C3C;">
                     <span class="status-dot"></span>
                     PRODUCTION INFRASTRUCTURE
                 </div>
 
-                <h1 id="hero-heading" class="text-5xl md:text-6xl font-bold tracking-tight leading-tight text-black">
+                <h1 id="hero-heading" class="text-5xl md:text-6xl font-bold tracking-tight leading-tight" style="color: #092634;">
                     Real-Time Voice Translation<br/>
                     for Telephony Networks
                 </h1>
 
-                <p class="max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
+                <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: #0D4C3C;">
                     Enterprise-grade voice translation infrastructure built on Twilio Media Streams, Deepgram Nova-2, and production AI pipelines. Bidirectional translation over PSTN with sub-400ms latency.
                 </p>
 
                 <div class="flex flex-wrap justify-center gap-3 pt-4">
-                    <a href="#contact" class="px-6 py-3 bg-black hover:bg-zinc-800 text-white rounded-md font-medium transition-colors">
+                    <a href="#contact" class="px-6 py-3 text-white bg-[#092634] hover:bg-[#0D4C3C] focus-visible:bg-[#0D4C3C] rounded-md font-medium transition-colors">
                         Request Access
                     </a>
-                    <a href="#architecture" class="px-6 py-3 bg-white border border-zinc-300 hover:bg-zinc-100 text-black rounded-md font-medium transition-colors">
+                    <a href="#architecture" class="px-6 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-colors">
                         Technical Overview
                     </a>
                 </div>
 
                 <!-- Platform Badges -->
                 <div class="flex flex-wrap justify-center items-center gap-4 pt-8" role="group" aria-label="Platform download options">
-                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-black rounded">
+                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 rounded" style="outline-color: #092634;">
                         <img src="assets/app-store-badge.svg" alt="Download on the App Store" class="h-10" width="120" height="40">
                     </a>
-                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 focus-visible:ring-black rounded">
+                    <a href="#contact" class="hover:opacity-80 transition-opacity focus-visible:ring-2 rounded" style="outline-color: #092634;">
                         <img src="assets/google-play-badge.svg" alt="Get it on Google Play" class="h-10" width="135" height="40">
                     </a>
-                    <a href="#contact" class="px-4 py-2.5 bg-white border border-zinc-300 hover:bg-zinc-100 text-black rounded-lg font-medium transition-colors flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-black">
+                    <a href="#contact" class="px-4 py-2.5 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-lg font-medium transition-colors flex items-center gap-2 focus-visible:ring-2" style="outline-color: #092634;">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
@@ -355,7 +355,7 @@
                                 </div>
 
                                 <!-- Top Right: Timer -->
-                                <div class="text-[#00a3a6] text-base font-mono font-semibold">00:05</div>
+                                <div class="text-base font-mono font-semibold" style="color: #0D4C3C;">00:05</div>
                             </div>
                         </div>
 
@@ -364,22 +364,22 @@
                             <div class="relative">
                                 <!-- Concentric Ripple Rings -->
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-64 h-64 border border-[#00e5ff]/10 rounded-full animate-ping" style="animation-duration: 3s;"></div>
+                                    <div class="w-64 h-64 border rounded-full animate-ping" style="border-color: rgba(13, 76, 60, 0.1); animation-duration: 3s;"></div>
                                 </div>
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-48 h-48 border border-[#00e5ff]/20 rounded-full animate-ping" style="animation-duration: 2.5s;"></div>
+                                    <div class="w-48 h-48 border rounded-full animate-ping" style="border-color: rgba(13, 76, 60, 0.2); animation-duration: 2.5s;"></div>
                                 </div>
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-32 h-32 border-2 border-[#00e5ff]/30 rounded-full"></div>
+                                    <div class="w-32 h-32 border-2 rounded-full" style="border-color: rgba(13, 76, 60, 0.3);"></div>
                                 </div>
 
                                 <!-- Center Circle with Waveform -->
-                                <div class="relative w-24 h-24 border-2 border-[#00e5ff] rounded-full flex items-center justify-center gap-0.5 bg-white">
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 12px; background: #00e5ff;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 20px; background: #8b5cf6;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 16px; background: #00e5ff;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 24px; background: #8b5cf6;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 14px; background: #00e5ff;"></div>
+                                <div class="relative w-24 h-24 border-2 rounded-full flex items-center justify-center gap-0.5 bg-white" style="border-color: #0D4C3C;">
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 12px; background: #0D4C3C;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 20px; background: #D78B30;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 16px; background: #0D4C3C;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 24px; background: #D78B30;"></div>
+                                    <div class="waveform-bar w-1 rounded-full" style="height: 14px; background: #0D4C3C;"></div>
                                 </div>
                             </div>
                         </div>
@@ -418,7 +418,7 @@
 
                             <!-- Caption Toggle (Aa) -->
                             <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
-                                <span class="text-lg font-semibold" style="color: #00a3a6;">Aa</span>
+                                <span class="text-lg font-semibold" style="color: #092634;">Aa</span>
                             </button>
 
                             <!-- Speed Indicator -->
@@ -544,46 +544,46 @@
     <section class="py-20 px-6 bg-white">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Engineered for Real-World Scenarios</h2>
-                <p class="text-zinc-600">Production telephony infrastructure for critical communications</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight" style="color: #092634;">Engineered for Real-World Scenarios</h2>
+                <p style="color: #0D4C3C;">Production telephony infrastructure for critical communications</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Card 1: Cross-Border Business -->
-                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                <div class="bg-white border rounded-lg p-8 hover:shadow-md transition-shadow" style="border-color: #EFE9D7;">
+                    <div class="w-12 h-12 rounded-md flex items-center justify-center mb-6" style="background-color: #092634;">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3 text-black">Cross-Border Business & Trade</h3>
-                    <p class="text-sm text-zinc-600 leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3" style="color: #092634;">Cross-Border Business & Trade</h3>
+                    <p class="text-sm leading-relaxed" style="color: #0D4C3C;">
                         Close international deals and coordinate with overseas suppliers directly over regular phone lines. No translators needed.
                     </p>
                 </div>
 
                 <!-- Card 2: Families & Elderly -->
-                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                <div class="bg-white border rounded-lg p-8 hover:shadow-md transition-shadow" style="border-color: #EFE9D7;">
+                    <div class="w-12 h-12 rounded-md flex items-center justify-center mb-6" style="background-color: #092634;">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3 text-black">Families & Elderly Relatives</h3>
-                    <p class="text-sm text-zinc-600 leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3" style="color: #092634;">Families & Elderly Relatives</h3>
+                    <p class="text-sm leading-relaxed" style="color: #0D4C3C;">
                         Zero-app required for the receiver. Call elderly parents or relatives abroad on their standard cellular numbers without teaching them any app.
                     </p>
                 </div>
 
                 <!-- Card 3: Travel & Immigration -->
-                <div class="bg-white border border-zinc-200 rounded-lg p-8 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center mb-6">
+                <div class="bg-white border rounded-lg p-8 hover:shadow-md transition-shadow" style="border-color: #EFE9D7;">
+                    <div class="w-12 h-12 rounded-md flex items-center justify-center mb-6" style="background-color: #092634;">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold mb-3 text-black">Travel, Immigration & Logistics</h3>
-                    <p class="text-sm text-zinc-600 leading-relaxed">
+                    <h3 class="text-lg font-bold mb-3" style="color: #092634;">Travel, Immigration & Logistics</h3>
+                    <p class="text-sm leading-relaxed" style="color: #0D4C3C;">
                         Dial local government offices, airlines, dispatchers, or roadside services worldwide with zero language barriers.
                     </p>
                 </div>
@@ -592,42 +592,42 @@
     </section>
 
     <!-- SECTION 3: Interactive Audio Demo Widget -->
-    <section class="py-20 px-6 bg-zinc-50">
+    <section class="py-20 px-6" style="background-color: #EFE9D7;">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Experience Real-Time Translation</h2>
-                <p class="text-zinc-600">Hear the voice translation engine in action with live audio playback</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight" style="color: #092634;">Experience Real-Time Translation</h2>
+                <p style="color: #0D4C3C;">Hear the voice translation engine in action with live audio playback</p>
             </div>
 
-            <div class="bg-white border border-zinc-200 rounded-2xl p-8 shadow-sm">
+            <div class="bg-white border rounded-2xl p-8 shadow-sm" style="border-color: #EFE9D7;">
                 <!-- Language Selector Tabs -->
                 <div class="flex flex-wrap gap-2 mb-6 justify-center" role="tablist" aria-label="Language translation pairs">
-                    <button class="lang-tab px-4 py-2 bg-black text-white rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="german" role="tab" aria-selected="true" aria-controls="translation-panel">
+                    <button class="lang-tab px-4 py-2 text-white bg-[#092634] rounded-md font-medium text-sm transition-all focus-visible:ring-2" style="outline-color: #092634;" data-lang="german" role="tab" aria-selected="true" aria-controls="translation-panel">
                         🇩🇪 Deutsch ⇄ 🇬🇧 English
                     </button>
-                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="spanish" role="tab" aria-selected="false" aria-controls="translation-panel">
+                    <button class="lang-tab px-4 py-2 bg-white border border-[#EFE9D7] text-[#0D4C3C] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium text-sm transition-all focus-visible:ring-2" style="outline-color: #092634;" data-lang="spanish" role="tab" aria-selected="false" aria-controls="translation-panel">
                         🇪🇸 Español ⇄ 🇬🇧 English
                     </button>
-                    <button class="lang-tab px-4 py-2 bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100 rounded-md font-medium text-sm transition-all focus-visible:ring-2 focus-visible:ring-black" data-lang="french" role="tab" aria-selected="false" aria-controls="translation-panel">
+                    <button class="lang-tab px-4 py-2 bg-white border border-[#EFE9D7] text-[#0D4C3C] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium text-sm transition-all focus-visible:ring-2" style="outline-color: #092634;" data-lang="french" role="tab" aria-selected="false" aria-controls="translation-panel">
                         🇫🇷 Français ⇄ 🇬🇧 English
                     </button>
                 </div>
 
                 <div id="translation-panel" class="grid md:grid-cols-2 gap-6 mb-6" role="tabpanel" aria-live="polite">
                     <!-- Source Language Display -->
-                    <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-6" role="region" aria-labelledby="source-label">
+                    <div class="border rounded-lg p-6" role="region" aria-labelledby="source-label" style="background-color: #F4F1EB; border-color: #EFE9D7;">
                         <div class="flex items-center gap-2 mb-3">
-                            <div class="w-2 h-2 bg-zinc-400 rounded-full" aria-hidden="true"></div>
-                            <span id="source-label" class="text-xs font-mono text-zinc-500">SOURCE LANGUAGE</span>
+                            <div class="w-2 h-2 rounded-full" aria-hidden="true" style="background-color: #0D4C3C;"></div>
+                            <span id="source-label" class="text-xs font-mono" style="color: #0D4C3C;">SOURCE LANGUAGE</span>
                         </div>
-                        <p id="source-text" class="text-lg leading-relaxed text-black">Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?</p>
+                        <p id="source-text" class="text-lg leading-relaxed" style="color: #092634;">Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?</p>
                     </div>
 
                     <!-- Target Language Display -->
-                    <div class="bg-black border border-black rounded-lg p-6" role="region" aria-labelledby="target-label">
+                    <div class="border rounded-lg p-6" role="region" aria-labelledby="target-label" style="background-color: #092634; border-color: #092634;">
                         <div class="flex items-center gap-2 mb-3">
                             <div class="w-2 h-2 bg-white rounded-full" aria-hidden="true"></div>
-                            <span id="target-label" class="text-xs font-mono text-zinc-400">TRANSLATED OUTPUT</span>
+                            <span id="target-label" class="text-xs font-mono" style="color: #F4F1EB;">TRANSLATED OUTPUT</span>
                         </div>
                         <p id="target-text" class="text-lg leading-relaxed text-white">Good day, could you please confirm my booking details for the meeting?</p>
                     </div>
@@ -636,7 +636,7 @@
                 <!-- Audio Player Controls -->
                 <div class="flex flex-col items-center gap-6">
                     <!-- Play Button -->
-                    <button id="play-btn" class="w-24 h-24 bg-black hover:scale-105 border-2 border-black rounded-full flex items-center justify-center transition-transform group relative focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" aria-label="Play translation demo" aria-pressed="false">
+                    <button id="play-btn" class="w-24 h-24 bg-[#092634] border-2 border-[#092634] hover:scale-105 focus-visible:scale-105 rounded-full flex items-center justify-center transition-transform group relative focus-visible:ring-2 focus-visible:ring-offset-2" style="outline-color: #092634;" aria-label="Play translation demo" aria-pressed="false">
                         <svg id="play-icon" class="w-12 h-12 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -647,31 +647,31 @@
 
                     <!-- Waveform Animation -->
                     <div id="waveform" class="hidden flex items-center justify-center gap-1.5 h-16" role="status" aria-live="polite" aria-label="Audio playing">
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 12px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 24px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 18px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 32px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 16px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 22px;" aria-hidden="true"></div>
-                        <div class="waveform-bar w-2 bg-zinc-900 rounded-full" style="height: 28px;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 12px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 24px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 18px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 32px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 16px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 22px; background-color: #092634;" aria-hidden="true"></div>
+                        <div class="waveform-bar w-2 rounded-full" style="height: 28px; background-color: #092634;" aria-hidden="true"></div>
                         <span class="sr-only">Translation audio is playing</span>
                     </div>
 
                     <!-- Pipeline Latency Counter -->
-                    <div class="w-full bg-zinc-50 border border-zinc-200 rounded-lg p-6">
+                    <div class="w-full border rounded-lg p-6" style="background-color: #F4F1EB; border-color: #EFE9D7;">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-sm font-mono text-zinc-600">Pipeline Latency</span>
-                            <span id="total-latency" class="text-2xl font-bold text-black font-mono">382ms</span>
+                            <span class="text-sm font-mono" style="color: #0D4C3C;">Pipeline Latency</span>
+                            <span id="total-latency" class="text-2xl font-bold font-mono" style="color: #092634;">382ms</span>
                         </div>
                         <div class="flex flex-wrap gap-2 justify-center">
-                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
-                                STT: <span class="text-black font-bold">150ms</span>
+                            <span class="px-3 py-1.5 bg-white border rounded text-xs font-mono" style="border-color: #EFE9D7; color: #0D4C3C;">
+                                STT: <span class="font-bold" style="color: #092634;">150ms</span>
                             </span>
-                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
-                                LLM: <span class="text-black font-bold">110ms</span>
+                            <span class="px-3 py-1.5 bg-white border rounded text-xs font-mono" style="border-color: #EFE9D7; color: #0D4C3C;">
+                                LLM: <span class="font-bold" style="color: #092634;">110ms</span>
                             </span>
-                            <span class="px-3 py-1.5 bg-white border border-zinc-200 rounded text-xs font-mono text-zinc-700">
-                                TTS: <span class="text-black font-bold">122ms</span>
+                            <span class="px-3 py-1.5 bg-white border rounded text-xs font-mono" style="border-color: #EFE9D7; color: #0D4C3C;">
+                                TTS: <span class="font-bold" style="color: #092634;">122ms</span>
                             </span>
                         </div>
                     </div>
@@ -681,128 +681,142 @@
     </section>
 
     <!-- SECTION 4: Telephony Carrier Pipeline Visual -->
-    <section class="py-20 px-6 bg-white">
+    <section class="py-20 px-6" style="background-color: #EFE9D7;">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">Telephony Architecture Pipeline</h2>
-                <p class="text-zinc-600">Real-time bidirectional audio processing flow</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight" style="color: #092634;">Telephony Architecture Pipeline</h2>
+                <p style="color: #0D4C3C;">Real-time bidirectional audio processing flow</p>
             </div>
 
-            <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-8 overflow-x-auto shadow-sm">
-                <svg viewBox="0 0 1200 400" class="w-full min-w-[800px]" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Dashed animated connection lines -->
+            <div class="border rounded-lg p-8 overflow-x-auto shadow-sm" style="background-color: #F4F1EB; border-color: #EFE9D7;">
+                <svg viewBox="0 0 1200 500" class="w-full min-w-[800px]" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <style>
                             @keyframes dash {
                                 to { stroke-dashoffset: -20; }
                             }
                             .signal-line {
-                                stroke: #27272a;
-                                stroke-width: 2;
+                                stroke: #092634;
+                                stroke-width: 2.5;
                                 stroke-dasharray: 10 5;
                                 animation: dash 1s linear infinite;
+                            }
+                            .return-line {
+                                stroke: #0D4C3C;
+                                stroke-width: 2;
+                                stroke-dasharray: 5 5;
+                                animation: dash 1.2s linear infinite;
+                                opacity: 0.7;
                             }
                             .glow-filter {
                                 filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
                             }
                         </style>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#092634"/>
+                        </marker>
+                        <marker id="arrow-return" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#0D4C3C"/>
+                        </marker>
                     </defs>
 
-                    <!-- Node 1: PSTN Phone -->
-                    <g transform="translate(50, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">📱</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">PSTN Phone</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">G.711 μ-law 8kHz</text>
+                    <!-- Title Labels -->
+                    <text x="600" y="30" text-anchor="middle" fill="#092634" font-size="14" font-weight="700">FORWARD PATH (Caller → Callee)</text>
+                    <text x="600" y="470" text-anchor="middle" fill="#0D4C3C" font-size="14" font-weight="700">RETURN PATH (Callee → Caller)</text>
+
+                    <!-- Forward Path: Top Row -->
+
+                    <!-- Node 1: Caller Phone -->
+                    <g transform="translate(50, 80)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">📱</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Caller Phone</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">PSTN Cellular</text>
                     </g>
+                    <line x1="200" y1="125" x2="260" y2="125" class="signal-line" marker-end="url(#arrow)"/>
 
-                    <!-- Connection 1-2 -->
-                    <line x1="190" y1="220" x2="250" y2="220" class="signal-line"/>
-                    <polygon points="250,220 242,216 242,224" fill="#27272a" class="glow-filter"/>
-
-                    <!-- Node 2: Twilio RTP -->
-                    <g transform="translate(250, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">⚡</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Twilio RTP</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">20ms frames</text>
+                    <!-- Node 2: Twilio Media -->
+                    <g transform="translate(260, 80)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">⚡</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Twilio Media</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">G.711 μ-law 8kHz</text>
                     </g>
-
-                    <!-- Connection 2-3 -->
-                    <line x1="390" y1="220" x2="450" y2="220" class="signal-line"/>
-                    <polygon points="450,220 442,216 442,224" fill="#27272a" class="glow-filter"/>
+                    <line x1="410" y1="125" x2="470" y2="125" class="signal-line" marker-end="url(#arrow)"/>
 
                     <!-- Node 3: Deepgram STT -->
-                    <g transform="translate(450, 60)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🎙️</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Deepgram</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">150ms endpointing</text>
+                    <g transform="translate(470, 80)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">🎙️</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Deepgram STT</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">150ms endpointing</text>
                     </g>
-
-                    <!-- Connection 3-4 (vertical then horizontal) -->
-                    <line x1="520" y1="140" x2="520" y2="220" class="signal-line"/>
-                    <line x1="520" y1="220" x2="650" y2="220" class="signal-line"/>
-                    <polygon points="650,220 642,216 642,224" fill="#27272a" class="glow-filter"/>
+                    <line x1="620" y1="125" x2="680" y2="125" class="signal-line" marker-end="url(#arrow)"/>
 
                     <!-- Node 4: Groq LLM -->
-                    <g transform="translate(650, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🧠</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Groq LLM</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Instant streaming</text>
+                    <g transform="translate(680, 80)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">🧠</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Groq LLM</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">Translation</text>
                     </g>
-
-                    <!-- Connection 4-5 (down to TTS) -->
-                    <line x1="720" y1="260" x2="720" y2="300" class="signal-line"/>
-                    <line x1="720" y1="300" x2="520" y2="300" class="signal-line"/>
-                    <polygon points="520,300 528,296 528,304" fill="#27272a" class="glow-filter"/>
+                    <line x1="830" y1="125" x2="890" y2="125" class="signal-line" marker-end="url(#arrow)"/>
 
                     <!-- Node 5: Cartesia TTS -->
-                    <g transform="translate(450, 280)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">🔊</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Cartesia</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">1.15x synthesis</text>
+                    <g transform="translate(890, 80)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">🔊</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Cartesia TTS</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">1.15x synthesis</text>
                     </g>
 
-                    <!-- Connection 5-6 (back to phone) -->
-                    <line x1="450" y1="320" x2="320" y2="320" class="signal-line"/>
-                    <line x1="320" y1="320" x2="320" y2="260" class="signal-line"/>
-                    <polygon points="320,260 316,268 324,268" fill="#27272a" class="glow-filter"/>
+                    <!-- Vertical connection down to return path -->
+                    <line x1="965" y1="170" x2="965" y2="250" class="signal-line" marker-end="url(#arrow)"/>
 
-                    <!-- Node 6: Callee Phone -->
-                    <g transform="translate(850, 180)">
-                        <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#09090b" font-size="28">📞</text>
-                        <text x="70" y="55" text-anchor="middle" fill="#09090b" font-size="12" font-weight="600">Callee Phone</text>
-                        <text x="70" y="70" text-anchor="middle" fill="#71717a" font-size="10">Standard Carrier</text>
+                    <!-- Return Path: Bottom Row (right to left) -->
+
+                    <!-- Node 6: Twilio Media (return) -->
+                    <g transform="translate(890, 250)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">⚡</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Twilio Media</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">RTP 20ms frames</text>
+                    </g>
+                    <line x1="890" y1="295" x2="830" y2="295" class="return-line" marker-end="url(#arrow-return)"/>
+
+                    <!-- Node 7: Callee Phone -->
+                    <g transform="translate(680, 250)">
+                        <rect x="0" y="0" width="150" height="90" rx="8" fill="#ffffff" stroke="#EFE9D7" stroke-width="2"/>
+                        <text x="75" y="35" text-anchor="middle" fill="#092634" font-size="32">📞</text>
+                        <text x="75" y="60" text-anchor="middle" fill="#092634" font-size="13" font-weight="600">Callee Phone</text>
+                        <text x="75" y="78" text-anchor="middle" fill="#0D4C3C" font-size="10">PSTN Carrier</text>
                     </g>
 
-                    <!-- Bidirectional arrow from Twilio to Callee -->
-                    <line x1="390" y1="210" x2="850" y2="210" class="signal-line"/>
-                    <polygon points="850,210 842,206 842,214" fill="#27272a" class="glow-filter"/>
-                    <line x1="390" y1="230" x2="850" y2="230" class="signal-line"/>
-                    <polygon points="390,230 398,226 398,234" fill="#27272a" class="glow-filter"/>
+                    <!-- Bidirectional Label -->
+                    <text x="600" y="240" text-anchor="middle" fill="#092634" font-size="11" font-weight="600" opacity="0.8">⟲ FULL DUPLEX ⟲</text>
+
+                    <!-- Latency annotations -->
+                    <text x="125" y="210" text-anchor="middle" fill="#D78B30" font-size="10" font-weight="600">~382ms</text>
+                    <text x="125" y="225" text-anchor="middle" fill="#D78B30" font-size="9">end-to-end</text>
                 </svg>
             </div>
         </div>
     </section>
 
     <!-- SECTION 5: Global Language Matrix -->
-    <section class="py-20 px-6 bg-zinc-50">
+    <section class="py-20 px-6" style="background-color: #EFE9D7;">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3 tracking-tight text-black">50+ Language Corridors</h2>
-                <p class="text-zinc-600">Direct neural translation and high-speed English-pivot streaming</p>
+                <h2 class="text-3xl font-bold mb-3 tracking-tight" style="color: #092634;">50+ Language Corridors</h2>
+                <p style="color: #0D4C3C;">Direct neural translation and high-speed English-pivot streaming</p>
             </div>
 
             <!-- Filter Badges -->
             <div class="flex flex-wrap gap-3 justify-center mb-8">
-                <span class="px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
+                <span class="px-4 py-2 text-white rounded-full text-sm font-medium" style="background-color: #092634;">
                     Direct Neural Corridors
                 </span>
-                <span class="px-4 py-2 bg-white border border-zinc-200 rounded-full text-sm font-medium text-zinc-600">
+                <span class="px-4 py-2 bg-white border rounded-full text-sm font-medium" style="border-color: #EFE9D7; color: #0D4C3C;">
                     High-Speed English-Pivot
                 </span>
             </div>
@@ -810,10 +824,10 @@
             <!-- Language Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Indian Languages -->
-                <div class="bg-white border border-zinc-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow" style="border-color: #EFE9D7;">
                     <div class="text-2xl mb-2">🇮🇳</div>
-                    <div class="text-sm font-semibold mb-1">ਪੰਜਾਬੀ</div>
-                    <div class="text-xs text-muted">Punjabi</div>
+                    <div class="text-sm font-semibold mb-1" style="color: #092634;">ਪੰਜਾਬੀ</div>
+                    <div class="text-xs" style="color: #0D4C3C;">Punjabi</div>
                 </div>
 
                 <div class="bg-card border border-subtle rounded-lg p-4 hover:border-accent/50 transition-colors">
@@ -893,43 +907,43 @@
     </section>
 
     <!-- Architecture Section -->
-    <section id="architecture" class="py-20 px-6 border-t border-zinc-200 bg-white">
+    <section id="architecture" class="py-20 px-6 border-t bg-white" style="border-color: #EFE9D7;">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 tracking-tight text-black">Technical Architecture</h2>
-                <p class="text-lg text-zinc-600">Production-grade telephony translation pipeline</p>
+                <h2 class="text-4xl font-bold mb-4 tracking-tight" style="color: #092634;">Technical Architecture</h2>
+                <p class="text-lg" style="color: #0D4C3C;">Production-grade telephony translation pipeline</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white border border-zinc-200 rounded-lg p-8 shadow-sm">
+                <div class="bg-white border rounded-lg p-8 shadow-sm" style="border-color: #EFE9D7;">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-md flex items-center justify-center" style="background-color: #092634;">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-black">Telephony Layer</h3>
+                        <h3 class="text-lg font-bold" style="color: #092634;">Telephony Layer</h3>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 rounded-full mt-2 shrink-0" style="background-color: #092634;"></div>
                             <div>
-                                <p class="font-semibold text-black">Twilio Media Streams</p>
-                                <p class="text-zinc-600 text-xs">Bidirectional WebSocket audio streams</p>
+                                <p class="font-semibold" style="color: #092634;">Twilio Media Streams</p>
+                                <p class="text-xs" style="color: #0D4C3C;">Bidirectional WebSocket audio streams</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 rounded-full mt-2 shrink-0" style="background-color: #092634;"></div>
                             <div>
-                                <p class="font-semibold text-black">G.711 μ-law (PCMU)</p>
-                                <p class="text-zinc-600 text-xs">8000 Hz mono audio over 20ms RTP packets</p>
+                                <p class="font-semibold" style="color: #092634;">G.711 μ-law (PCMU)</p>
+                                <p class="text-xs" style="color: #0D4C3C;">8000 Hz mono audio over 20ms RTP packets</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-1 h-1 bg-black rounded-full mt-2 shrink-0"></div>
+                            <div class="w-1 h-1 rounded-full mt-2 shrink-0" style="background-color: #092634;"></div>
                             <div>
-                                <p class="font-semibold text-black">PSTN Bridge</p>
-                                <p class="text-zinc-600 text-xs">Phone A ⇄ Server ⇄ Phone B isolation</p>
+                                <p class="font-semibold" style="color: #092634;">PSTN Bridge</p>
+                                <p class="text-xs" style="color: #0D4C3C;">Phone A ⇄ Server ⇄ Phone B isolation</p>
                             </div>
                         </div>
                     </div>
@@ -1041,11 +1055,11 @@
     </section>
 
     <!-- Infrastructure Section -->
-    <section id="infrastructure" class="py-20 px-6 border-t border-subtle">
+    <section id="infrastructure" class="py-20 px-6 border-t bg-white" style="border-color: #EFE9D7;">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4 tracking-tight">Production Infrastructure</h2>
-                <p class="text-lg text-muted">Enterprise telephony and compliance</p>
+                <h2 class="text-4xl font-bold mb-4 tracking-tight" style="color: #092634;">Production Infrastructure</h2>
+                <p class="text-lg" style="color: #0D4C3C;">Enterprise telephony and compliance</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
@@ -1209,74 +1223,74 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 border-t border-subtle">
+    <section id="contact" class="py-20 px-6 border-t bg-white" style="border-color: #EFE9D7;">
         <div class="container mx-auto max-w-3xl text-center">
-            <h2 class="text-4xl font-bold mb-6">Get Early Access</h2>
-            <p class="text-lg text-muted mb-10">
+            <h2 class="text-4xl font-bold mb-6" style="color: #092634;">Get Early Access</h2>
+            <p class="text-lg mb-10" style="color: #0D4C3C;">
                 VoxSync is being developed by a solo builder focused on real-time telephony infrastructure.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="mailto:voxsync@theluvent.com?subject=VoxSync Early Access Request" class="px-8 py-3 bg-white hover:bg-gray-100 text-black rounded-md font-medium transition-all">
+                <a href="mailto:voxsync@theluvent.com?subject=VoxSync Early Access Request" class="px-8 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-all">
                     Request Access
                 </a>
-                <a href="terms.html" class="px-8 py-3 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium transition-all">
+                <a href="terms.html" class="px-8 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-all">
                     Terms of Service
                 </a>
-                <a href="privacy.html" class="px-8 py-3 bg-card border border-subtle hover:bg-zinc-800 rounded-md font-medium transition-all">
+                <a href="privacy.html" class="px-8 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-all">
                     Privacy Policy
                 </a>
             </div>
 
-            <div class="text-sm text-muted space-y-2">
-                <p>Contact: <a href="mailto:voxsync@theluvent.com" class="text-foreground hover:text-accent">voxsync@theluvent.com</a></p>
+            <div class="text-sm space-y-2" style="color: #0D4C3C;">
+                <p>Contact: <a href="mailto:voxsync@theluvent.com" class="text-[#092634] hover:text-[#D78B30] focus-visible:text-[#D78B30] transition-colors">voxsync@theluvent.com</a></p>
                 <p>Founder: Rohit Sharma | Luvent Technologies</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-subtle">
+    <footer class="py-12 px-6 border-t bg-white" style="border-color: #EFE9D7;">
         <div class="container mx-auto">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 border border-zinc-800 rounded-md flex items-center justify-center font-bold">
+                        <div class="w-8 h-8 border rounded-md flex items-center justify-center font-bold" style="border-color: #EFE9D7; color: #092634;">
                             V
                         </div>
-                        <span class="font-bold">VoxSync</span>
+                        <span class="font-bold" style="color: #092634;">VoxSync</span>
                     </div>
-                    <p class="text-xs text-muted">Real-time voice translation infrastructure for telephony networks.</p>
+                    <p class="text-xs" style="color: #0D4C3C;">Real-time voice translation infrastructure for telephony networks.</p>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-3 text-sm">Product</h4>
-                    <ul class="space-y-2 text-sm text-muted">
-                        <li><a href="#architecture" class="hover:text-foreground transition-colors">Architecture</a></li>
-                        <li><a href="#infrastructure" class="hover:text-foreground transition-colors">Infrastructure</a></li>
-                        <li><a href="#benchmarks" class="hover:text-foreground transition-colors">Benchmarks</a></li>
+                    <h4 class="font-bold mb-3 text-sm" style="color: #092634;">Product</h4>
+                    <ul class="space-y-2 text-sm" style="color: #0D4C3C;">
+                        <li><a href="#architecture" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Architecture</a></li>
+                        <li><a href="#infrastructure" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Infrastructure</a></li>
+                        <li><a href="#benchmarks" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Benchmarks</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-3 text-sm">Legal</h4>
-                    <ul class="space-y-2 text-sm text-muted">
-                        <li><a href="terms.html" class="hover:text-foreground transition-colors">Terms of Service</a></li>
-                        <li><a href="privacy.html" class="hover:text-foreground transition-colors">Privacy Policy</a></li>
+                    <h4 class="font-bold mb-3 text-sm" style="color: #092634;">Legal</h4>
+                    <ul class="space-y-2 text-sm" style="color: #0D4C3C;">
+                        <li><a href="terms.html" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-3 text-sm">Contact</h4>
-                    <ul class="space-y-2 text-sm text-muted">
-                        <li><a href="mailto:voxsync@theluvent.com" class="hover:text-foreground transition-colors">voxsync@theluvent.com</a></li>
+                    <h4 class="font-bold mb-3 text-sm" style="color: #092634;">Contact</h4>
+                    <ul class="space-y-2 text-sm" style="color: #0D4C3C;">
+                        <li><a href="mailto:voxsync@theluvent.com" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">voxsync@theluvent.com</a></li>
                         <li>voxsync.theluvent.com</li>
-                        <li><a href="logs.html?key=rohit99" class="hover:text-foreground transition-colors">Developer Console</a></li>
+                        <li><a href="logs.html?key=rohit99" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Developer Console</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-subtle pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-muted">
+            <div class="border-t pt-6 flex flex-col md:flex-row justify-between items-center text-xs" style="border-color: #EFE9D7; color: #0D4C3C;">
                 <p>© 2026 Luvent Technologies. All rights reserved.</p>
                 <p class="mt-4 md:mt-0">Built with production telephony infrastructure</p>
             </div>
@@ -1291,28 +1305,24 @@
                 state: {
                     currentLang: 'german',
                     isPlaying: false,
-                    currentUtterance: null,
-                    speechAvailable: !!window.speechSynthesis
+                    audio: null
                 },
 
                 data: {
                     german: {
                         source: 'Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?',
                         target: 'Good day, could you please confirm my booking details for the meeting?',
-                        sourceLang: 'de-DE',
-                        targetLang: 'en-US'
+                        audioFile: './assets/audio/german.mp3'
                     },
                     spanish: {
                         source: 'Hola, necesitamos coordinar la entrega de los servidores hoy mismo.',
                         target: 'Hello, we need to coordinate the delivery of the servers today.',
-                        sourceLang: 'es-ES',
-                        targetLang: 'en-US'
+                        audioFile: './assets/audio/spanish.mp3'
                     },
                     french: {
                         source: 'Bonjour, je souhaite vérifier le statut de notre contrat international.',
                         target: 'Hello, I would like to verify the status of our international contract.',
-                        sourceLang: 'fr-FR',
-                        targetLang: 'en-US'
+                        audioFile: './assets/audio/french.mp3'
                     }
                 },
 
@@ -1350,7 +1360,9 @@
                 setupLanguageTabs() {
                     document.querySelectorAll('.lang-tab').forEach(tab => {
                         tab.addEventListener('click', () => {
-                            if (this.state.isPlaying) return;
+                            if (this.state.isPlaying) {
+                                this.stop();
+                            }
 
                             document.querySelectorAll('.lang-tab').forEach(t => {
                                 t.classList.remove('bg-black', 'text-white');
@@ -1377,21 +1389,12 @@
                     const btn = document.getElementById('play-btn');
                     if (!btn) return;
 
-                    if (!this.state.speechAvailable) {
-                        btn.setAttribute('aria-disabled', 'true');
-                        btn.setAttribute('title', 'Speech synthesis not supported');
-                        return;
-                    }
-
                     btn.addEventListener('click', () => {
                         this.state.isPlaying ? this.stop() : this.play();
                     });
                 },
 
                 play() {
-                    if (!this.state.speechAvailable) return;
-
-                    window.speechSynthesis.cancel();
                     this.state.isPlaying = true;
 
                     const playIcon = document.getElementById('play-icon');
@@ -1409,39 +1412,36 @@
 
                     const data = this.data[this.state.currentLang];
 
-                    setTimeout(() => {
-                        const src = new SpeechSynthesisUtterance(data.source);
-                        src.lang = data.sourceLang;
-                        src.rate = 1.0;
-                        src.pitch = 1.0;
+                    if (this.state.audio) {
+                        this.state.audio.pause();
+                        this.state.audio = null;
+                    }
 
-                        src.onend = () => {
-                            setTimeout(() => {
-                                this.state.currentUtterance = new SpeechSynthesisUtterance(data.target);
-                                this.state.currentUtterance.lang = data.targetLang;
-                                this.state.currentUtterance.rate = 1.15;
-                                this.state.currentUtterance.pitch = 1.0;
-                                this.state.currentUtterance.onend = () => this.stop();
-                                this.state.currentUtterance.onerror = () => this.stop();
-                                window.speechSynthesis.speak(this.state.currentUtterance);
-                            }, 200);
-                        };
+                    this.state.audio = new Audio(data.audioFile);
 
-                        src.onerror = () => {
-                            this.state.currentUtterance = new SpeechSynthesisUtterance(data.target);
-                            this.state.currentUtterance.lang = data.targetLang;
-                            this.state.currentUtterance.rate = 1.15;
-                            this.state.currentUtterance.onend = () => this.stop();
-                            window.speechSynthesis.speak(this.state.currentUtterance);
-                        };
+                    this.state.audio.addEventListener('ended', () => {
+                        this.stop();
+                    });
 
-                        window.speechSynthesis.speak(src);
-                    }, 380);
+                    this.state.audio.addEventListener('error', (e) => {
+                        console.error('Audio playback error:', e);
+                        this.stop();
+                    });
+
+                    this.state.audio.play().catch(err => {
+                        console.error('Audio play failed:', err);
+                        this.stop();
+                    });
                 },
 
                 stop() {
                     this.state.isPlaying = false;
-                    if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+                    if (this.state.audio) {
+                        this.state.audio.pause();
+                        this.state.audio.currentTime = 0;
+                        this.state.audio = null;
+                    }
 
                     const playIcon = document.getElementById('play-icon');
                     const pauseIcon = document.getElementById('pause-icon');
@@ -1455,8 +1455,6 @@
                         btn.setAttribute('aria-label', 'Play translation demo');
                         btn.setAttribute('aria-pressed', 'false');
                     }
-
-                    this.state.currentUtterance = null;
                 },
 
                 setupCleanup() {
