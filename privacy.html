@@ -78,18 +78,23 @@
                     </ul>
 
                     <h3 class="text-lg font-semibold mb-3">2.2 Third-Party Processing Partners</h3>
-                    <p class="mb-4">VoxSync uses the following AI providers for real-time voice processing, all of which operate on ephemeral, zero-retention models:</p>
+                    <p class="mb-4">VoxSync transmits data to third-party service providers as necessary to provide telephony, speech recognition, translation, and speech synthesis. Each provider's handling and retention of data is governed by the applicable provider terms, policies, and service configuration.</p>
+                    <p class="mb-4">The following providers are used:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
-                        <li><strong>Deepgram (Speech-to-Text):</strong> Processes audio in real-time with no persistent storage. Audio data is not retained after transcription.</li>
-                        <li><strong>Cartesia (Text-to-Speech):</strong> Generates synthetic speech in real-time without storing input text or output audio beyond request duration.</li>
-                        <li><strong>Groq (Translation):</strong> Processes translation requests ephemerally without retaining input or output text.</li>
+                        <li><strong>Twilio:</strong> Telephony and call/media transport</li>
+                        <li><strong>Deepgram:</strong> Speech-to-text</li>
+                        <li><strong>Cartesia:</strong> Text-to-speech</li>
+                        <li><strong>Groq:</strong> Translation</li>
+                        <li><strong>OpenAI:</strong> Fallback translation</li>
                     </ul>
-                    <p class="text-muted">These providers process data solely to deliver the real-time translation service and do not use your data for training or other purposes.</p>
                 </section>
 
                 <section>
                     <h2 class="text-2xl font-bold mb-4">3. Data We Collect</h2>
-                    <h3 class="text-lg font-semibold mb-3">3.1 Technical Metadata (Non-Voice)</h3>
+                    <h3 class="text-lg font-semibold mb-3">3.1 Microphone Access</h3>
+                    <p class="mb-4 text-muted">The VoxSync mobile application requires microphone access to capture speech for real-time translation during calls. Audio is processed as part of the live translation pipeline and is not intentionally recorded by VoxSync as a call recording.</p>
+
+                    <h3 class="text-lg font-semibold mb-3">3.2 Technical Metadata (Non-Voice)</h3>
                     <p class="mb-4">We collect minimal session metadata for billing, debugging, and service operation:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
                         <li>Call duration and timestamps</li>
@@ -99,20 +104,21 @@
                         <li>Error logs and diagnostic data (no voice content)</li>
                     </ul>
 
-                    <h3 class="text-lg font-semibold mb-3">3.2 Caller Information</h3>
-                    <p class="mb-4 text-muted">If you initiate a call using the Service, we may collect your phone number for call routing and billing purposes. This information is stored securely and is not shared with third parties except as required for service delivery.</p>
+                    <h3 class="text-lg font-semibold mb-3">3.3 Caller Information</h3>
+                    <p class="mb-4 text-muted">Phone numbers are processed to establish and route calls through the telephony service. Phone numbers may also appear in operational logs. VoxSync does not currently maintain a database of user phone numbers, and active call information is held in application memory while required for call processing.</p>
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-bold mb-4">4. GDPR Compliance</h2>
+                    <h2 class="text-2xl font-bold mb-4">4. Data Protection</h2>
                     <h3 class="text-lg font-semibold mb-3">4.1 Legal Basis for Processing</h3>
-                    <p class="mb-4">Under GDPR, we process your data based on:</p>
+                    <p class="mb-4">VoxSync is designed to process personal data in accordance with applicable data protection requirements. Where GDPR or similar privacy laws apply, individuals may have rights provided by those laws, subject to applicable legal limitations.</p>
+                    <p class="mb-4">We process your data based on:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
                         <li><strong>Contractual necessity:</strong> Processing is necessary to provide the translation service you requested</li>
                         <li><strong>Legitimate interests:</strong> Minimal metadata collection for billing, security, and service improvement</li>
                     </ul>
 
-                    <h3 class="text-lg font-semibold mb-3">4.2 Your Rights Under GDPR</h3>
+                    <h3 class="text-lg font-semibold mb-3">4.2 Your Rights</h3>
                     <p class="mb-4">If you are in the European Economic Area (EEA), you have the following rights:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
                         <li><strong>Right to access:</strong> Request a copy of the metadata we hold about you</li>
@@ -125,7 +131,7 @@
                     <p class="text-muted">To exercise these rights, contact us at privacy@theluvent.com</p>
 
                     <h3 class="text-lg font-semibold mb-3">4.3 Data Retention</h3>
-                    <p class="mb-4 text-muted">Session metadata is retained for 90 days for billing and operational purposes, after which it is automatically deleted. Voice data and transcripts are never retained.</p>
+                    <p class="mb-4 text-muted">Session and operational metadata may be logged for operational, troubleshooting, security, and performance purposes. Retention of server logs depends on the applicable server and infrastructure configuration. Voice data and transcripts are never retained.</p>
                 </section>
 
                 <section>
@@ -138,8 +144,7 @@
                     <h2 class="text-2xl font-bold mb-4">6. Security Measures</h2>
                     <p class="mb-4">We implement industry-standard security measures to protect your data:</p>
                     <ul class="list-disc pl-6 space-y-2 mb-4 text-muted">
-                        <li>End-to-end encryption for all voice streams (TLS/SRTP)</li>
-                        <li>Secure WebSocket connections for real-time data transmission</li>
+                        <li>VoxSync uses encrypted network connections, including HTTPS and secure WebSocket (WSS) connections. Audio transmission between Twilio and traditional phone networks follows standard telephony protocols.</li>
                         <li>Access controls and authentication for service infrastructure</li>
                         <li>Regular security audits and vulnerability assessments</li>
                     </ul>
