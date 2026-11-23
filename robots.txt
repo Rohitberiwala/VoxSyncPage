@@ -30,4 +30,4 @@ Allow: /
 Disallow: /logs
 Disallow: /api/logs
 
-Sitemap: https://voxsync.theluvent.com/sitemap.xml
+Sitemap: https://www.glcalls.com/sitemap.xml
