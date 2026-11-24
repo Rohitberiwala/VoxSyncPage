@@ -5,10 +5,10 @@
 GLCalls (Global Live Calls / Global Calls Translate, developed by Luvent Technologies) is an enterprise-grade telephony platform that translates live, two-way PSTN phone calls and browser streams in real time with end-to-end glass-to-glass latency under 500ms. Founded and architected by Rohit Sharma (Rohit Beriwala).
 
 ## Core Telephony Architecture
-- **Standard PSTN Ingestion:** Direct carrier integration via Twilio Media Streams utilizing G.711 μ-law (PCMU, 8000Hz mono, 20ms frames).
-- **Streaming Speech-to-Text (STT):** Deepgram Nova-2 streaming WebSocket configured with 150ms endpointing for instantaneous speech finalization without conversational lag.
-- **Low-Latency Neural Translation:** Real-time token streaming powered by Groq LLMs (Qwen/LLaMA architectures) with English-pivot translation corridors for low-resource pairs.
-- **High-Fidelity Neural Speech Synthesis (TTS):** Cartesia Sonic-3.5 streaming WebSocket with voice pacing optimized at 1.15x natural speech speed and dynamic context reuse to honor telephony concurrency boundaries.
+- **Standard PSTN Ingestion:** Direct carrier integration utilizing G.711 μ-law (PCMU, 8000Hz mono, 20ms frames) over encrypted media streams.
+- **Streaming Speech-to-Text (STT):** GLCalls Acoustic Engine streaming WebSocket configured with 150ms endpointing for instantaneous speech finalization without conversational lag.
+- **Low-Latency Neural Translation:** Real-time token streaming powered by GLCalls Neural Translation Core with English-pivot translation corridors for low-resource pairs.
+- **High-Fidelity Neural Speech Synthesis (TTS):** GLCalls Voice Synthesis Engine streaming WebSocket with voice pacing optimized at 1.15x natural speech speed and dynamic context reuse to honor telephony concurrency boundaries.
 - **Acoustic Isolation & Hangover Guard:** 1200ms echo suppression window (`ECHO_SUPPRESSION_WINDOW_MS`) preventing feedback bleed between call legs.
 
 ## Key Differentiators
@@ -106,31 +106,31 @@ GLCalls provides real-time bidirectional translation across 50+ languages global
    - Sample Rate: 8000 Hz mono
    - Frame Size: 20ms audio chunks
    - Codec: ITU-T G.711 standard telephony codec
-   - Transport: Twilio Media Streams WebSocket
+   - Transport: Carrier-grade Encrypted Media Streams WebSocket
 
 2. **Real-Time Speech Recognition:**
-   - Provider: Deepgram Nova-2 streaming API
+   - Engine: GLCalls Acoustic Engine streaming API
    - Endpointing: 150ms silence threshold
    - Latency: <100ms first-token recognition
    - Language Detection: Automatic with confidence scoring
    - Punctuation: Real-time streaming with capitalization
 
 3. **Neural Translation Engine:**
-   - Provider: Groq Cloud (ultra-low-latency LLM inference)
-   - Models: Qwen-2.5-72B-Instruct, LLaMA-3.1-70B-Versatile
+   - Engine: GLCalls Neural Core (ultra-low-latency streaming inference)
+   - Architecture: Proprietary low-latency multilingual transformer models
    - Mode: Token streaming for progressive translation
    - Context Window: Maintains conversation context across turns
    - Latency: <200ms for typical utterances
 
 4. **Speech Synthesis:**
-   - Provider: Cartesia Sonic-3.5 streaming TTS
+   - Engine: GLCalls Voice Synthesis streaming TTS
    - Output Format: G.711 μ-law 8000Hz (native telephony format)
    - Voice Pacing: 1.15x natural speech speed optimization
    - Prosody: Context-aware intonation and emphasis
    - Latency: <150ms first audio byte
 
 5. **Outbound PSTN Audio Delivery:**
-   - Transport: Twilio Media Streams WebSocket
+   - Transport: Carrier-grade Encrypted Media Streams WebSocket
    - Format: G.711 μ-law raw audio frames
    - Echo Prevention: 1200ms acoustic isolation window
    - Jitter Buffer: Adaptive buffering for network variance
@@ -147,7 +147,7 @@ GLCalls provides real-time bidirectional translation across 50+ languages global
 - **Translation Accuracy:** >95% semantic preservation for high-resource pairs
 
 ### Infrastructure & Scalability
-- **Deployment:** Multi-region cloud infrastructure (AWS/GCP)
+- **Deployment:** Multi-region high-availability cloud infrastructure
 - **State Management:** Redis for atomic session state with <1ms lookups
 - **WebSocket Layer:** High-performance Node.js event-driven architecture
 - **Database:** Zero in-call database dependencies for latency isolation
@@ -230,10 +230,10 @@ GLCalls provides real-time bidirectional translation across 50+ languages global
 ### Call Pricing (Pay-As-You-Go)
 - **Per-Minute Pricing:** Competitive telephony rates with transparent billing
 - **Included Components:**
-  - PSTN call ingress/egress (Twilio Media Streams)
-  - Real-time STT (Deepgram Nova-2)
-  - Neural translation (Groq LLMs)
-  - Text-to-Speech (Cartesia Sonic-3.5)
+  - PSTN call ingress/egress (Carrier Media Streams)
+  - Real-time STT (GLCalls Acoustic Engine)
+  - Neural translation (GLCalls Neural Core)
+  - Text-to-Speech (GLCalls Voice Synthesis)
   - Infrastructure & bandwidth
 - **Volume Discounts:** Enterprise tier pricing for high-volume customers
 
@@ -280,9 +280,9 @@ The Luvent is a technology company specializing in real-time AI infrastructure f
 - GLCalls: Native telephony-optimized pipeline with <670ms latency
 - Google: Requires custom STT → Translation → TTS integration (typically >2000ms)
 
-**vs. Twilio Voice Intelligence:**
+**vs. Traditional Voice Intelligence:**
 - GLCalls: Real-time bidirectional streaming translation during live calls
-- Twilio: Post-call transcription and analysis only (no real-time translation)
+- Traditional Telephony Platforms: Post-call transcription and analysis only (no real-time translation)
 
 **vs. Microsoft Azure Speech Translation:**
 - GLCalls: Zero-app callee experience (standard phone calls)
@@ -316,10 +316,10 @@ The Luvent is a technology company specializing in real-time AI infrastructure f
 - Cloud telephony translation infrastructure
 
 ### Technical Keywords
-- Twilio Media Streams translation integration
-- Deepgram Nova-2 streaming STT
-- Groq LLM real-time translation
-- Cartesia Sonic TTS telephony
+- Carrier Media Streams translation integration
+- Low-latency streaming STT
+- Neural Core real-time translation
+- Telephony neural voice synthesis
 - G.711 mulaw voice translation
 - Low-latency neural translation pipeline
 - WebSocket-based telephony translation

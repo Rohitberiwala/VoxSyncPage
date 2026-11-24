@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +8,28 @@
     <!-- Primary Meta Tags -->
     <title>GLCalls | Global Live Call Translation Over Real Phone Networks</title>
     <meta name="title" content="GLCalls | Global Live Call Translation Over Real Phone Networks">
-    <meta name="description" content="GLCalls (Global Live Calls) translates two-way phone calls in real time across 50+ languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-500ms latency.">
+    <meta name="description" content="GLCalls (Global Live Calls) translates two-way phone calls in real time across 33+ live languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-400ms latency.">
     <link rel="canonical" href="https://www.glcalls.com/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.glcalls.com/">
     <meta property="og:title" content="GLCalls | Global Live Call Translation Over Real Phone Networks">
-    <meta property="og:description" content="GLCalls translates two-way phone calls in real time across 50+ languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-500ms latency.">
+    <meta property="og:description" content="GLCalls translates two-way phone calls in real time across 33+ live languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-400ms latency.">
     <meta property="og:site_name" content="GLCalls">
 
     <!-- Open Graph Image -->
-    <meta property="og:image" content="https://www.glcalls.com/favicon.svg" />
+    <meta property="og:image" content="https://www.glcalls.com/assets/og-glcalls.png" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="GLCalls - Global Live Call Translation Over Real Phone Networks">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.glcalls.com/">
     <meta name="twitter:title" content="GLCalls | Global Live Call Translation Over Real Phone Networks">
-    <meta name="twitter:description" content="GLCalls translates two-way phone calls in real time across 50+ languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-500ms latency.">
-    <meta name="twitter:image" content="https://www.glcalls.com/favicon.svg" />
+    <meta name="twitter:description" content="GLCalls translates two-way phone calls in real time across 33+ live languages over standard PSTN mobile and landlines. Receiver needs no app. Sub-400ms latency.">
+    <meta name="twitter:image" content="https://www.glcalls.com/assets/og-glcalls.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2309090b'/%3E%3Cpath d='M8 12h6v8H8zm10-4h6v16h-6z' fill='%2338bdf8'/%3E%3C/svg%3E">
@@ -54,10 +57,10 @@
             "Zero-app required for callee (operates over regular mobile/landline networks)",
             "Under 500ms glass-to-glass translation turnaround",
             "Full global language coverage across 50+ languages with English-pivot routing",
-            "Twilio G.711 μ-law 8kHz telephony streaming",
-            "Deepgram Nova-2 streaming STT with 150ms endpointing",
-            "Groq streaming LLM translation acceleration",
-            "Cartesia Sonic speech synthesis at 1.15x natural speech speed"
+            "Carrier-grade PSTN streaming via G.711 μ-law 8kHz audio",
+            "Streaming Speech Recognition with 150ms acoustic endpointing",
+            "Low-Latency Neural Translation acceleration",
+            "Real-Time Neural Voice Synthesis at 1.15x natural speech speed"
           ]
         },
         {
@@ -111,7 +114,7 @@
               "name": "How fast is GLCalls phone call translation?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "GLCalls achieves a conversational turnaround between 350ms and 500ms by combining 150ms Deepgram Nova-2 speech endpointing, Groq streaming translation, and Cartesia Sonic speech synthesis."
+                "text": "GLCalls achieves a conversational turnaround between 350ms and 500ms by combining 150ms acoustic speech endpointing, low-latency neural translation streaming, and real-time neural voice synthesis."
               }
             }
           ]
@@ -241,6 +244,18 @@
             border-radius: 50%;
             box-shadow: 0 0 8px #22c55e;
         }
+
+        /* Showcase progress bar animation */
+        .showcase-progress-bar {
+            width: 0%;
+            transition: width 5.5s linear;
+        }
+        .showcase-progress-bar.active {
+            width: 100%;
+        }
+        .showcase-progress-bar.paused {
+            transition: none !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -266,6 +281,8 @@
                 </div>
 
                 <nav class="hidden md:flex items-center gap-7">
+                    <a href="#preview" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Inside the App</a>
+                    <a href="#pipeline" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Architecture</a>
                     <a href="#demo" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Live Audio Demo</a>
                     <a href="#languages" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Languages</a>
                     <a href="#benchmarks" class="text-sm font-medium text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Benchmarks</a>
@@ -287,6 +304,8 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t" style="border-color: #EFE9D7;">
             <div class="px-6 py-4 space-y-3">
+                <a href="#preview" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Inside the App</a>
+                <a href="#pipeline" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Architecture</a>
                 <a href="#demo" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Live Audio Demo</a>
                 <a href="#languages" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Languages</a>
                 <a href="#benchmarks" class="block py-2 font-medium text-sm text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Benchmarks</a>
@@ -298,258 +317,340 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6" style="background-color: #F4F1EB;" aria-labelledby="hero-heading">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- Left Column: Copy, CTAs, and Core Telephony Spec Metrics -->
+                <div class="lg:col-span-7 flex flex-col justify-center text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md text-xs font-mono w-fit" style="background-color: #EFE9D7; border-color: #EFE9D7; color: #0D4C3C;">
+                        <span class="status-dot"></span>
+                        PRODUCTION PSTN TELEPHONY INFRASTRUCTURE
+                    </div>
+
+                    <h1 id="hero-heading" class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]" style="color: #092634;">
+                        Global Live Call Translation<br/>
+                        <span class="text-[#0D4C3C]">Over Real Phone Networks</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg leading-relaxed max-w-xl" style="color: #0D4C3C;">
+                        Call anyone in the world in your native tongue. GLCalls translates two-way phone calls in real time across 33+ live languages over standard cellular and landline carriers. The receiver needs no app or internet. Sub-400ms glass-to-glass latency.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="https://github.com/Rohitberiwala/Glcalls/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 text-white bg-[#092634] hover:bg-[#0D4C3C] focus-visible:bg-[#0D4C3C] rounded-lg font-semibold transition-all flex items-center gap-2.5 shadow-sm hover:shadow">
+                            <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.414 13.8533 8.077 12 8.077s-3.5902.337-5.1367.8727L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                            Download Android APK (v1.0 Beta)
+                        </a>
+                        <a href="#preview" class="px-5 py-3.5 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-lg font-medium transition-all flex items-center gap-2">
+                            <span>Inside the App</span>
+                            <svg class="w-4 h-4 text-[#0D4C3C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </a>
+                        <a href="#demo" class="px-5 py-3.5 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-lg font-medium transition-all">
+                            Live Audio Demo
+                        </a>
+                    </div>
+
+                    <!-- Platform Badges & Direct APK Availability -->
+                    <div class="flex flex-wrap items-center gap-3 pt-1 text-xs" role="group" aria-label="Platform download options">
+                        <a href="https://github.com/Rohitberiwala/Glcalls/releases" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-white border border-emerald-300 text-[#092634] hover:bg-emerald-50 rounded-lg font-mono flex items-center gap-2 shadow-xs transition-colors">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="font-semibold">Direct APK (v1.0.0-beta)</span>
+                            <span class="text-zinc-300">|</span>
+                            <span class="text-emerald-800">GitHub Verified</span>
+                        </a>
+                        <div class="px-3 py-1.5 rounded-lg border border-zinc-200/80 bg-white/80 text-[11px] text-zinc-600 flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+                            <span>Google Play & iOS App Store: Review in Progress</span>
+                        </div>
+                    </div>
+
+                    <!-- 4 Metric Spec Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-[#EFE9D7]">
+                        <div class="bg-white/80 border border-[#EFE9D7] rounded-lg p-3">
+                            <div class="text-xl font-bold font-mono text-[#092634]">&lt;400ms</div>
+                            <div class="text-[11px] text-[#0D4C3C] font-medium">Glass-to-Glass RTT</div>
+                        </div>
+                        <div class="bg-white/80 border border-[#EFE9D7] rounded-lg p-3">
+                            <div class="text-xl font-bold text-[#092634]">PSTN</div>
+                            <div class="text-[11px] text-[#0D4C3C] font-medium">Any Phone Carrier</div>
+                        </div>
+                        <div class="bg-white/80 border border-[#EFE9D7] rounded-lg p-3">
+                            <div class="text-xl font-bold text-[#092634]">Zero App</div>
+                            <div class="text-[11px] text-[#0D4C3C] font-medium">For Person Called</div>
+                        </div>
+                        <div class="bg-white/80 border border-[#EFE9D7] rounded-lg p-3">
+                            <div class="text-xl font-bold text-[#092634]">33+</div>
+                            <div class="text-[11px] text-[#0D4C3C] font-medium">Live Languages</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Dark Titanium iPhone 15 Chassis -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center">
+                    <!-- Screen Toggle Segmented Pill -->
+                    <div class="w-full max-w-[340px] mb-3 flex p-1 bg-white border border-[#EFE9D7] rounded-full shadow-xs" role="tablist" aria-label="Hero Screen Preview Mode">
+                        <button id="hero-toggle-dialer" type="button" class="hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all bg-[#092634] text-white shadow-xs" data-mode="dialer" role="tab" aria-selected="true">
+                            Instant Dialer
+                        </button>
+                        <button id="hero-toggle-call" type="button" class="hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all text-[#0D4C3C] hover:text-[#092634]" data-mode="call" role="tab" aria-selected="false">
+                            Active Call
+                        </button>
+                    </div>
+
+                    <!-- Dark Titanium Hardware Frame -->
+                    <div class="relative w-full max-w-[340px] mx-auto select-none">
+                        <!-- Titanium Outer Rim with multi-layer shadow -->
+                        <div class="relative rounded-[50px] p-[10px] bg-gradient-to-b from-[#3a3a3d] via-[#1c1c1f] to-[#0c0c0e] shadow-[0_25px_60px_-15px_rgba(9,38,52,0.35),0_0_0_1px_rgba(255,255,255,0.08)_inset] border border-[#27272a]">
+                            <!-- Inner Display Bezel -->
+                            <div class="relative rounded-[40px] overflow-hidden bg-[#FAFCFE] aspect-[9/19.5] border border-black/40 shadow-inner">
+                                <!-- Screen 1: Instant Carrier Dialpad -->
+                                <div id="hero-screen-dialer" class="hero-screen-layer absolute inset-0 transition-opacity duration-300 opacity-100 z-10">
+                                    <img src="./assets/screens/dialpad.webp" alt="GLCalls Instant Dialer screen showing Punjabi to English translation" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+
+                                <!-- Screen 2: Active Telephony Call -->
+                                <div id="hero-screen-call" class="hero-screen-layer absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none">
+                                    <img src="./assets/screens/active-call.webp" alt="GLCalls Active Call screen with live speech transcription and carrier telemetry" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+                            </div>
+
+                            <!-- Hardware Action/Volume buttons (Left) -->
+                            <div class="absolute -left-[13px] top-[100px] w-[3px] h-[22px] bg-[#27272a] rounded-l-sm"></div>
+                            <div class="absolute -left-[13px] top-[140px] w-[3px] h-[44px] bg-[#27272a] rounded-l-sm"></div>
+                            <div class="absolute -left-[13px] top-[195px] w-[3px] h-[44px] bg-[#27272a] rounded-l-sm"></div>
+                            <!-- Hardware Power button (Right) -->
+                            <div class="absolute -right-[13px] top-[150px] w-[3px] h-[64px] bg-[#27272a] rounded-r-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Dedicated Architecture Telemetry Pipeline -->
+    <section id="pipeline" class="py-16 px-6 border-y border-[#EFE9D7] bg-white" aria-labelledby="pipeline-heading">
         <div class="container mx-auto max-w-5xl">
-            <div class="text-center space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md text-xs font-mono" style="background-color: #EFE9D7; border-color: #EFE9D7; color: #0D4C3C;">
-                    <span class="status-dot"></span>
-                    PRODUCTION PSTN TELEPHONY INFRASTRUCTURE
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 border rounded-md text-xs font-mono mb-3" style="background-color: #F4F1EB; border-color: #EFE9D7; color: #0D4C3C;">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    REAL-TIME AUDIO ORCHESTRATION
                 </div>
-
-                <h1 id="hero-heading" class="text-5xl md:text-6xl font-bold tracking-tight leading-tight" style="color: #092634;">
-                    GLCalls: Global Live Call Translation<br/>
-                    Over Real Cellular & Landlines
-                </h1>
-
-                <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: #0D4C3C;">
-                    Call anyone in the world in your native tongue. GLCalls (Global Calls Translate) translates two-way phone calls in real time across 50+ languages over standard telecom carriers. The receiver needs no app or internet. Sub-400ms latency.
+                <h2 id="pipeline-heading" class="text-3xl font-bold tracking-tight text-[#092634]">Glass-to-Glass Telephony Pipeline</h2>
+                <p class="text-sm sm:text-base text-[#0D4C3C] max-w-2xl mx-auto mt-2">
+                    Deterministic sub-400ms audio stream over global PSTN carrier networks via WebSockets and neural inference.
                 </p>
-
-                <div class="flex flex-wrap justify-center gap-3 pt-4">
-                    <a href="https://github.com/Rohitberiwala/Glcalls/releases" target="_blank" rel="noopener noreferrer" class="px-6 py-3 text-white bg-[#092634] hover:bg-[#0D4C3C] focus-visible:bg-[#0D4C3C] rounded-md font-semibold transition-colors flex items-center gap-2 shadow-sm">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.414 13.8533 8.077 12 8.077s-3.5902.337-5.1367.8727L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
-                        Download Android APK (Live Beta v1.0)
-                    </a>
-                    <a href="#leadership" class="px-6 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-colors">
-                        Founder & Verification
-                    </a>
-                    <a href="#demo" class="px-6 py-3 bg-white border border-[#EFE9D7] text-[#092634] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium transition-colors">
-                        Live Audio Demo
-                    </a>
-                </div>
-
-                <!-- Platform Badges & Direct APK Availability -->
-                <div class="flex flex-wrap justify-center items-center gap-3 pt-6" role="group" aria-label="Platform download options">
-                    <a href="https://github.com/Rohitberiwala/Glcalls/releases" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-white border border-green-300 text-[#092634] hover:bg-green-50 rounded-lg font-mono text-xs flex items-center gap-2 shadow-sm transition-colors">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                        <span class="font-semibold">Direct APK (v1.0.0-beta)</span>
-                        <span class="text-zinc-300">|</span>
-                        <span class="text-emerald-700">GitHub Releases</span>
-                    </a>
-                    <div class="px-3 py-1.5 rounded-lg border border-zinc-200 bg-white/80 text-[11px] text-zinc-600 flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
-                        <span>Google Play & iOS App Store: Review in Progress</span>
-                    </div>
-                </div>
             </div>
 
-            <!-- SECTION 1: Live Telephony Call Simulator -->
-            <div class="mt-16 max-w-[375px] mx-auto">
-                <!-- iPhone Frame -->
-                <div class="relative bg-white rounded-[48px] p-4 shadow-2xl">
-                    <!-- Inner Screen Container -->
-                    <div class="bg-white rounded-[38px] overflow-hidden relative">
-                        <!-- Top Center Latency Pill -->
-                        <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20">
-                            <div class="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 border border-zinc-200 rounded-full shadow-sm">
-                                <svg class="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <circle cx="10" cy="10" r="8"/>
-                                </svg>
-                                <span class="text-xs font-medium text-zinc-600">⚡ 382 ms</span>
-                            </div>
-                        </div>
-
-                        <!-- Header Section -->
-                        <div class="relative pt-16 pb-6 px-6">
-                            <div class="flex items-start justify-between">
-                                <!-- Top Left: Phone Number + Status -->
-                                <div class="flex items-start gap-2">
-                                    <div class="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
-                                    <div>
-                                        <div class="text-zinc-900 text-base font-semibold mb-0.5">+49 30 ••• •••89</div>
-                                        <div class="text-zinc-500 text-xs">Live Carrier Bridge</div>
-                                    </div>
-                                </div>
-
-                                <!-- Top Right: Timer -->
-                                <div class="text-base font-mono font-semibold" style="color: #0D4C3C;">00:05</div>
-                            </div>
-                        </div>
-
-                        <!-- Center Ripple & Audio Waveform -->
-                        <div class="bg-white px-6 py-16 flex items-center justify-center">
-                            <div class="relative">
-                                <!-- Concentric Ripple Rings -->
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-64 h-64 border rounded-full animate-ping" style="border-color: rgba(13, 76, 60, 0.1); animation-duration: 3s;"></div>
-                                </div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-48 h-48 border rounded-full animate-ping" style="border-color: rgba(13, 76, 60, 0.2); animation-duration: 2.5s;"></div>
-                                </div>
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="w-32 h-32 border-2 rounded-full" style="border-color: rgba(13, 76, 60, 0.3);"></div>
-                                </div>
-
-                                <!-- Center Circle with Waveform -->
-                                <div class="relative w-24 h-24 border-2 rounded-full flex items-center justify-center gap-0.5 bg-white" style="border-color: #0D4C3C;">
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 12px; background: #0D4C3C;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 20px; background: #D78B30;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 16px; background: #0D4C3C;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 24px; background: #D78B30;"></div>
-                                    <div class="waveform-bar w-1 rounded-full" style="height: 14px; background: #0D4C3C;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Translated Speech Floating Card -->
-                        <div class="px-6 pb-6">
-                            <div class="bg-white border border-zinc-100 shadow-sm rounded-3xl p-5">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-[11px] font-medium text-zinc-400 tracking-wider">TRANSLATED SPEECH</span>
-                                    <span class="px-2.5 py-1 bg-zinc-100 border border-zinc-200 text-zinc-600 rounded-md text-[10px] font-semibold">DE ⇄ EN</span>
-                                </div>
-                                <div class="text-zinc-900 text-sm leading-relaxed mb-3">
-                                    "Good day, I'm calling to confirm the delivery date for our order."
-                                </div>
-                                <div class="text-zinc-500 text-xs leading-relaxed">
-                                    Original: "Guten Tag, ich rufe an, um den Liefertermin für unsere Bestellung zu bestätigen."
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 4-Button Utility Control Row -->
-                        <div class="px-6 pb-6 flex items-center justify-center gap-3">
-                            <!-- Microphone -->
-                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
-                                <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                                </svg>
-                            </button>
-
-                            <!-- Speaker -->
-                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
-                                <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
-                                </svg>
-                            </button>
-
-                            <!-- Caption Toggle (Aa) -->
-                            <button class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center hover:bg-zinc-100 transition-colors">
-                                <span class="text-lg font-semibold" style="color: #092634;">Aa</span>
-                            </button>
-
-                            <!-- Speed Indicator -->
-                            <div class="w-12 h-12 rounded-full bg-zinc-50 border border-zinc-100 shadow-sm flex items-center justify-center">
-                                <span class="text-xs font-semibold text-zinc-700">1.25x</span>
-                            </div>
-                        </div>
-
-                        <!-- Quick Response Chip Cards -->
-                        <div class="px-6 pb-6 grid grid-cols-3 gap-2">
-                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
-                                Hold on
-                            </button>
-                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
-                                Can you hear me?
-                            </button>
-                            <button class="rounded-2xl border border-zinc-100 bg-white p-3.5 shadow-sm text-xs font-medium text-zinc-700 text-center min-h-[90px] flex flex-col justify-start hover:bg-zinc-50 transition-colors">
-                                One moment please
-                            </button>
-                        </div>
-
-                        <!-- Bottom Action Bar -->
-                        <div class="px-6 pb-6">
-                            <!-- End Call Button -->
-                            <button class="w-14 h-14 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center shadow-md shadow-red-200 mx-auto transition-colors">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" transform="rotate(135 12 12)"/>
-                                </svg>
-                            </button>
-
-                            <!-- Bottom Home Indicator -->
-                            <div class="mt-4 flex justify-center">
-                                <div class="w-32 h-1 bg-zinc-300 rounded-full"></div>
-                            </div>
+            <!-- Pipeline Visualization Terminal Card -->
+            <div class="bg-zinc-950 text-zinc-100 border border-zinc-800 rounded-xl p-6 sm:p-8 shadow-xl">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800">
+                    <div class="flex items-center gap-2 font-mono text-xs text-zinc-400">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        <span>live-telephony-session.log</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 font-semibold">G.711 μ-law · 8kHz</span>
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Pipeline Visualization -->
-            <div class="mt-8 bg-zinc-50 border border-zinc-200 rounded-lg p-8 shadow-sm">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="text-xs font-mono text-zinc-500 tracking-wide">live-translation-session.log</span>
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                </div>
-
-                <div class="space-y-8 font-mono text-sm">
+                <div class="space-y-6 font-mono text-xs sm:text-sm">
                     <!-- Caller A -->
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 rounded-md bg-white border border-zinc-200 flex items-center justify-center font-bold text-sm text-black">
-                                A
-                            </div>
+                    <div class="flex items-start gap-3 sm:gap-4">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center font-bold text-white shrink-0">
+                            A
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xs text-zinc-600 font-semibold">CALLER A (PSTN)</span>
-                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">de-DE</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs text-zinc-400 font-semibold">CALLER A (PSTN Ingress)</span>
+                                <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded text-[10px] font-bold">pa-IN (ਪੰਜਾਬੀ)</span>
                             </div>
-                            <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
-                                "Guten Tag, können Sie bitte meine Buchungsdetails für das Meeting bestätigen?"
+                            <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-3.5 text-zinc-100 text-xs sm:text-sm">
+                                "ਹਾਂਜੀ, ਕੰਟੇਨਰ ਕਸਟਮ ਤੋਂ ਕਲੀਅਰ ਹੋ ਗਿਆ ਹੈ ਅਤੇ 4 ਵਜੇ ਪਹੁੰਚ ਜਾਵੇਗਾ।"
                             </div>
                         </div>
                     </div>
 
                     <!-- Pipeline Steps -->
-                    <div class="space-y-3 pl-14 text-xs text-zinc-600">
+                    <div class="space-y-2.5 pl-6 sm:pl-14 text-xs text-zinc-400">
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                            <span>Deepgram Nova-2 (German Acoustic)</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">150ms</span>
+                            <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                            <span class="text-zinc-300">GLCalls Acoustic Engine (Streaming STT)</span>
+                            <span class="ml-auto px-2 py-0.5 bg-zinc-800 text-emerald-300 rounded font-mono text-[10px] font-bold">150ms</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                            <span>Groq LLaMA-3.3 70B DE→EN</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">110ms</span>
+                            <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                            <span class="text-zinc-300">GLCalls Neural Translation Core (DE→EN)</span>
+                            <span class="ml-auto px-2 py-0.5 bg-zinc-800 text-emerald-300 rounded font-mono text-[10px] font-bold">110ms</span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                            <span>Cartesia Sonic-3.5 (1.15x Euro Voice)</span>
-                            <span class="px-2 py-1 bg-zinc-900 text-white border border-zinc-900 rounded text-[10px] font-bold">122ms</span>
+                            <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                            <span class="text-zinc-300">GLCalls Voice Synthesis Engine (1.15x Natural)</span>
+                            <span class="ml-auto px-2 py-0.5 bg-zinc-800 text-emerald-300 rounded font-mono text-[10px] font-bold">122ms</span>
                         </div>
                     </div>
 
                     <!-- Caller B -->
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 rounded-md bg-white border border-zinc-200 flex items-center justify-center font-bold text-sm text-black">
-                                B
-                            </div>
+                    <div class="flex items-start gap-3 sm:gap-4">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center font-bold text-white shrink-0">
+                            B
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xs text-zinc-600 font-semibold">CALLER B (PSTN)</span>
-                                <span class="px-2 py-0.5 bg-black text-white border border-black rounded text-[10px] font-semibold">en-US</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs text-zinc-400 font-semibold">CALLER B (PSTN Egress)</span>
+                                <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded text-[10px] font-bold">en-US (English)</span>
                             </div>
-                            <div class="bg-white border border-zinc-200 rounded-md p-4 text-sm text-black shadow-sm">
-                                "Good day, could you please confirm my booking details for the meeting?"
+                            <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-3.5 text-zinc-100 text-xs sm:text-sm">
+                                "Yes, the container has cleared customs and will arrive at the terminal by 4:00 PM."
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-zinc-300 pt-4 text-xs text-zinc-600 flex items-center justify-between">
-                        <span>End-to-End: <span class="text-black font-bold">&lt;400ms</span></span>
-                        <span>30 Language Pairs • Full Duplex</span>
+                    <div class="border-t border-zinc-800 pt-4 text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-3 font-mono">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span>Measured Total: <strong class="text-emerald-400">&lt; 382ms</strong></span>
+                        </div>
+                        <div class="flex items-center gap-4 text-zinc-400 text-[11px]">
+                            <span>Full Duplex · Barge-In Enabled</span>
+                            <span class="text-zinc-700">|</span>
+                            <span>Zero Audio Retention</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Inside the App (Interactive 4-Step Showcase) -->
+    <section id="preview" class="py-24 px-6" style="background-color: #F4F1EB;" aria-labelledby="preview-heading">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md text-xs font-mono mb-4" style="background-color: #EFE9D7; border-color: #EFE9D7; color: #0D4C3C;">
+                    <span class="status-dot"></span>
+                    PRODUCT WALKTHROUGH
+                </div>
+                <h2 id="preview-heading" class="text-4xl md:text-5xl font-bold tracking-tight text-[#092634]">Inside the GLCalls Experience</h2>
+                <p class="text-lg text-[#0D4C3C] max-w-2xl mx-auto mt-3">
+                    Zero setup for the person you call. Complete control over languages, routing, and neural voice synthesis.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Column: 4-Step Interactive Tablist -->
+                <div class="lg:col-span-7 space-y-4" role="tablist" aria-label="GLCalls App Features" id="showcase-tabs">
+                    <!-- Step 0: Instant Carrier Dialpad -->
+                    <button type="button" class="showcase-step-btn w-full text-left p-6 rounded-2xl border transition-all relative overflow-hidden bg-white border-[#092634] shadow-md" data-index="0" role="tab" aria-selected="true" aria-controls="showcase-screen-0" id="showcase-tab-0">
+                        <div class="showcase-progress-bar active absolute bottom-0 left-0 h-1 bg-[#092634]"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="step-num w-10 h-10 rounded-xl bg-[#092634] text-white flex items-center justify-center font-bold text-sm shrink-0 transition-colors">
+                                01
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-[#092634]">Instant Carrier Dialpad</h3>
+                                    <span class="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">Live Dial</span>
+                                </div>
+                                <p class="text-sm text-[#0D4C3C] mt-1.5 leading-relaxed">
+                                    Enter any regular mobile or landline number worldwide. Choose source and target languages with instant swap and 1-click free trial test.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Step 1: Global Carrier Edge Routing -->
+                    <button type="button" class="showcase-step-btn w-full text-left p-6 rounded-2xl border transition-all relative overflow-hidden bg-white/70 border-[#EFE9D7] hover:bg-white" data-index="1" role="tab" aria-selected="false" aria-controls="showcase-screen-1" id="showcase-tab-1">
+                        <div class="showcase-progress-bar absolute bottom-0 left-0 h-1 bg-[#092634]"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="step-num w-10 h-10 rounded-xl bg-zinc-100 text-[#092634] flex items-center justify-center font-bold text-sm shrink-0 transition-colors">
+                                02
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-[#092634]">Global Carrier Edge Routing</h3>
+                                    <span class="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200">Multi-Region</span>
+                                </div>
+                                <p class="text-sm text-[#0D4C3C] mt-1.5 leading-relaxed">
+                                    Select edge routing nodes across North America, Europe, Asia, and Middle East for optimal telecom latency and localized carrier compliance.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Step 2: 33+ Live Regional Languages -->
+                    <button type="button" class="showcase-step-btn w-full text-left p-6 rounded-2xl border transition-all relative overflow-hidden bg-white/70 border-[#EFE9D7] hover:bg-white" data-index="2" role="tab" aria-selected="false" aria-controls="showcase-screen-2" id="showcase-tab-2">
+                        <div class="showcase-progress-bar absolute bottom-0 left-0 h-1 bg-[#092634]"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="step-num w-10 h-10 rounded-xl bg-zinc-100 text-[#092634] flex items-center justify-center font-bold text-sm shrink-0 transition-colors">
+                                03
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-[#092634]">33+ Live Regional Languages</h3>
+                                    <span class="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">HD Neural</span>
+                                </div>
+                                <p class="text-sm text-[#0D4C3C] mt-1.5 leading-relaxed">
+                                    Deep native support for Punjabi, Hindi, Bengali, Spanish, German, Mandarin, Arabic, and 26+ more with high-speed direct neural models.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Step 3: Neural Voice Clone & Settings -->
+                    <button type="button" class="showcase-step-btn w-full text-left p-6 rounded-2xl border transition-all relative overflow-hidden bg-white/70 border-[#EFE9D7] hover:bg-white" data-index="3" role="tab" aria-selected="false" aria-controls="showcase-screen-3" id="showcase-tab-3">
+                        <div class="showcase-progress-bar absolute bottom-0 left-0 h-1 bg-[#092634]"></div>
+                        <div class="flex items-start gap-4">
+                            <div class="step-num w-10 h-10 rounded-xl bg-zinc-100 text-[#092634] flex items-center justify-center font-bold text-sm shrink-0 transition-colors">
+                                04
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-bold text-[#092634]">Neural Voice Clone & Telemetry</h3>
+                                    <span class="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">Zero Latency</span>
+                                </div>
+                                <p class="text-sm text-[#0D4C3C] mt-1.5 leading-relaxed">
+                                    Clone your voice in 10 seconds or choose calibrated studio voices. Fine-tune speech rate, volume boost, and inspect real-time packet telemetry.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Right Column: Interactive Phone Display Frame -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-[340px] mx-auto select-none">
+                        <!-- Titanium Outer Chassis -->
+                        <div class="relative rounded-[50px] p-[10px] bg-gradient-to-b from-[#3a3a3d] via-[#1c1c1f] to-[#0c0c0e] shadow-[0_25px_60px_-15px_rgba(9,38,52,0.35),0_0_0_1px_rgba(255,255,255,0.08)_inset] border border-[#27272a]">
+                            <!-- Inner Screen Bezel -->
+                            <div class="relative rounded-[40px] overflow-hidden bg-[#FAFCFE] aspect-[9/19.5] border border-black/40 shadow-inner">
+                                <!-- 4 Screen Layers -->
+                                <div id="showcase-screen-0" class="showcase-screen-layer absolute inset-0 transition-opacity duration-300 opacity-100 z-10" role="tabpanel" aria-labelledby="showcase-tab-0">
+                                    <img src="./assets/screens/dialpad.webp" alt="GLCalls Instant Carrier Dialpad" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+
+                                <div id="showcase-screen-1" class="showcase-screen-layer absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none" role="tabpanel" aria-labelledby="showcase-tab-1">
+                                    <img src="./assets/screens/select-region.webp" alt="GLCalls Global Carrier Edge Routing" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+
+                                <div id="showcase-screen-2" class="showcase-screen-layer absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none" role="tabpanel" aria-labelledby="showcase-tab-2">
+                                    <img src="./assets/screens/languages-list.webp" alt="GLCalls 33+ Live Regional Languages" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+
+                                <div id="showcase-screen-3" class="showcase-screen-layer absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none" role="tabpanel" aria-labelledby="showcase-tab-3">
+                                    <img src="./assets/screens/voice-settings.webp" alt="GLCalls Neural Voice Clone and Audio Settings" width="786" height="1704" class="w-full h-full object-cover object-top block" loading="eager" decoding="async">
+                                </div>
+                            </div>
+
+                            <!-- Hardware Action/Volume buttons (Left) -->
+                            <div class="absolute -left-[13px] top-[100px] w-[3px] h-[22px] bg-[#27272a] rounded-l-sm"></div>
+                            <div class="absolute -left-[13px] top-[140px] w-[3px] h-[44px] bg-[#27272a] rounded-l-sm"></div>
+                            <div class="absolute -left-[13px] top-[195px] w-[3px] h-[44px] bg-[#27272a] rounded-l-sm"></div>
+                            <!-- Hardware Power button (Right) -->
+                            <div class="absolute -right-[13px] top-[150px] w-[3px] h-[64px] bg-[#27272a] rounded-r-sm"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -817,20 +918,20 @@
 
                 <div class="bg-card border border-subtle rounded-lg p-8 text-center">
                     <div class="text-4xl font-bold text-accent mb-2">74ms</div>
-                    <div class="text-xs text-muted mb-3 font-mono">TTS TTFB</div>
-                    <div class="text-base font-bold mb-3">Cartesia Sonic-3.5</div>
+                    <div class="text-xs text-muted mb-3 font-mono">VOICE SYNTH</div>
+                    <div class="text-base font-bold mb-3">Neural Voice Engine</div>
                     <p class="text-xs text-muted">First audio token</p>
                 </div>
 
                 <div class="bg-card border border-subtle rounded-lg p-8 text-center">
                     <div class="text-4xl font-bold text-accent mb-2">124ms</div>
-                    <div class="text-xs text-muted mb-3 font-mono">GROQ</div>
-                    <div class="text-base font-bold mb-3">Translation</div>
+                    <div class="text-xs text-muted mb-3 font-mono">NEURAL CORE</div>
+                    <div class="text-base font-bold mb-3">Live Translation</div>
                     <p class="text-xs text-muted">Neural translation</p>
                 </div>
 
                 <div class="bg-card border border-subtle rounded-lg p-8 text-center">
-                    <div class="text-4xl font-bold text-accent mb-2">30+</div>
+                    <div class="text-4xl font-bold text-accent mb-2">33+</div>
                     <div class="text-xs text-muted mb-3 font-mono">LANGUAGES</div>
                     <div class="text-base font-bold mb-3">Coverage</div>
                     <p class="text-xs text-muted">Bidirectional pairs</p>
@@ -870,7 +971,7 @@
                             </span>
                         </div>
                         <p class="text-sm leading-relaxed text-zinc-600">
-                            Systems engineer architecting low-latency PSTN audio transport pipelines, G.711 μ-law bidirectional bridges, and streaming speech-to-speech AI systems (Twilio Media Streams, Deepgram Nova-2, Groq Llama, and Cartesia Sonic).
+                            Systems engineer architecting low-latency PSTN audio transport pipelines, bidirectional carrier bridges, and proprietary real-time speech-to-speech AI systems.
                         </p>
                         <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2">
                             <a href="https://www.linkedin.com/in/rohit-beriwala/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#0A66C2] text-white hover:bg-[#084e96] transition-colors">
@@ -969,7 +1070,7 @@
                     <ul class="space-y-2 text-sm" style="color: #0D4C3C;">
                         <li><a href="mailto:rohit@glcalls.com" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">rohit@glcalls.com</a></li>
                         <li>glcalls.com</li>
-                        <li><a href="logs.html?key=rohit99" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Developer Console</a></li>
+                        <li><a href="mailto:enterprise@glcalls.com" class="text-[#0D4C3C] hover:text-[#092634] focus-visible:text-[#092634] transition-colors">Carrier & Enterprise Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -989,7 +1090,11 @@
                 state: {
                     currentLang: 'german',
                     isPlaying: false,
-                    audio: null
+                    audio: null,
+                    heroMode: 'dialer',
+                    showcaseIndex: 0,
+                    showcaseTimer: null,
+                    showcasePaused: false
                 },
 
                 data: {
@@ -1012,6 +1117,8 @@
 
                 init() {
                     this.setupMenu();
+                    this.setupHeroToggle();
+                    this.setupShowcase();
                     this.setupLanguageTabs();
                     this.setupPlayer();
                     this.setupCleanup();
@@ -1030,9 +1137,11 @@
 
                     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                         anchor.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const target = document.querySelector(anchor.getAttribute('href'));
+                            const targetId = anchor.getAttribute('href');
+                            if (!targetId || targetId === '#') return;
+                            const target = document.querySelector(targetId);
                             if (target) {
+                                e.preventDefault();
                                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 menu.classList.add('hidden');
                                 btn.setAttribute('aria-expanded', 'false');
@@ -1041,21 +1150,180 @@
                     });
                 },
 
+                setupHeroToggle() {
+                    const dialerBtn = document.getElementById('hero-toggle-dialer');
+                    const callBtn = document.getElementById('hero-toggle-call');
+                    const dialerScreen = document.getElementById('hero-screen-dialer');
+                    const callScreen = document.getElementById('hero-screen-call');
+
+                    if (!dialerBtn || !callBtn || !dialerScreen || !callScreen) return;
+
+                    const setHeroMode = (mode) => {
+                        this.state.heroMode = mode;
+                        const isDialer = mode === 'dialer';
+
+                        dialerBtn.setAttribute('aria-selected', isDialer ? 'true' : 'false');
+                        callBtn.setAttribute('aria-selected', isDialer ? 'false' : 'true');
+
+                        if (isDialer) {
+                            dialerBtn.className = 'hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all bg-[#092634] text-white shadow-xs';
+                            callBtn.className = 'hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all text-[#0D4C3C] hover:text-[#092634]';
+
+                            dialerScreen.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+                            dialerScreen.classList.add('opacity-100', 'z-10');
+
+                            callScreen.classList.remove('opacity-100', 'z-10');
+                            callScreen.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+                        } else {
+                            callBtn.className = 'hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all bg-[#092634] text-white shadow-xs';
+                            dialerBtn.className = 'hero-toggle-btn flex-1 py-1.5 px-3 rounded-full text-xs font-semibold transition-all text-[#0D4C3C] hover:text-[#092634]';
+
+                            callScreen.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+                            callScreen.classList.add('opacity-100', 'z-10');
+
+                            dialerScreen.classList.remove('opacity-100', 'z-10');
+                            dialerScreen.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+                        }
+                    };
+
+                    dialerBtn.addEventListener('click', () => setHeroMode('dialer'));
+                    callBtn.addEventListener('click', () => setHeroMode('call'));
+                },
+
+                setupShowcase() {
+                    const stepButtons = Array.from(document.querySelectorAll('.showcase-step-btn'));
+                    const screenLayers = Array.from(document.querySelectorAll('.showcase-screen-layer'));
+                    const tabsContainer = document.getElementById('showcase-tabs');
+
+                    if (!stepButtons.length || !screenLayers.length) return;
+
+                    const showStep = (index, restartTimer = true) => {
+                        this.state.showcaseIndex = index;
+
+                        stepButtons.forEach((btn, idx) => {
+                            const isCurrent = idx === index;
+                            btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+                            const progressBar = btn.querySelector('.showcase-progress-bar');
+                            const stepNum = btn.querySelector('.step-num');
+
+                            if (isCurrent) {
+                                btn.classList.remove('bg-white/70', 'border-[#EFE9D7]', 'hover:bg-white');
+                                btn.classList.add('bg-white', 'border-[#092634]', 'shadow-md');
+                                if (stepNum) {
+                                    stepNum.classList.remove('bg-zinc-100', 'text-[#092634]');
+                                    stepNum.classList.add('bg-[#092634]', 'text-white');
+                                }
+                                if (progressBar) {
+                                    progressBar.classList.remove('active');
+                                    void progressBar.offsetWidth; // force reflow
+                                    if (!this.state.showcasePaused) {
+                                        progressBar.classList.add('active');
+                                    }
+                                }
+                            } else {
+                                btn.classList.remove('bg-white', 'border-[#092634]', 'shadow-md');
+                                btn.classList.add('bg-white/70', 'border-[#EFE9D7]', 'hover:bg-white');
+                                if (stepNum) {
+                                    stepNum.classList.remove('bg-[#092634]', 'text-white');
+                                    stepNum.classList.add('bg-zinc-100', 'text-[#092634]');
+                                }
+                                if (progressBar) {
+                                    progressBar.classList.remove('active');
+                                }
+                            }
+                        });
+
+                        screenLayers.forEach((layer, idx) => {
+                            if (idx === index) {
+                                layer.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+                                layer.classList.add('opacity-100', 'z-10');
+                            } else {
+                                layer.classList.remove('opacity-100', 'z-10');
+                                layer.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+                            }
+                        });
+
+                        if (restartTimer) {
+                            startTimer();
+                        }
+                    };
+
+                    const nextStep = () => {
+                        const next = (this.state.showcaseIndex + 1) % stepButtons.length;
+                        showStep(next);
+                    };
+
+                    const prevStep = () => {
+                        const prev = (this.state.showcaseIndex - 1 + stepButtons.length) % stepButtons.length;
+                        showStep(prev);
+                    };
+
+                    const startTimer = () => {
+                        if (this.state.showcaseTimer) {
+                            clearInterval(this.state.showcaseTimer);
+                        }
+                        if (this.state.showcasePaused) return;
+                        this.state.showcaseTimer = setInterval(() => {
+                            nextStep();
+                        }, 5500);
+                    };
+
+                    const pauseAutoAdvance = () => {
+                        this.state.showcasePaused = true;
+                        if (this.state.showcaseTimer) {
+                            clearInterval(this.state.showcaseTimer);
+                            this.state.showcaseTimer = null;
+                        }
+                        const activeBar = document.querySelector('.showcase-progress-bar.active');
+                        if (activeBar) {
+                            activeBar.classList.remove('active');
+                        }
+                    };
+
+                    stepButtons.forEach((btn, idx) => {
+                        btn.addEventListener('click', () => {
+                            pauseAutoAdvance();
+                            showStep(idx, false);
+                        });
+
+                        btn.addEventListener('keydown', (e) => {
+                            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                                e.preventDefault();
+                                pauseAutoAdvance();
+                                nextStep();
+                                stepButtons[(idx + 1) % stepButtons.length].focus();
+                            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                                e.preventDefault();
+                                pauseAutoAdvance();
+                                prevStep();
+                                stepButtons[(idx - 1 + stepButtons.length) % stepButtons.length].focus();
+                            }
+                        });
+                    });
+
+                    if (tabsContainer) {
+                        tabsContainer.addEventListener('mouseenter', () => pauseAutoAdvance());
+                        tabsContainer.addEventListener('focusin', () => pauseAutoAdvance());
+                    }
+
+                    // Initial activation
+                    showStep(0);
+                },
+
                 setupLanguageTabs() {
-                    document.querySelectorAll('.lang-tab').forEach(tab => {
+                    const tabs = document.querySelectorAll('.lang-tab');
+                    tabs.forEach(tab => {
                         tab.addEventListener('click', () => {
                             if (this.state.isPlaying) {
                                 this.stop();
                             }
 
-                            document.querySelectorAll('.lang-tab').forEach(t => {
-                                t.classList.remove('bg-black', 'text-white');
-                                t.classList.add('bg-white', 'text-zinc-600', 'border', 'border-zinc-200', 'hover:bg-zinc-100');
+                            tabs.forEach(t => {
+                                t.className = 'lang-tab px-4 py-2 bg-white border border-[#EFE9D7] text-[#0D4C3C] hover:bg-[#F4F1EB] focus-visible:bg-[#F4F1EB] rounded-md font-medium text-sm transition-all focus-visible:ring-2';
                                 t.setAttribute('aria-selected', 'false');
                             });
 
-                            tab.classList.remove('bg-white', 'text-zinc-600', 'border', 'border-zinc-200', 'hover:bg-zinc-100');
-                            tab.classList.add('bg-black', 'text-white');
+                            tab.className = 'lang-tab px-4 py-2 text-white bg-[#092634] rounded-md font-medium text-sm transition-all focus-visible:ring-2';
                             tab.setAttribute('aria-selected', 'true');
 
                             this.state.currentLang = tab.getAttribute('data-lang');
@@ -1143,11 +1411,24 @@
 
                 setupCleanup() {
                     document.addEventListener('visibilitychange', () => {
-                        if (document.hidden && this.state.isPlaying) this.stop();
+                        if (document.hidden) {
+                            if (this.state.isPlaying) this.stop();
+                            if (this.state.showcaseTimer) clearInterval(this.state.showcaseTimer);
+                        } else if (!this.state.showcasePaused) {
+                            if (this.state.showcaseTimer) clearInterval(this.state.showcaseTimer);
+                            this.state.showcaseTimer = setInterval(() => {
+                                const stepButtons = document.querySelectorAll('.showcase-step-btn');
+                                if (!stepButtons.length) return;
+                                const next = (this.state.showcaseIndex + 1) % stepButtons.length;
+                                const btn = stepButtons[next];
+                                if (btn) btn.click();
+                            }, 5500);
+                        }
                     });
 
                     window.addEventListener('beforeunload', () => {
                         this.stop();
+                        if (this.state.showcaseTimer) clearInterval(this.state.showcaseTimer);
                     });
                 }
             };
