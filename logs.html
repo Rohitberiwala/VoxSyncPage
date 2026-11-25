@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>VoxSync - Developer Logs</title>
+    <title>GLCalls - Developer Logs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -119,7 +119,7 @@
         <!-- Header -->
         <div class="mb-8">
             <h1 class="text-4xl font-bold mb-2">
-                <span class="text-accent-cool">VoxSync</span> Developer Console
+                <span class="text-accent-cool">GLCalls</span> Developer Console
             </h1>
             <p class="text-muted-foreground font-mono text-sm">Internal monitoring & diagnostics • Build <span id="build-time"></span></p>
         </div>
@@ -319,23 +319,22 @@
 
         <!-- Footer Info -->
         <div class="text-center text-muted-foreground text-xs font-mono">
-            <p>VoxSync Internal Developer Console • <a href="/" class="text-accent-cool hover:underline">Return to Home</a></p>
+            <p>GLCalls Internal Developer Console • <a href="/" class="text-accent-cool hover:underline">Return to Home</a></p>
         </div>
     </div>
 
     <script>
-        // Secret key gate check
+        // Secret key gate check: require key parameter or stored key
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             const keyParam = urlParams.get('key');
             const storedKey = localStorage.getItem('admin_secret');
 
-            // Check if valid key in URL or localStorage
-            if (keyParam === 'rohit99') {
-                // Valid key in URL - save to localStorage
-                localStorage.setItem('admin_secret', 'rohit99');
-            } else if (storedKey !== 'rohit99') {
-                // No valid key - redirect to home
+            if (keyParam) {
+                // Key provided in URL - persist to localStorage
+                localStorage.setItem('admin_secret', keyParam);
+            } else if (!storedKey) {
+                // No key provided - redirect to home
                 window.location.href = '/';
                 return;
             }
@@ -378,7 +377,7 @@
                         const data = JSON.parse(event.data);
 
                         if (data.type === 'connected') {
-                            appendLog('[SYSTEM]', 'Connected to VoiceBridge log stream', 'text-accent-green');
+                            appendLog('[SYSTEM]', 'Connected to GLCalls log stream', 'text-accent-green');
                             return;
                         }
 
